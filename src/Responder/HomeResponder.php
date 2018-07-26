@@ -14,8 +14,15 @@ use Twig\Environment;
 
 class HomeResponder
 {
+    /**
+     * @var Environment
+     */
     private $twig;
 
+    /**
+     * HomeResponder constructor.
+     * @param Environment $twig
+     */
     public function __construct(Environment $twig)
     {
         $this->twig = $twig;
