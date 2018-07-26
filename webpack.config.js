@@ -15,7 +15,7 @@ Encore
     //.enableVersioning(Encore.isProduction())
 
     // uncomment to define the assets of the project
-    .addEntry('js/app', './assets/js/app.js')
+    .addEntry('app', './assets/js/app.js')
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
