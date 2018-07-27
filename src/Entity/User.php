@@ -9,6 +9,7 @@
 namespace App\Entity;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class User implements UserInterface
@@ -58,6 +59,26 @@ class User implements UserInterface
      * @var null
      */
     private $activatedOn = null;
+
+    /**
+     * @var
+     */
+    private $person;
+
+    /**
+     * @var
+     */
+    private $orders;
+
+    /**
+     * @var
+     */
+    private $pendingValidations;
+
+    /**
+     * @var
+     */
+    private $stockValidations;
 
 
     /**
@@ -122,6 +143,14 @@ class User implements UserInterface
     public function setActivatedOn(?\DateTime $activatedOn): void
     {
         $this->activatedOn = $activatedOn;
+    }
+
+    /**
+     * @param Person $person
+     */
+    public function setPerson(Person $person)
+    {
+        $this->person = $person;
     }
 
     /**
@@ -197,6 +226,16 @@ class User implements UserInterface
     }
 
     /**
+     * @return Person
+     */
+    public function getPerson(): Person
+    {
+        return $this->person;
+    }
+
+    /*---------------------- UserInterface requested methods ------------------*/
+
+    /**
      * @return null|string
      */
     public function getSalt()
@@ -248,6 +287,94 @@ class User implements UserInterface
             $this->email
             ) = unserialize($serialized, ['allowed_classes' => false]);
     }
+
+    /*----------------------- Array Collections -----------------------*/
+
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        $this->orders             = new ArrayCollection();
+        $this->pendingValidations = new ArrayCollection();
+        $this->stockValidations   = new ArrayCollection();
+    }
+
+    /**
+     * @param Order $order
+     */
+    public function addInOrderProduct(Order $order)
+    {
+        $this->orders[] = $order;
+    }
+
+    /**
+     * @param PendingValidationStock $pendingValidation
+     */
+    public function addPendingValidation(
+        PendingValidationStock $pendingValidation
+    ){
+        $this->pendingValidations[] = $pendingValidation;
+    }
+
+    /**
+     * @param StockValidation $stockValidation
+     */
+    public function addStockValidation(StockValidation $stockValidation)
+    {
+        $this->stockValidations[] = $stockValidation;
+    }
+
+    /**
+     * @param Order $order
+     */
+    public function removeOrder(Order $order)
+    {
+        $this->orders->removeElement($order);
+    }
+
+    /**
+     * @param PendingValidationStock $pendingValidation
+     */
+    public function removePendingValidation(
+        PendingValidationStock $pendingValidation
+    )
+    {
+        $this->pendingValidations->removeElement($pendingValidation);
+    }
+
+    /**
+     * @param StockValidation $stockValidation
+     */
+    public function removeStockValidation(StockValidation $stockValidation)
+    {
+        $this->stockValidations->removeElement($stockValidation);
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getOrders(): ArrayCollection
+    {
+        return $this->orders;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getPendingValidations(): ArrayCollection
+    {
+        return $this->pendingValidations;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getStockValidations(): ArrayCollection
+    {
+        return $this->stockValidations;
+    }
+
 
 
 }
