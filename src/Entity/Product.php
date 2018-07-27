@@ -10,7 +10,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * where all the referenced products are stored whether they are stocked or not
+ * where all the referenced products are stored whether they are available for retail or not
  * Class Product
  * @package App\Entity
  */
