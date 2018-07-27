@@ -10,8 +10,11 @@ namespace App\Entity;
 
 
 /**
- * where a product goes while it hasn't been validated and before being added to "inStockProduct"
+ * where a product goes while it hasn't been validated yet
+ * when the validation has been granted the quantity is added to the matching "InStockProduct" level
+ *
  * Class PendingValidationStock
+ *
  * @package App\Entity
  */
 class PendingValidationStock

@@ -10,7 +10,10 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
+ * where we will be able to store newly created product/reference
  * where all the referenced products are stored whether they are available for retail or not
+ * each time a new product is created it will be added to the "InStockProduct" table with an "inStockProduct" level set to null
+ *
  * Class Product
  * @package App\Entity
  */
