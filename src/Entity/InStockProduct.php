@@ -39,6 +39,11 @@ class InStockProduct
     private $product;
 
     /**
+     * @var
+     */
+    private $warehouse;
+
+    /**
      * @param int $level
      */
     public function setLevel(?int $level): void
@@ -60,6 +65,14 @@ class InStockProduct
     public function setProduct(Product $product): void
     {
         $this->product = $product;
+    }
+
+    /**
+     * @param Warehouse $warehouse
+     */
+    public function setWarehouse(Warehouse $warehouse): void
+    {
+        $this->warehouse = $warehouse;
     }
 
     /**
@@ -92,6 +105,14 @@ class InStockProduct
     public function getProduct(): Product
     {
         return $this->product;
+    }
+
+    /**
+     * @return Warehouse
+     */
+    public function getWarehouse(): Warehouse
+    {
+        return $this->warehouse;
     }
 
 }

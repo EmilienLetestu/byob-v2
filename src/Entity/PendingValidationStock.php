@@ -64,6 +64,11 @@ class PendingValidationStock
      */
     private $stockValidation;
 
+    /**
+     * @var
+     */
+    private $warehouse;
+
 
     /**
      * @param int $quantity
@@ -126,9 +131,17 @@ class PendingValidationStock
     /**
      * @param StockValidation $stockValidation
      */
-    public function setStockValidation(StockValidation $stockValidation)
+    public function setStockValidation(StockValidation $stockValidation): void
     {
         $this->stockValidation = $stockValidation;
+    }
+
+    /**
+     * @param Warehouse $warehouse
+     */
+    public function setWarehouse(Warehouse $warehouse): void
+    {
+        $this->warehouse = $warehouse;
     }
 
     /**
@@ -201,6 +214,14 @@ class PendingValidationStock
     public function getStockValidation(): StockValidation
     {
         return $this->stockValidation;
+    }
+
+    /**
+     * @return Warehouse
+     */
+    public function getWarehouse(): Warehouse
+    {
+        return $this->warehouse;
     }
 
 }

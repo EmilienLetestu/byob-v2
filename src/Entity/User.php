@@ -80,6 +80,11 @@ class User implements UserInterface
      */
     private $stockValidations;
 
+    /**
+     * @var
+     */
+    private $warehouse;
+
 
     /**
      * @param string $name
@@ -151,6 +156,14 @@ class User implements UserInterface
     public function setPerson(Person $person)
     {
         $this->person = $person;
+    }
+
+    /**
+     * @param Warehouse|null $warehouse
+     */
+    public function  setWarehouse(?Warehouse $warehouse)
+    {
+        $this->warehouse = $warehouse;
     }
 
     /**
@@ -231,6 +244,14 @@ class User implements UserInterface
     public function getPerson(): Person
     {
         return $this->person;
+    }
+
+    /**
+     * @return Warehouse|null
+     */
+    public function getWarehouse():? Warehouse
+    {
+        return $this->warehouse;
     }
 
     /*---------------------- UserInterface requested methods ------------------*/
@@ -374,7 +395,5 @@ class User implements UserInterface
     {
         return $this->stockValidations;
     }
-
-
 
 }
