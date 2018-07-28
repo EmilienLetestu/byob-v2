@@ -13,5 +13,48 @@
         <field name="validated" column="validated" type="boolean" nullable="true"/>
         <field name="askedOn" column="asked_on" type="date"/>
         <field name="processedOn" column="processed_on" type="date" nullable="true"/>
+
+        <many-to-one
+                field="askedBy"
+                target-entity="App\Entity\User"
+                inversed-by="pendingValidations">
+
+            <join-column
+                    nullable="false"
+                    name="asked_by"
+                    referenced-column-name="id"
+            />
+        </many-to-one>
+
+        <many-to-one
+                field="product"
+                target-entity="App\Entity\Product"
+                inversed-by="pendingValidations">
+
+            <join-column
+                    nullable="false"
+                    name="pending_validation"
+                    referenced-column-name="id"
+            />
+        </many-to-one>
+
+        <many-to-one
+                field="warehouse"
+                target-entity="App\Entity\Warehouse"
+                inversed-by="pendingValidations">
+
+            <join-column
+                    nullable="false"
+                    name="pending_validation"
+                    referenced-column-name="id"
+            />
+        </many-to-one>
+
+        <one-to-one
+                field="stockValidation"
+                target-entity="App\Entity\StockValidation"
+                inversed-by="pendingValidation"
+        />
+
     </entity>
 </doctrine-mapping>

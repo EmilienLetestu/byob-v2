@@ -8,11 +8,28 @@
         <id name="id" type="integer">
             <generator strategy="AUTO"/>
         </id>
-        <field name="level" column="level" type="int" nullable="true"/>
+        <field name="level" column="level" type="integer" nullable="true"/>
         <field name="alertLevel" column="alert_level" type="smallint">
                 <options>
                     <option name="default">10</option>
                 </options>
         </field>
+
+        <one-to-one
+                field="product"
+                target-entity="App\Entity\Product"
+                inversed-by="inStockProduct"
+        />
+
+        <many-to-one
+                field="warehouse"
+                target-entity="App\Entity\warehouse"
+                inversed-by="inStockProducts">
+            <join-column
+                    name="warehouse"
+                    referenced-column-name="id"
+            />
+        </many-to-one>
+
     </entity>
 </doctrine-mapping>

@@ -10,5 +10,25 @@
         </id>
         <field name="name" column="name" type="string" length="150"/>
         <field name="address" column="address" type="string" length="255"/>
+
+        <one-to-many
+                field="users"
+                target-entity="App\Entity\User"
+                mapped-by="warehouse"
+         />
+
+        <one-to-many
+                field="pendingValidations"
+                target-entity="App\Entity\PendingValidationStock"
+                mapped-by="warehouse"
+        />
+
+        <one-to-many
+                field="inStockProducts"
+                target-entity="App\Entity\InStockProduct"
+                mapped-by="warehouse"
+        />
+
+
     </entity>
 </doctrine-mapping>

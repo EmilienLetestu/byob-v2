@@ -9,5 +9,24 @@
             <generator strategy="AUTO"/>
         </id>
         <field name="processedOn" column="processed_on" type="date"/>
+
+        <many-to-one
+                field="processedBy"
+                target-entity="App\Entity\User"
+                inversed-by="stockValidations">
+            <join-column
+                    nullable="false"
+                    name="processed_by"
+                    referenced-column-name="id"
+            />
+        </many-to-one>
+
+        <one-to-one
+                field="pendingValidation"
+                target-entity="App\Entity\PendingValidationStock"
+                mapped-by="stockValidation"
+        />
+
     </entity>
+
 </doctrine-mapping>

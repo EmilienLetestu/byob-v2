@@ -11,5 +11,24 @@
         <field name="fullName" column="full_name" type="string" length="70"/>
         <field name="birthday" column="birthday" type="date" nullable="true"/>
         <field name="job" column="job" type="string" length="100"/>
+
+        <one-to-one
+                field="user"
+                target-entity="App\Entity\User"
+                inversed-by="person"
+        />
+
+        <one-to-many
+                field="orders"
+                target-entity="App\Entity\Order"
+                mapped-by="orderedFor"
+        />
+
+        <one-to-many
+                field="contacts"
+                target-entity="App\Entity\Contact"
+                mapped-by="person"
+        />
+
     </entity>
 </doctrine-mapping>

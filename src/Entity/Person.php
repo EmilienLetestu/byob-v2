@@ -50,6 +50,11 @@ class Person
     private $contacts;
 
     /**
+     * @var ArrayCollection
+     */
+    private $orders;
+
+    /**
      * @param string $fullName
      */
     public function setFullName(string $fullName): void
@@ -129,6 +134,7 @@ class Person
     public function __construct()
     {
         $this->contacts = new ArrayCollection();
+        $this->orders   = new ArrayCollection();
     }
 
     /**
@@ -154,6 +160,32 @@ class Person
     {
         return $this->contacts;
     }
+
+    /**
+     * @param Order $order
+     */
+    public function addOrder(Order $order)
+    {
+        $this->orders[] = $order;
+    }
+
+    /**
+     * @param Order $order
+     */
+    public function removeOrder(Order $order)
+    {
+        $this->orders->removeElement($order);
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getOrders(): ArrayCollection
+    {
+        return $this->orders;
+    }
+
+
 
 
 }

@@ -68,22 +68,29 @@ class User implements UserInterface
     /**
      * @var
      */
+    private $warehouse;
+
+    /**
+     * @var ArrayCollection
+     */
     private $orders;
 
     /**
-     * @var
+     * @var ArrayCollection
      */
     private $pendingValidations;
 
     /**
-     * @var
+     * @var ArrayCollection
      */
     private $stockValidations;
 
     /**
-     * @var
+     * @var ArrayCollection
      */
-    private $warehouse;
+    private $products;
+
+
 
 
     /**
@@ -319,6 +326,7 @@ class User implements UserInterface
         $this->orders             = new ArrayCollection();
         $this->pendingValidations = new ArrayCollection();
         $this->stockValidations   = new ArrayCollection();
+        $this->products           = new ArrayCollection();
     }
 
     /**
@@ -347,6 +355,14 @@ class User implements UserInterface
     }
 
     /**
+     * @param Product $product
+     */
+    public function addProduct(Product $product)
+    {
+        $this->products[] = $product;
+    }
+
+    /**
      * @param Order $order
      */
     public function removeOrder(Order $order)
@@ -372,6 +388,15 @@ class User implements UserInterface
         $this->stockValidations->removeElement($stockValidation);
     }
 
+
+    /**
+     * @param Product $product
+     */
+    public function removeProduct(Product $product)
+    {
+        $this->products->removeElement($product);
+    }
+
     /**
      * @return ArrayCollection
      */
@@ -394,6 +419,14 @@ class User implements UserInterface
     public function getStockValidations(): ArrayCollection
     {
         return $this->stockValidations;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getProducts(): ArrayCollection
+    {
+        return $this->products;
     }
 
 }

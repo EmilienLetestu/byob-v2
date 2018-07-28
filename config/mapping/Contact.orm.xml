@@ -11,5 +11,14 @@
         <field name="type" column="type" type="string" length="25"/>
         <field name="data" column="data" type="string" length="50"/>
         <field name="comment" column="comment" type="text" nullable="true"/>
+
+        <many-to-one
+                field="person"
+                target-entity="App\Entity\Person"
+                inversed-by="contacts">
+
+            <join-column nullable="false"/>
+        </many-to-one>
+
     </entity>
 </doctrine-mapping>

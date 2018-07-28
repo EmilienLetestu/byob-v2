@@ -13,5 +13,34 @@
         <field name="deliveredOn" column="delivered_on" type="date" nullable="true"/>
         <field name="payedOn" column="payed_on" type="date" nullable="true"/>
         <field name="status" column="status" type="string" length="30"/>
+
+            <many-to-one
+                    field="orderedBy"
+                    target-entity="App\Entity\User"
+                    inversed-by="orders">
+                    <join-column
+                            nullable="false"
+                            name="ordered_by"
+                            referenced-column-name="id"
+                    />
+            </many-to-one>
+
+            <many-to-one
+                    field="orderedFor"
+                    target-entity="App\Entity\Person"
+                    inversed-by="orders">
+                    <join-column
+                            nullable="false"
+                            name="ordered_for"
+                            referenced-column-name="id"
+                    />
+            </many-to-one>
+
+            <one-to-many
+                    field="inOrderProducts"
+                    target-entity="App\Entity\InOrderProduct"
+                    mapped-by="order"
+            />
+
     </entity>
 </doctrine-mapping>

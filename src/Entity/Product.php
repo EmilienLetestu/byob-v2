@@ -82,7 +82,7 @@ class Product
     /**
      * @var
      */
-    private $inStockProducts;
+    private $inStockProduct;
 
     /**
      * @var
@@ -173,6 +173,14 @@ class Product
     }
 
     /**
+     * @param InStockProduct $inStockProduct
+     */
+    public function setInStockProduct(InStockProduct $inStockProduct): void
+    {
+        $this->inStockProduct = $inStockProduct;
+    }
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -260,6 +268,14 @@ class Product
         return $this->referencedBy;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getInStockProduct(): InStockProduct
+    {
+        return $this->inStockProduct;
+    }
+
     /*----------------------- Array Collections -----------------------*/
 
     /**
@@ -268,7 +284,6 @@ class Product
     public function __construct()
     {
         $this->inOrderProducts    = new ArrayCollection();
-        $this->inStockProducts    = new ArrayCollection();
         $this->pendingValidations = new ArrayCollection();
     }
 
@@ -277,16 +292,9 @@ class Product
      */
     public function addInOrderProduct(InOrderProduct $inOrderProduct): void
     {
-        $this->inStockProducts[] = $inOrderProduct;
+        $this->inOrderProducts[] = $inOrderProduct;
     }
 
-    /**
-     * @param InStockProduct $inStockProduct
-     */
-    public function addInStockProduct(InStockProduct $inStockProduct): void
-    {
-        $this->inStockProducts[] = $inStockProduct;
-    }
 
     /**
      * @param PendingValidationStock $pendingValidationStock
@@ -306,13 +314,6 @@ class Product
         $this->inOrderProducts->removeElement($inOrderProduct);
     }
 
-    /**
-     * @param InStockProduct $inStockProduct
-     */
-    public function removeInStockProduct(InStockProduct $inStockProduct): void
-    {
-        $this->inStockProducts->removeElement($inStockProduct);
-    }
 
     /**
      * @param PendingValidationStock $pendingValidationStock
@@ -332,13 +333,6 @@ class Product
         return $this->inOrderProducts;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getInStockProducts(): ArrayCollection
-    {
-        return $this->inStockProducts;
-    }
 
     /**
      * @return ArrayCollection

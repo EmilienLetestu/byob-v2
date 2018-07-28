@@ -17,5 +17,38 @@
         <field name="reference" column="reference" type="string" length="100" unique="true"/>
         <field name="referencedOn" column="referenced_on" type="date"/>
         <field name="lastModification" column="last_modification" type="date" nullable="true"/>
+
+        <one-to-many
+                field="inOrderProducts"
+                target-entity="App\Entity\InOrderProduct"
+                mapped-by="product"
+        />
+
+        <one-to-many
+                field="pendingValidations"
+                target-entity="App\Entity\PendingValidationStock"
+                mapped-by="product"
+        />
+
+        <one-to-one
+                field="inStockProduct"
+                target-entity="App\Entity\InStockProduct"
+                mapped-by="product"
+        />
+
+        <many-to-one
+                field="referencedBy"
+                target-entity="App\Entity\User"
+                inversed-by="products">
+
+            <join-column
+                    nullable="false"
+                    name="referenced_by"
+                    referenced-column-name="id"
+                    />
+        </many-to-one>
+
+
+
     </entity>
 </doctrine-mapping>

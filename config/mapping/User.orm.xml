@@ -4,17 +4,58 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
         http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-<entity name="App\Entity\User">
-    <id name="id" type="integer">
-        <generator strategy="AUTO"/>
-    </id>
-    <field name="name" column="name" type="string" length="20"/>
-    <field name="surname" column="surname" type="string" length="50"/>
-    <field name="email" column="email" type="string" length="50" unique="true"/>
-    <field name="password" column="password" type="string" length="150"/>
-    <field name="role" column="role" type="string" length="20"/>
-    <field name="addedOn" column="added_on" type="date"/>
-    <field name="activated" column="activated" type="boolean"/>
-    <field name="activatedOn" column="activated_on" type="date" nullable="true"/>
-</entity>
+    <entity name="App\Entity\User">
+        <id name="id" type="integer">
+            <generator strategy="AUTO"/>
+        </id>
+        <field name="name" column="name" type="string" length="20"/>
+        <field name="surname" column="surname" type="string" length="50"/>
+        <field name="email" column="email" type="string" length="50" unique="true"/>
+        <field name="password" column="password" type="string" length="150"/>
+        <field name="role" column="role" type="string" length="20"/>
+        <field name="addedOn" column="added_on" type="date"/>
+        <field name="activated" column="activated" type="boolean"/>
+        <field name="activatedOn" column="activated_on" type="date" nullable="true"/>
+
+        <one-to-many
+            field="orders"
+            target-entity="App\Entity\Order"
+            mapped-by="orderedBy"
+        />
+
+        <one-to-many field="products"
+                 target-entity="App\Entity\Product"
+                 mapped-by="referencedBy"
+        />
+
+        <one-to-many
+            field="pendingValidations"
+            target-entity="App\Entity\PendingValidationStock"
+            mapped-by="askedBy"
+        />
+
+        <one-to-many
+            field="stockValidations"
+            target-entity="App\Entity\StockValidation"
+            mapped-by="processedBy"
+        />
+
+        <one-to-one
+            field="person"
+            target-entity="App\Entity\Person"
+            mapped-by="user"
+        />
+
+        <many-to-one
+            field="warehouse"
+            target-entity="App\Entity\Warehouse"
+            inversed-by="users">
+        <join-column
+                nullable="false"
+                name="warehouse_id"
+                referenced-column-name="id"
+        />
+        </many-to-one>
+
+    </entity>
 </doctrine-mapping>
