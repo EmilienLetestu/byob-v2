@@ -9,7 +9,7 @@
             <generator strategy="AUTO"/>
         </id>
         <field name="quantity" column="quantity" type="smallint"/>
-        <field name="processed" column="processed" type="boolean" nullable="true"/>
+        <field name="processed" column="processed" type="boolean"/>
         <field name="validated" column="validated" type="boolean" nullable="true"/>
         <field name="askedOn" column="asked_on" type="date"/>
         <field name="processedOn" column="processed_on" type="date" nullable="true"/>
