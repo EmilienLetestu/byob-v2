@@ -9,6 +9,10 @@
             <generator strategy="AUTO"/>
         </id>
         <field name="level" column="level" type="int" nullable="true"/>
-        <field name="alertLevel" column="alert_level" type="smallint"/>
+        <field name="alertLevel" column="alert_level" type="smallint">
+                <options>
+                    <option name="default">10</option>
+                </options>
+        </field>
     </entity>
 </doctrine-mapping>
