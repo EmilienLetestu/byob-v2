@@ -33,7 +33,7 @@
 
             <join-column
                     nullable="false"
-                    name="pending_validation"
+                    name="product_id"
                     referenced-column-name="id"
             />
         </many-to-one>
@@ -45,7 +45,7 @@
 
             <join-column
                     nullable="false"
-                    name="pending_validation"
+                    name="warehouse_id"
                     referenced-column-name="id"
             />
         </many-to-one>
