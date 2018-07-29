@@ -8,6 +8,7 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 /**
  * where all referenced product are "turned" into stock with a level and a level alert
  * where for a given product we will calculate and adjust the flows

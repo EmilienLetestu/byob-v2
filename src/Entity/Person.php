@@ -11,6 +11,8 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * where will be stored personal information about a given user, client, provider....
  *
@@ -162,17 +164,17 @@ class Person
     }
 
     /**
-     * @param Order $order
+     * @param Orders $order
      */
-    public function addOrder(Order $order)
+    public function addOrder(Orders $order)
     {
         $this->orders[] = $order;
     }
 
     /**
-     * @param Order $order
+     * @param Orders $order
      */
-    public function removeOrder(Order $order)
+    public function removeOrder(Orders $order)
     {
         $this->orders->removeElement($order);
     }

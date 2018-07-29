@@ -9,6 +9,8 @@
 namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Will be use to save all the places where a given stock ("inStockProduct") is stored
  *

@@ -8,6 +8,8 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * where will be stored addresses, phone numbers....
  * Class Contact

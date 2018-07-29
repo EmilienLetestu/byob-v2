@@ -19,7 +19,7 @@
 
         <one-to-many
             field="orders"
-            target-entity="App\Entity\Order"
+            target-entity="App\Entity\Orders"
             mapped-by="orderedBy"
         />
 

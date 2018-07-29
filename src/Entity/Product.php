@@ -9,6 +9,8 @@
 namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * where we will be able to store newly created product/reference
  * where all the referenced products are stored whether they are available for retail or not
@@ -151,7 +153,7 @@ class Product
      */
     public function setReferencedOn(string $format): void
     {
-        $this->referencedOn = new \DateTime($format);
+        $this->referencedOn = new \DateTime(date($format));
     }
 
     /**

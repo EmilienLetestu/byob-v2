@@ -8,6 +8,7 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * where a product goes while it hasn't been validated yet
@@ -47,7 +48,7 @@ class PendingValidationStock
     /**
      * @var
      */
-    private $processedOn = null;
+    private $processedOn;
 
     /**
      * @var
@@ -108,7 +109,7 @@ class PendingValidationStock
      */
     public function setProcessedOn(?\DateTime $processedOn): void
     {
-        $this->processed = $processedOn;
+        $this->processedOn = $processedOn;
     }
 
 

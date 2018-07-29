@@ -12,6 +12,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+use Doctrine\ORM\Mapping as ORM;
+
 class User implements UserInterface
 {
 
@@ -330,9 +332,9 @@ class User implements UserInterface
     }
 
     /**
-     * @param Order $order
+     * @param Orders $order
      */
-    public function addInOrderProduct(Order $order)
+    public function addInOrderProduct(Orders $order)
     {
         $this->orders[] = $order;
     }
@@ -363,9 +365,9 @@ class User implements UserInterface
     }
 
     /**
-     * @param Order $order
+     * @param Orders $order
      */
-    public function removeOrder(Order $order)
+    public function removeOrder(Orders $order)
     {
         $this->orders->removeElement($order);
     }

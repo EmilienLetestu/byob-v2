@@ -8,6 +8,7 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 
 class InOrderProduct
 {
@@ -49,9 +50,9 @@ class InOrderProduct
     }
 
     /**
-     * @param Order $order
+     * @param Orders $order
      */
-    public function setOrder(Order $order): void
+    public function setOrder(Orders $order): void
     {
         $this->order = $order;
     }
@@ -73,9 +74,9 @@ class InOrderProduct
     }
 
     /**
-     * @return Order
+     * @return Orders
      */
-    public function getOrder(): Order
+    public function getOrder(): Orders
     {
         return $this->order;
     }

@@ -9,11 +9,7 @@
             <generator strategy="AUTO"/>
         </id>
         <field name="level" column="level" type="integer" nullable="true"/>
-        <field name="alertLevel" column="alert_level" type="smallint">
-                <options>
-                    <option name="default">10</option>
-                </options>
-        </field>
+        <field name="alertLevel" column="alert_level" type="smallint"/>
 
         <one-to-one
                 field="product"

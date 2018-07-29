@@ -12,7 +12,7 @@
 
     <many-to-one
             field="order"
-            target-entity="App\Entity\Order"
+            target-entity="App\Entity\Orders"
             inversed-by="inOrderProducts">
         <join-column
             name="order_id"

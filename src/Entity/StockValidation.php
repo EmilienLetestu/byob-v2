@@ -8,6 +8,7 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 /**
  * keep records of all stock entrance validation requests
  * Class StockValidation
