@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: emilien
  * Date: 30/07/2018
- * Time: 13:27
+ * Time: 23:59
  */
 
 namespace App\Responder;
@@ -13,7 +13,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-class CreateWarehouseResponder
+class CreateUserResponder
 {
     /**
      * @var Environment
@@ -21,7 +21,7 @@ class CreateWarehouseResponder
     private $twig;
 
     /**
-     * CreateWarehouseResponder constructor.
+     * CreateUserResponder constructor.
      * @param Environment $twig
      */
     public function __construct(Environment $twig)
@@ -36,12 +36,12 @@ class CreateWarehouseResponder
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(FormView $form): Response
+    public function __invoke(FormView $form)
     {
        return new Response(
-           $this->twig->render('create_Entity.html.twig',[
+           $this->twig->render('create_entity.html.twig',[
                'form' => $form,
-               'formTemplate' => 'form/warehouse_form.html.twig'
+               'formTemplate' => 'form/user_form.html.twig'
            ])
        );
     }
