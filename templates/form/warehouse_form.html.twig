@@ -1,0 +1,19 @@
+<div class="container form-container">
+    <div class="col s12 m12">
+        {{ form_start(form) }}
+        <div>
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+        </div>
+        <div>
+            {{ form_label(form.address) }}
+            {{ form_widget(form.address) }}
+        </div>
+        <div>
+            <button class="btn waves-effect waves-light color-action-darken" type="submit"><i class="material-icons right">send
+                </i>Valider
+            </button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>
