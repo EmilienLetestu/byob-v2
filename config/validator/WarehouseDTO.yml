@@ -1,0 +1,17 @@
+App\DTO\WarehouseDTO:
+    properties:
+        name:
+            - Lenght:
+                min: 3
+                max: 150
+                minMessage: 3 caractères minimum
+                maxMessage: 150 caractères maximum
+                groups: [warehouse]
+
+        address:
+           - Lenght:
+               min: 3
+               max: 150
+               minMessage: 3 caractères minimum
+               maxMessage: 150 caractères maximum
+               groups: [warehouse]
