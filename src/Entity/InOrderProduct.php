@@ -66,6 +66,14 @@ class InOrderProduct
     }
 
     /**
+     * @return int
+     */
+    public function getQuantity(): int
+    {
+        return $this->quantity;
+    }
+
+    /**
      * @return Product
      */
     public function getProduct(): Product
