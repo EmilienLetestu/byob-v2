@@ -12,6 +12,10 @@ namespace App\Tests\Entity;
 use App\Entity\Product;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class ProductTest
+ * @package App\Tests\Entity
+ */
 class ProductTest extends TestCase
 {
     public function testProduct()
