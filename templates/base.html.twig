@@ -19,13 +19,13 @@
                 <div class="nav-wrapper">
                     <a href="#" class="brand-logo">BYOB</a>
                     <a href="#" data-target="mobile-nav" class="sidenav-trigger" id="trigger"><i class="material-icons">menu</i></a>
-                    <ul class="right hide-on-med-and-down">
+                    <ul class="right hide-on-med-and-down" id="default-nav">
                         <li><a href="#"><i class="material-icons">info</i></a></li>
                         <li><a href=""><i class="material-icons">build</i></a></li>
                         <li><a href="#"><i class="material-icons">brush</i></a></li>
                         <li><a href="#"><i class="material-icons">email</i></a></li>
                         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                            <li><a href="{{ path('logout')}}"><i class="material-icons">input</i></a></li>
+                            <li><a href="{{ path('logout')}}" id="logout"><i class="material-icons">input</i></a></li>
                         {% endif %}
                     </ul>
                 </div>
