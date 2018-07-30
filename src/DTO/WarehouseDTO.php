@@ -17,12 +17,12 @@ class WarehouseDTO
     /**
      * @var string
      */
-    private $name;
+    public $name;
 
     /**
      * @var string
      */
-    private $address;
+    public $address;
 
     /**
      * WarehouseDTO constructor.
