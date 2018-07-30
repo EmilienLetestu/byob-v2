@@ -34,7 +34,8 @@ class TitleFromRouteExtension extends AbstractExtension
     {
         $routeNames = [
             'dashboard'       => 'Tableau de bord',
-            'createWarehouse' => 'Ajouter un entrepôt'
+            'createWarehouse' => 'Ajouter un entrepôt',
+            'createUser'      => 'Ajouter un utilisateur'
         ];
 
         return $routeNames[$routeName];
