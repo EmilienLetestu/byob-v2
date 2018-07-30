@@ -21,7 +21,7 @@ class PersonTest extends TestCase
     public function testPerson()
     {
         $date = \DateTime::createFromFormat('Y-m-d', '1980-05-19');
-        
+
         $person = new Person();
 
         $person->setFullName('Emilien Letestu');

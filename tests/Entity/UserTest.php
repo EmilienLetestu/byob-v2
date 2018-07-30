@@ -38,7 +38,7 @@ class UserTest extends TestCase
         $this->assertEquals('WAREHOUSEMAN', $user->getRole());
         $this->assertEquals($today, $user->getAddedOn());
         $this->assertEquals(false, $user->getActivated());
-        $this->assertEquals(null, $user->getActivatedOn());
+        $this->assertNull($user->getActivatedOn());
 
     }
 }
