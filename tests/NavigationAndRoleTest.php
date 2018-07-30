@@ -30,10 +30,25 @@ class NavigationAndRoleTest extends WebTestCase
         $crawler = $this->login('user@gmail.com','directorLolo');
 
         $this->assertEquals(1, $crawler->filter('#logout')->count());
-        $this->assertSame(1, $crawler->filter('h1:contains("it works")')->count());
+        $this->assertSame(1, $crawler->filter('h1:contains("Tableau de bord")')->count());
+        $this->logout();
+    }
+
+
+    public function testAddWareHouse()
+    {
+        $crawler = $this->login('user@gmail.com','directorLolo');
+
+        $crawler = $this->client->request('GET','/entrepot/ajouter');
+        $this->assertEquals(200,$this->client->getResponse()->getStatusCode());
+        $form = $crawler->filter("form")->form();
+        $form['ware_house[name]'] = 'jkjjk jkj sssx';
+        $form['ware_house[address]'] = 'kkooi ioioi oi';
+        $crawler = $this->client->submit($form);
+
+        $this->assertSame('/dashboard', $this->client->getResponse()->headers->get('location'));
 
         $this->logout();
-
     }
 
 
