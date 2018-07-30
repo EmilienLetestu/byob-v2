@@ -9,23 +9,23 @@
 namespace App\Action;
 
 
-use App\Responder\HomeResponder;
+use App\Responder\DashboardResponder;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HomeAction
+class DashboardAction
 
 {
     /**
-     * @param HomeResponder $responder
+     * @Route("/dashboard", name = "dashboard")
+     *
+     * @param DashboardResponder $responder
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
-     *
-     *
      */
-    public function __invoke(HomeResponder $responder): Response
+    public function __invoke(DashboardResponder $responder): Response
     {
        return $responder('it works');
     }

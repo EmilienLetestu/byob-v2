@@ -24,6 +24,9 @@
                         <li><a href=""><i class="material-icons">build</i></a></li>
                         <li><a href="#"><i class="material-icons">brush</i></a></li>
                         <li><a href="#"><i class="material-icons">email</i></a></li>
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <li><a href="{{ path('logout')}}"><i class="material-icons">input</i></a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </nav>

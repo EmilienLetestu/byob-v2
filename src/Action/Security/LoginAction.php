@@ -66,6 +66,9 @@ class LoginAction
              );
          }
 
+         dump($utils->getLastAuthenticationError());
+
+
          return $responder(
              $utils->getLastUsername(),
              $utils->getLastAuthenticationError()

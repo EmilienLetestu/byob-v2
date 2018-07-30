@@ -279,7 +279,7 @@ class User implements UserInterface
     public function getRoles(): array
     {
         return [
-            $this->getRole()
+            'ROLE_'.$this->getRole()
         ];
     }
 
