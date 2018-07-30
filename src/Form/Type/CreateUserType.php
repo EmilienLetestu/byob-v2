@@ -22,7 +22,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * Class AddUserType
  * @package App\Form\Type
  */
-class AddUserType extends AbstractType
+class CreateUserType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -41,10 +41,10 @@ class AddUserType extends AbstractType
                 'label' => 'E-mail'
             ])
             ->add('password', TextType::class,[
-                'Mot de passe provisoire'
+               'label'  => 'Mot de passe provisoire'
             ])
             ->add('role', ChoiceType::class,[
-                'choices',[
+                'choices'=> [
                     'Financier'              => 'ACCOUNTANT',
                     'Responsable appro'      => 'SUPPLY',
                     'Responsable logistique' => 'LOGISTIC',
@@ -53,7 +53,7 @@ class AddUserType extends AbstractType
                     'Livreur'                => 'DELIVERYMAN'
                 ]
             ])
-            ->add('Associé à un entrepôt ?',EntityType::class,[
+            ->add('warehouse',EntityType::class,[
                 'class' => Warehouse::class,
                 'choice_label' => 'name'
             ]);
