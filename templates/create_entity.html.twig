@@ -4,7 +4,9 @@
 
         <h1>{{ app.request.get('_route')|title }}</h1>
 
-        {% include 'form/warehouse_form.html.twig' %}
+        <div class="container form-container">
+            {% include 'form/warehouse_form.html.twig' %}
+        </div>
 
     {% endblock %}
 
