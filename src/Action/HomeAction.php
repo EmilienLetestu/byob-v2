@@ -23,7 +23,7 @@ class HomeAction
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      *
-     * @Route("/", name = "home")
+     *
      */
     public function __invoke(HomeResponder $responder): Response
     {

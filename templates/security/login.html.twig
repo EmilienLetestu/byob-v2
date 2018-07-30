@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+    {% block body %}
+        {% if error %}
+            <div class="alert alert-warning" id="loginFailed">{{ error.message }}</div>
+        {% endif %}
+
+        <div class="container form-container" id="loginForm">
+            <div class="col s12 m12">
+                <form action="{{ path('login') }}" method="post">
+                    <div>
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="_username" value="{{ last_username }}" />
+                    </div>
+                    <div>
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="_password" />
+                    </div>
+                    <div>
+                        <button class="btn waves-effect waves-light color-action-darken" type="submit"><i class="material-icons right">send
+                            </i>Valider
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    {% endblock %}

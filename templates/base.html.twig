@@ -1,16 +1,72 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('build/app.css') }}">
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}
-            <script type="text/javascript" src="{{ asset('build/app.js') }}"></script>
-        {% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+
+        <div class="navbar-fixed">
+            <nav class="color-main-lighten">
+                <div class="nav-wrapper">
+                    <a href="#" class="brand-logo">BYOB</a>
+                    <a href="#" data-target="mobile-nav" class="sidenav-trigger" id="trigger"><i class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="#"><i class="material-icons">info</i></a></li>
+                        <li><a href=""><i class="material-icons">build</i></a></li>
+                        <li><a href="#"><i class="material-icons">brush</i></a></li>
+                        <li><a href="#"><i class="material-icons">email</i></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+
+        <ul class="sidenav" id="mobile-nav">
+            <li><a href="#"><i class="material-icons">info</i></a></li>
+            <li><a href=#"><i class="material-icons">build</i></a></li>
+            <li><a href="#"><i class="material-icons">brush</i></a></li>
+            <li><a href="#"><i class="material-icons">email</i></a></li>
+        </ul>
+
+        <main>
+            {% for label, messages in app.flashes(['denied','error','success','warning','welcome']) %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }}" id="backGenerated">
+                        <p>{{ message }}</p>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+
+            {% block body %}{% endblock %}
+        </main>
+
+        <footer class="page-footer color-main-lighten">
+            <div class="container" style="text-align: center">
+                <div class="row">
+                    <div class="col l12 s12">
+                        <h5 class="white-text">BYOB</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright color-main-darken">
+                <div class="container">
+                    © 2018 G&R - BYOB
+                    <a class="grey-text text-lighten-4 right" href="#!">Mentions légales</a>
+                </div>
+            </div>
+        </footer>
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('build/app.js') }}"></script>
+{% endblock %}
+</body>
 </html>
