@@ -11,6 +11,10 @@ namespace App\Tests\Entity;
 use App\Entity\User;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class UserTest
+ * @package App\Tests\Entity
+ */
 class UserTest extends TestCase
 {
     public function testUser()
