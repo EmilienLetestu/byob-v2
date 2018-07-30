@@ -1,0 +1,32 @@
+App\DTO\UserDTO:
+    properties:
+
+        name:
+            - Length:
+                min: 3
+                max: 20
+                minMessage: 3 caractères minimum
+                maxMessege: 20 caractères maximum
+                groups: [user]
+
+        surname:
+            - Length:
+                min: 3
+                max: 50
+                minMessage: 3 caractères minimum
+                maxMessege: 20 caractères maximum
+                groups: [user]
+
+        email:
+            - NotBlank: { groups: [user] }
+
+        password:
+            - Length:
+                min: 3
+                max: 50
+                minMessage: 3 caractères minimum
+                maxMessege: 150 caractères maximum
+                groups: [user]
+
+        role:
+            - NotBlank: { groups: [user] }
