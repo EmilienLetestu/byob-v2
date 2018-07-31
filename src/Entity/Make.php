@@ -11,6 +11,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
+ * Where to set and store some products makes
+ *
  * Class Make
  * @package App\Entity
  */

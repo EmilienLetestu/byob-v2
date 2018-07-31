@@ -97,7 +97,30 @@ class User implements UserInterface
      */
     private $products;
 
+    /**
+     * @var ArrayCollection
+     */
+    private $types;
 
+    /**
+     * @var ArrayCollection
+     */
+    private $families;
+
+    /**
+     * @var ArrayCollection
+     */
+    private $makes;
+
+    /**
+     * @var ArrayCollection
+     */
+    private $designations;
+
+    /**
+     * @var ArrayCollection
+     */
+    private $categories;
 
 
     /**
@@ -350,6 +373,12 @@ class User implements UserInterface
         $this->pendingValidations = new ArrayCollection();
         $this->stockValidations   = new ArrayCollection();
         $this->products           = new ArrayCollection();
+        $this->types              = new ArrayCollection();
+        $this->families           = new ArrayCollection();
+        $this->makes              = new ArrayCollection();
+        $this->designations       = new ArrayCollection();
+        $this->categories         = new ArrayCollection();
+
     }
 
     /**
@@ -383,6 +412,46 @@ class User implements UserInterface
     public function addProduct(Product $product)
     {
         $this->products[] = $product;
+    }
+
+    /**
+     * @param Type $type
+     */
+    public function addType(Type $type)
+    {
+        $this->types[] = $type;
+    }
+
+    /**
+     * @param Family $family
+     */
+    public function addFamily(Family $family)
+    {
+        $this->families[] = $family;
+    }
+
+    /**
+     * @param Make $make
+     */
+    public function addMake(Make $make)
+    {
+        $this->makes[] = $make;
+    }
+
+    /**
+     * @param Designation $designation
+     */
+    public function addDesignation(Designation $designation)
+    {
+        $this->designations[] = $designation;
+    }
+
+    /**
+     * @param Category $category
+     */
+    public function addCategory(Category $category)
+    {
+        $this->categories[] = $category;
     }
 
     /**
@@ -421,6 +490,46 @@ class User implements UserInterface
     }
 
     /**
+     * @param Type $type
+     */
+    public function removeType(Type $type)
+    {
+        $this->types->removeElement($type);
+    }
+
+    /**
+     * @param Family $family
+     */
+    public function removeFamily(Family $family)
+    {
+        $this->families->removeElement($family);
+    }
+
+    /**
+     * @param Make $make
+     */
+    public function removeMake(Make $make)
+    {
+        $this->makes->removeElement($make);
+    }
+
+    /**
+     * @param Designation $designation
+     */
+    public function removeDesignation(Designation $designation)
+    {
+        $this->designations->removeElement($designation);
+    }
+
+    /**
+     * @param Category $category
+     */
+    public function removeCategory(Category $category)
+    {
+        $this->categories->removeElement($category);
+    }
+
+    /**
      * @return ArrayCollection
      */
     public function getOrders(): ArrayCollection
@@ -450,6 +559,46 @@ class User implements UserInterface
     public function getProducts(): ArrayCollection
     {
         return $this->products;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getTypes(): ArrayCollection
+    {
+        return $this->types;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getFamilies(): ArrayCollection
+    {
+        return $this->families;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getMakes(): ArrayCollection
+    {
+        return $this->makes;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getDesignations(): ArrayCollection
+    {
+        return $this->designations;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getCategories(): ArrayCollection
+    {
+        return $this->categories;
     }
 
 }

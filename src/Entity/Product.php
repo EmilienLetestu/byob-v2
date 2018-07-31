@@ -21,7 +21,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Product
 {
-    /***
+    /**
      * @var
      */
     private $id;
@@ -93,33 +93,33 @@ class Product
 
 
     /**
-     * @param string $family
+     * @param Family $family
      */
-    public function setFamily(string $family): void
+    public function setFamily(Family $family): void
     {
         $this->family = $family;
     }
 
     /**
-     * @param string $type
+     * @param Type $type
      */
-    public function setType(string $type): void
+    public function setType(Type $type): void
     {
         $this->type  = $type;
     }
 
     /**
-     * @param string $category
+     * @param Category $category
      */
-    public function setCategory(string $category): void
+    public function setCategory(Category $category): void
     {
         $this->category = $category;
     }
 
     /**
-     * @param string $make
+     * @param Make $make
      */
-    public function setMake(string $make): void
+    public function setMake(Make $make): void
     {
         $this->make = $make;
     }
@@ -133,9 +133,9 @@ class Product
     }
 
     /**
-     * @param string $designation
+     * @param Designation $designation
      */
-    public function setDesignation(string $designation): void
+    public function setDesignation(Designation $designation): void
     {
         $this->designation = $designation;
     }
@@ -191,33 +191,33 @@ class Product
     }
 
     /**
-     * @return string
+     * @return Family
      */
-    public function getFamily(): string
+    public function getFamily(): Family
     {
         return $this->family;
     }
 
     /**
-     * @return string
+     * @return Type
      */
-    public function getType(): string
+    public function getType(): Type
     {
         return $this->type;
     }
 
     /**
-     * @return string
+     * @return Category
      */
-    public function getCategory(): string
+    public function getCategory(): Category
     {
         return $this->category;
     }
 
     /**
-     * @return string
+     * @return Make
      */
-    public function getMake(): string
+    public function getMake(): Make
     {
         return $this->make;
     }
@@ -231,9 +231,9 @@ class Product
     }
 
     /**
-     * @return string
+     * @return Designation
      */
-    public function getDesignation(): string
+    public function getDesignation(): Designation
     {
         return $this->designation;
     }

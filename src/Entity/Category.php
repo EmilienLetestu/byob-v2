@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: emilien
  * Date: 31/07/2018
- * Time: 15:33
+ * Time: 16:30
  */
 
 namespace App\Entity;
@@ -12,12 +12,12 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Where to set and store some products families
+ * Where to set and store some products categories
  *
- * Class Family
+ * Class Category
  * @package App\Entity
  */
-class Family
+class Category
 {
     /**
      * @var
@@ -154,6 +154,5 @@ class Family
     {
         return $this->products;
     }
-
 
 }

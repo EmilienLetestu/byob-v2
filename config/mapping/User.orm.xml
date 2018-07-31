@@ -36,6 +36,36 @@
         />
 
         <one-to-many
+                field="families"
+                target-entity="App\Entity\Family"
+                mapped-by="addedBy"
+        />
+
+        <one-to-many
+                field="categories"
+                target-entity="App\Entity\Category"
+                mapped-by="addedBy"
+        />
+
+        <one-to-many
+                field="types"
+                target-entity="App\Entity\Type"
+                mapped-by="addedBy"
+        />
+
+        <one-to-many
+                field="makes"
+                target-entity="App\Entity\Make"
+                mapped-by="addedBy"
+        />
+
+        <one-to-many
+                field="designations"
+                target-entity="App\Entity\Designation"
+                mapped-by="addedBy"
+        />
+
+        <one-to-many
             field="stockValidations"
             target-entity="App\Entity\StockValidation"
             mapped-by="processedBy"
