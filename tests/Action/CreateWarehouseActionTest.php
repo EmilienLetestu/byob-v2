@@ -18,6 +18,6 @@ class CreateWarehouseActionTest extends WebTestCase
         $client = static::createClient();
 
         $client->request('GET', '/entrepot/ajouter');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertEquals(302, $client->getResponse()->getStatusCode());
     }
 }

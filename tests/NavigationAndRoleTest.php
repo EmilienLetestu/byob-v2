@@ -27,7 +27,7 @@ class NavigationAndRoleTest extends WebTestCase
 
     public function testUserRole()
     {
-        $crawler = $this->login('user@gmail.com','directorLolo');
+        $crawler = $this->login('admin@gmail.com','adminToto');
 
         $this->assertEquals(1, $crawler->filter('#logout')->count());
         $this->assertSame(1, $crawler->filter('h1:contains("Tableau de bord")')->count());
@@ -37,7 +37,7 @@ class NavigationAndRoleTest extends WebTestCase
 
     public function testAddWareHouse()
     {
-        $crawler = $this->login('user@gmail.com','directorLolo');
+        $crawler = $this->login('admin@gmail.com','adminToto');
 
         $crawler = $this->client->request('GET','/entrepot/ajouter');
         $this->assertEquals(200,$this->client->getResponse()->getStatusCode());
@@ -53,7 +53,7 @@ class NavigationAndRoleTest extends WebTestCase
 
     public function testAddUser()
     {
-        $crawler = $this->login('user@gmail.com','directorLolo');
+        $crawler = $this->login('admin@gmail.com','adminToto');
 
         $crawler = $this->client->request('GET','/utilisateur/ajouter');
         $this->assertEquals(200,$this->client->getResponse()->getStatusCode());
@@ -62,7 +62,7 @@ class NavigationAndRoleTest extends WebTestCase
         $form['create_user[surname]'] = 'testing';
         $form['create_user[email]'] = 'testing@gmail.com';
         $form['create_user[role]'] = 'ACCOUNTANT';
-        $form['create_user[warehouse]'] = '8';
+        $form['create_user[warehouse]'] = '45';
 
 
         $crawler = $this->client->submit($form);
