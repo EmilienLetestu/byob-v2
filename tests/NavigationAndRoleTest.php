@@ -41,6 +41,7 @@ class NavigationAndRoleTest extends WebTestCase
 
         $crawler = $this->client->request('GET','/entrepot/ajouter');
         $this->assertEquals(200,$this->client->getResponse()->getStatusCode());
+        
         $form = $crawler->filter("form")->form();
         $form['ware_house[name]'] = 'jkjjk jkj sssx';
         $form['ware_house[address]'] = 'kkooi ioioi oi';
@@ -57,6 +58,7 @@ class NavigationAndRoleTest extends WebTestCase
 
         $crawler = $this->client->request('GET','/utilisateur/ajouter');
         $this->assertEquals(200,$this->client->getResponse()->getStatusCode());
+
         $form = $crawler->filter("form")->form();
         $form['create_user[name]'] = 'functional';
         $form['create_user[surname]'] = 'testing';
@@ -72,6 +74,27 @@ class NavigationAndRoleTest extends WebTestCase
         $this->logout();
     }
 
+    public function testAddProduct()
+    {
+        $crawler = $this->login('admin@gmail.com','adminToto');
+
+        $crawler = $this->client->request('GET','/produit/ajouter');
+        $this->assertEquals(200,$this->client->getResponse()->getStatusCode());
+
+        $form = $crawler->filter("form")->form();
+        $form['product[family]'] = '1';
+        $form['product[category]'] = '1';
+        $form['product[type]'] = '1';
+        $form['product[make]'] = '1';
+        $form['product[designation]'] = '1';
+        $form['product[model]'] = 'coca-cola zero bouteille verre 33cl';
+
+        $crawler = $this->client->submit($form);
+
+        $this->assertSame('/dashboard', $this->client->getResponse()->headers->get('location'));
+
+        $this->logout();
+    }
 
     /**
      * @param string $username
