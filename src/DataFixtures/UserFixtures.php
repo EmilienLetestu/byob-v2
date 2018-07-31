@@ -21,8 +21,13 @@ use Doctrine\Common\Persistence\ObjectManager;
  */
 class UserFixtures extends Fixture implements DependentFixtureInterface
 {
-    public const USER_REFERENCE  = 'user';
     public const ADMIN_REFERENCE = 'admin';
+    public const ACCOUNTANT_REFERENCE  = 'accountant';
+    public const SUPPLY_REFERENCE  = 'supply';
+    public const LOGISTIC_REFERENCE = 'logistic';
+    public const SALESMAN_REFERENCE = 'salesman';
+    public const WAREHOUSEMAN_REFERENCE = 'warehouseman';
+    public const DELIVERYMAN_REFERENCE = 'deliveryman';
 
 
     /**
@@ -30,30 +35,31 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-      $user = new User();
+      $accountant = new User();
 
-      $user->setName('Lolo');
-      $user->setSurname('Durant');
-      $user->setEmail('director@gmail.com');
-      $user->setPassword('directorLolo');
-      $user->setRole('DIRECTOR');
-      $user->setAddedOn('Y-m-d');
-      $user->setActivated(true);
-      $user->setActivatedOn(
+      $accountant->setName('Lolo');
+      $accountant->setSurname('Durant');
+      $accountant->setEmail('accountant@gmail.com');
+      $accountant->setPassword('accountantLolo');
+      $accountant->setRole('ACCOUNTANT');
+      $accountant->setAddedOn('Y-m-d');
+      $accountant->setActivated(true);
+      $accountant->setActivatedOn(
           new \DateTime(date('Y-m-d'))
       );
-      $user->setWarehouse(
+      $accountant->setWarehouse(
            $this->getReference(WarehouseFixtures::WAREHOUSE_REFERENCE)
       );
-      $manager->persist($user);
+      $manager->persist($accountant);
       $manager->flush();
 
-      $this->addReference(self::USER_REFERENCE, $user);
+      $this->addReference(self::ACCOUNTANT_REFERENCE, $accountant);
 
       $admin = new User();
 
       $admin->setName('Toto');
       $admin->setSurname('Dupont');
+
       $admin->setEmail('admin@gmail.com');
       $admin->setPassword('adminToto');
       $admin->setRole('ADMIN');
@@ -69,6 +75,106 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
       $manager->flush();
 
       $this->addReference(self::ADMIN_REFERENCE, $admin);
+
+      $supply = new User();
+
+      $supply->setName('Gogo');
+      $supply->setSurname('Durant');
+      $supply->setEmail('supply@gmail.com');
+      $supply->setPassword('supplyGogo');
+      $supply->setRole('SUPPLY');
+      $supply->setAddedOn('Y-m-d');
+      $supply->setActivated(true);
+      $supply->setActivatedOn(
+            new \DateTime(date('Y-m-d'))
+      );
+      $supply->setWarehouse(
+            $this->getReference(WarehouseFixtures::WAREHOUSE_REFERENCE)
+      );
+      $manager->persist($supply);
+      $manager->flush();
+
+      $this->addReference(self::SUPPLY_REFERENCE, $supply);
+
+      $logistic = new User();
+
+      $logistic->setName('Coco');
+      $logistic->setSurname('Durant');
+      $logistic->setEmail('logistic@gmail.com');
+      $logistic->setPassword('logisticCoco');
+      $logistic->setRole('LOGISTIC');
+      $logistic->setAddedOn('Y-m-d');
+      $logistic->setActivated(true);
+      $logistic->setActivatedOn(
+            new \DateTime(date('Y-m-d'))
+      );
+      $logistic->setWarehouse(
+            $this->getReference(WarehouseFixtures::WAREHOUSE_REFERENCE)
+      );
+      $manager->persist($logistic);
+      $manager->flush();
+
+      $this->addReference(self::LOGISTIC_REFERENCE, $logistic);
+
+      $warehouseman = new User();
+
+      $warehouseman->setName('Bobo');
+      $warehouseman->setSurname('Durant');
+      $warehouseman->setEmail('warehouseman@gmail.com');
+      $warehouseman->setPassword('warehousemanBobo');
+      $warehouseman->setRole('WAREHOUSEMAN');
+      $warehouseman->setAddedOn('Y-m-d');
+      $warehouseman->setActivated(true);
+      $warehouseman->setActivatedOn(
+            new \DateTime(date('Y-m-d'))
+      );
+      $warehouseman->setWarehouse(
+          $this->getReference(WarehouseFixtures::WAREHOUSE_REFERENCE)
+      );
+      $manager->persist($warehouseman);
+      $manager->flush();
+
+      $this->addReference(self::WAREHOUSEMAN_REFERENCE, $warehouseman);
+
+      $salesman = new User();
+
+      $salesman->setName('Momo');
+      $salesman->setSurname('Durant');
+      $salesman->setEmail('salesman@gmail.com');
+      $salesman->setPassword('salesmanMomo');
+      $salesman->setRole('SALESMAN');
+      $salesman->setAddedOn('Y-m-d');
+      $salesman->setActivated(true);
+      $salesman->setActivatedOn(
+            new \DateTime(date('Y-m-d'))
+      );
+      $salesman->setWarehouse(
+            $this->getReference(WarehouseFixtures::WAREHOUSE_REFERENCE)
+        );
+      $manager->persist($salesman);
+      $manager->flush();
+
+      $this->addReference(self::SALESMAN_REFERENCE, $salesman);
+
+      $deliveryman = new User();
+
+      $deliveryman->setName('Nono');
+      $deliveryman->setSurname('Durant');
+      $deliveryman->setEmail('deliveryman@gmail.com');
+      $deliveryman->setPassword('deliverymanNono');
+      $deliveryman->setRole('DELIVERYMAN');
+      $deliveryman->setAddedOn('Y-m-d');
+      $deliveryman->setActivated(true);
+      $deliveryman->setActivatedOn(
+            new \DateTime(date('Y-m-d'))
+      );
+      $deliveryman->setWarehouse(
+            $this->getReference(WarehouseFixtures::WAREHOUSE_REFERENCE)
+      );
+      $manager->persist($deliveryman);
+      $manager->flush();
+
+      $this->addReference(self::DELIVERYMAN_REFERENCE, $deliveryman);
     }
 
     /**

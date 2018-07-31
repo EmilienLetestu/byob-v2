@@ -34,7 +34,7 @@ class OrdersFixtures extends Fixture implements DependentFixtureInterface
        $order->setOrderedOn('Y-m-d');
        $order->setStatus('en atente de livraison');
        $order->setOrderedBy(
-           $this->getReference(UserFixtures::USER_REFERENCE)
+           $this->getReference(UserFixtures::SALESMAN_REFERENCE)
        );
        $order->setOrderedFor(
            $this->getReference(PersonFixtures::PERSON_REFERENCE)

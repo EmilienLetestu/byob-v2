@@ -38,7 +38,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $product->setReference('coca-7848748');
         $product->setReferencedOn('Y-m-d');
         $product->setReferencedBy(
-            $this->getReference(UserFixtures::USER_REFERENCE)
+            $this->getReference(UserFixtures::SUPPLY_REFERENCE)
         );
 
         $manager->persist($product);

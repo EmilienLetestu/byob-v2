@@ -35,7 +35,7 @@ class PendingValidationStockFixtures extends Fixture implements DependentFixture
             $this->getReference(StockValidationFixtures::STOCK_VALIDATION_REFERENCE)
         );
         $pendingValidation->setAskedBy(
-            $this->getReference(UserFixtures::USER_REFERENCE)
+            $this->getReference(UserFixtures::LOGISTIC_REFERENCE)
         );
         $pendingValidation->setProduct(
             $this->getReference(ProductFixtures::PRODUCT_REFERENCE)
