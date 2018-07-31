@@ -25,21 +25,11 @@ class ProductTest extends TestCase
 
         $product = new Product();
 
-        $product->setFamily('alimentaire');
-        $product->setType('boisson');
-        $product->setCategory('soda');
-        $product->setMake('The coca-cola company');
         $product->setModel('coca-cola light');
-        $product->setDesignation('Coca-cola ligth bouteille plastique 50cl');
         $product->setReference('787787487');
         $product->setReferencedOn('Y-m-d');
 
-        $this->assertEquals('alimentaire', $product->getFamily());
-        $this->assertEquals('boisson', $product->getType());
-        $this->assertEquals('soda', $product->getCategory());
-        $this->assertEquals('The coca-cola company', $product->getMake());
         $this->assertEquals('coca-cola light', $product->getModel());
-        $this->assertEquals('Coca-cola ligth bouteille plastique 50cl',$product->getDesignation());
         $this->assertEquals('787787487', $product->getReference());
         $this->assertEquals($today, $product->getReferencedOn());
         $this->assertNull($product->getLastModification());
