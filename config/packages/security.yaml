@@ -14,7 +14,7 @@ security:
         main:
             provider: main
             pattern: ^/
-            anonymous: true
+            anonymous: ~
             form_login:
                 login_path: login
                 check_path: login
@@ -25,5 +25,6 @@ security:
                 target: login
 
     access_control:
-        - { path: ^/dashboard, roles: ROLE_USER }
-
+            - { path: ^/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+            - { path: ^/register$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+            - { path: ^/, role: IS_AUTHENTICATED_FULLY }
