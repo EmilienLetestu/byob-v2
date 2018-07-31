@@ -29,14 +29,24 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         $product = new Product();
-        $product->setFamily('alimentaire');
-        $product->setType('boison');
-        $product->setCategory('soda');
-        $product->setMake('The Coca-cola Company');
         $product->setModel('coca-cola');
-        $product->setDesignation('coca-cola canette 33cl');
         $product->setReference('coca-7848748');
         $product->setReferencedOn('Y-m-d');
+        $product->setFamily(
+            $this->getReference(FamilyFixtures::FAMILY_REFERENCE)
+        );
+        $product->setType(
+            $this->getReference(TypeFixtures::TYPE_REFERENCE)
+        );
+        $product->setCategory(
+            $this->getReference(CategoryFixtures::CATEGORY_REFERENCE)
+        );
+        $product->setMake(
+            $this->getReference(MakeFixtures::MAKE_REFERENCE)
+        );
+        $product->setDesignation(
+            $this->getReference(DesignationFixtures::DESIGNATION_REFERENCE)
+        );
         $product->setReferencedBy(
             $this->getReference(UserFixtures::SUPPLY_REFERENCE)
         );
@@ -52,6 +62,13 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
      */
     public function getDependencies(): array
     {
-        return [UserFixtures::class];
+        return [
+            FamilyFixtures::class,
+            TypeFixtures::class,
+            CategoryFixtures::class,
+            MakeFixtures::class,
+            DesignationFixtures::class,
+            UserFixtures::class
+        ];
     }
 }
