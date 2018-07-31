@@ -65,6 +65,11 @@ class User implements UserInterface
     /**
      * @var
      */
+    private $token;
+
+    /**
+     * @var
+     */
     private $person;
 
     /**
@@ -160,6 +165,14 @@ class User implements UserInterface
     }
 
     /**
+     * @param null|string $token
+     */
+    public function setToken(?string $token): void
+    {
+        $this->token = $token;
+    }
+
+    /**
      * @param Person $person
      */
     public function setPerson(Person $person)
@@ -245,6 +258,14 @@ class User implements UserInterface
     public function getActivatedOn():? \DateTime
     {
         return $this->activatedOn;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getToken():? string
+    {
+        return $this->token;
     }
 
     /**
