@@ -35,11 +35,6 @@ class UserDTO
     /**
      * @var string
      */
-    public $password;
-
-    /**
-     * @var string
-     */
     public $role;
 
     /**
@@ -52,7 +47,6 @@ class UserDTO
      * @param string $name
      * @param string $surname
      * @param string $email
-     * @param string $password
      * @param string $role
      * @param Warehouse $warehouse
      */
@@ -60,7 +54,6 @@ class UserDTO
         string $name,
         string $surname,
         string $email,
-        string $password,
         string $role,
         Warehouse $warehouse
 
@@ -69,7 +62,6 @@ class UserDTO
         $this->name      = $name;
         $this->surname   = $surname;
         $this->email     = $email;
-        $this->password  = $password;
         $this->role      = $role;
         $this->warehouse = $warehouse;
     }
