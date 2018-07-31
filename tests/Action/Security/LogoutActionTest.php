@@ -8,16 +8,16 @@
 
 namespace App\Tests\Action\Security;
 
-
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
-class LogoutActionTest extends WebTestCase
+class LogoutActionTest extends LoginActionTest
 {
     public function testLogoutAction(): void
     {
         $client = static::createClient();
 
+        $crawler = $this->login('admin@gmail.com','adminToto');
+
         $client->request('GET', '/logout');
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
+
     }
 }

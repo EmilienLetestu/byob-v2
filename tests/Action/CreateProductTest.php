@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: emilien
- * Date: 30/07/2018
- * Time: 18:54
+ * Date: 31/07/2018
+ * Time: 23:13
  */
 
 namespace App\Tests\Action;
@@ -12,21 +12,26 @@ namespace App\Tests\Action;
 use App\Tests\Action\Security\LoginActionTest;
 
 /**
- * Class CreateWarehouseActionTest
+ * Class CreateProductTest
  * @package App\Tests\Action
  */
-class CreateWarehouseActionTest extends LoginActionTest
+class CreateProductTest extends LoginActionTest
 {
-    public function testCreateWarehouseAction(): void
+    public function testCreateProductAction()
     {
         $crawler = $this->login('admin@gmail.com','adminToto');
 
-        $crawler = $this->client->request('GET','/entrepot/ajouter');
+        $crawler = $this->client->request('GET','/produit/ajouter');
         $this->assertEquals(200,$this->client->getResponse()->getStatusCode());
 
         $form = $crawler->filter("form")->form();
-        $form['ware_house[name]'] = 'jkjjk jkj sssx';
-        $form['ware_house[address]'] = 'kkooi ioioi oi';
+        $form['product[family]'] = '1';
+        $form['product[category]'] = '1';
+        $form['product[type]'] = '1';
+        $form['product[make]'] = '1';
+        $form['product[designation]'] = '1';
+        $form['product[model]'] = 'coca-cola zero bouteille verre 33cl';
+
         $crawler = $this->client->submit($form);
 
         $this->assertSame('/dashboard', $this->client->getResponse()->headers->get('location'));

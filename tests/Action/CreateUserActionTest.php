@@ -2,31 +2,35 @@
 /**
  * Created by PhpStorm.
  * User: emilien
- * Date: 30/07/2018
- * Time: 18:54
+ * Date: 31/07/2018
+ * Time: 23:12
  */
 
 namespace App\Tests\Action;
 
-
 use App\Tests\Action\Security\LoginActionTest;
 
 /**
- * Class CreateWarehouseActionTest
+ * Class CreateUserActionTest
  * @package App\Tests\Action
  */
-class CreateWarehouseActionTest extends LoginActionTest
+class CreateUserActionTest extends LoginActionTest
 {
-    public function testCreateWarehouseAction(): void
+    public function testCreateUserAction()
     {
         $crawler = $this->login('admin@gmail.com','adminToto');
 
-        $crawler = $this->client->request('GET','/entrepot/ajouter');
+        $crawler = $this->client->request('GET','/utilisateur/ajouter');
         $this->assertEquals(200,$this->client->getResponse()->getStatusCode());
 
         $form = $crawler->filter("form")->form();
-        $form['ware_house[name]'] = 'jkjjk jkj sssx';
-        $form['ware_house[address]'] = 'kkooi ioioi oi';
+        $form['create_user[name]'] = 'functional';
+        $form['create_user[surname]'] = 'testing';
+        $form['create_user[email]'] = 'testing@gmail.com';
+        $form['create_user[role]'] = 'ACCOUNTANT';
+        $form['create_user[warehouse]'] = '1';
+
+
         $crawler = $this->client->submit($form);
 
         $this->assertSame('/dashboard', $this->client->getResponse()->headers->get('location'));

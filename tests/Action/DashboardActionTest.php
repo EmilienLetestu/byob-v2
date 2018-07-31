@@ -8,9 +8,12 @@
 
 namespace App\Tests\Action;
 
-
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Class DashboardActionTest
+ * @package App\Tests\Action
+ */
 class DashboardActionTest extends WebTestCase
 {
     public function testDashboardAction(): void
