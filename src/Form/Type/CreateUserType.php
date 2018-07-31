@@ -40,9 +40,6 @@ class CreateUserType extends AbstractType
             ->add('email', TextType::class,[
                 'label' => 'E-mail'
             ])
-            ->add('password', TextType::class,[
-               'label'  => 'Mot de passe provisoire'
-            ])
             ->add('role', ChoiceType::class,[
                 'choices'=> [
                     'Financier'              => 'ACCOUNTANT',
