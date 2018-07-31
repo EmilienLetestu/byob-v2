@@ -56,10 +56,11 @@ class UserFormHandler implements EntityFormHandlerInterface
         if($form->isSubmitted() && $form->isValid())
         {
             $this->user->setName($form->get('name')->getData());
-            $this->user->setSurname($form->get('name')->getData());
+            $this->user->setSurname($form->get('surname')->getData());
             $this->user->setEmail($form->get('email')->getData());
             $this->user->setRole($form->get('role')->getData());
             $this->user->setWarehouse($form->get('warehouse')->getData());
+            $this->user->setAddedOn('Y-m-d');
             $this->user->setPassword(
                 $this->helper->generateTempPassword(8)
             );

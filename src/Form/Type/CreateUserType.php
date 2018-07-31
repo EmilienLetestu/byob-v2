@@ -69,7 +69,6 @@ class CreateUserType extends AbstractType
                     $form->get('name')->getData(),
                     $form->get('surname')->getData(),
                     $form->get('email')->getData(),
-                    $form->get('password')->getData(),
                     $form->get('role')->getData(),
                     $form->get('warehouse')->getData()
                 );

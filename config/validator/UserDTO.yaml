@@ -20,13 +20,6 @@ App\DTO\UserDTO:
         email:
             - NotBlank: { groups: [user] }
 
-        password:
-            - Length:
-                min: 3
-                max: 50
-                minMessage: 3 caractères minimum
-                maxMessage: 150 caractères maximum
-                groups: [user]
 
         role:
             - NotBlank: { groups: [user] }
