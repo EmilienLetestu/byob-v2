@@ -19,7 +19,7 @@ class IdentifierHelper
     {
         $strToRandom = ('abcdefghijklmnoptqrdtuvwxyABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789');
         $expireOn = date('Y-m-d', strtotime(' + 3 days'));
-        return $expireOn.'-'.substr(str_shuffle(str_repeat($strToRandom, $length)), 0, $length);
+        return $expireOn.'_'.substr(str_shuffle(str_repeat($strToRandom, $length)), 0, $length);
     }
 
     /**
