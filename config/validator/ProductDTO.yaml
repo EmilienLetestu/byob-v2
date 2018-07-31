@@ -1,0 +1,26 @@
+pp\DTO\UserDTO:
+    properties:
+
+        model:
+            - Length:
+                min: 3
+                max: 100
+                minMessage: 3 caractères minimum
+                maxMessage: 100 caractères maximum
+                groups: [product]
+
+        family:
+            - NotBlank: { groups: [product] }
+
+
+        category:
+            - NotBlank: { groups: [product] }
+
+        type:
+            - NotBlank: { groups: [product] }
+
+        make:
+            - NotBlank: { groups: [product] }
+
+        designation:
+            - NotBlank: { groups: [product] }
