@@ -33,14 +33,15 @@ class TitleFromRouteExtension extends AbstractExtension
     public function titleFilter(string $routeName): string
     {
         $routeNames = [
-            'dashboard'       => 'Tableau de bord',
-            'createWarehouse' => 'Ajouter un entrepôt',
-            'createUser'      => 'Ajouter un utilisateur',
-            'createProduct'   => 'Ajouter un produit',
-            'productList'     => 'Produits référencés',
-            'productArrival'  => 'Arrivage de ',
-            'userList'        => 'Liste des utilisateurs',
-            'warehouseList'   => 'Liste des entrepôts'
+            'dashboard'          => 'Tableau de bord',
+            'createWarehouse'    => 'Ajouter un entrepôt',
+            'createUser'         => 'Ajouter un utilisateur',
+            'createProduct'      => 'Ajouter un produit',
+            'productList'        => 'Produits référencés',
+            'productArrival'     => 'Arrivage de ',
+            'userList'           => 'Liste des utilisateurs',
+            'warehouseList'      => 'Liste des entrepôts',
+            'arrivalInWarehouse' => 'Produit en attente de validation'
         ];
 
         return $routeNames[$routeName];

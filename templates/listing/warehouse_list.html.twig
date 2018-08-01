@@ -37,7 +37,13 @@
                 {{  warehouse.inStockProducts|length }}
             </td>
             <td>
-                {{  warehouse.pendingValidations|length }}
+                {% set unvalidated = [] %}
+                {% for pendingValidation in warehouse.pendingValidations %}
+                        {% if pendingValidation.processed == false %}
+                            {% set unvalidated = unvalidated|merge([pendingValidation]) %}
+                        {% endif %}
+                    <a href="{{ path('arrivalInWarehouse', {'warehouseId' : warehouse.id }) }}">{{ unvalidated|length }}</a>
+                {% endfor %}
             </td>
             <td>
                 <a href="#"><i class="material-icons">info</i></a>

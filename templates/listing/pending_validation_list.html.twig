@@ -1,0 +1,36 @@
+<table>
+    <thead>
+    <tr>
+        <th>
+           En attente depuis le
+        </th>
+        <th>
+            Demandé par
+        </th>
+        <th>
+            Produit
+        </th>
+        <th>
+            Quantité
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for pendigValidation in pendingValidations %}
+        <tr>
+            <td>
+                {{ pendigValidation.askedOn }}
+            </td>
+            <td>
+                {{ pendigValidation.askedBy.surname }}
+            </td>
+            <td>
+                {{ pendigValidation.product.model }}
+            </td>
+            <td>
+                {{ pendigValidation.quantity }}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
