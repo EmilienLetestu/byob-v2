@@ -10,7 +10,7 @@ namespace App\Repository;
 
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Proxies\__CG__\App\Entity\Product;
+use App\Entity\Product;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class ProductRepository extends ServiceEntityRepository
@@ -38,5 +38,19 @@ class ProductRepository extends ServiceEntityRepository
         ;
     }
 
-
+    /**
+     * @param int $id
+     * @return null|Product
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findProductWithId(int $id):? Product
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('pr')
+            ->where('pr.id = :id' )
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 }
