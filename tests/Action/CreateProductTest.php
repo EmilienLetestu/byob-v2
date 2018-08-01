@@ -29,7 +29,7 @@ class CreateProductTest extends LoginActionTest
         $form['product[category]'] = '1';
         $form['product[type]'] = '1';
         $form['product[make]'] = '1';
-        $form['product[designation]'] = '1';
+        $form['product[designation]'] = '3';
         $form['product[model]'] = 'coca-cola zero bouteille verre 33cl';
 
         $crawler = $this->client->submit($form);

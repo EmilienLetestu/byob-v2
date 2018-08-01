@@ -28,7 +28,7 @@ class CreateUserActionTest extends LoginActionTest
         $form['create_user[surname]'] = 'testing';
         $form['create_user[email]'] = 'testing@gmail.com';
         $form['create_user[role]'] = 'ACCOUNTANT';
-        $form['create_user[warehouse]'] = '1';
+        $form['create_user[warehouse]'] = '2';
 
 
         $crawler = $this->client->submit($form);
