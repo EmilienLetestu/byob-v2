@@ -38,7 +38,7 @@ class DashboardResponder
     public function __invoke(string $title): Response
     {
         return new Response(
-            $this->twig->render('home.html.twig',[
+            $this->twig->render('dashboard.html.twig',[
                 'title' => $title
             ])
         );
