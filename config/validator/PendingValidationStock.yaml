@@ -1,0 +1,11 @@
+App\DTO\PendingValidationStockDTO:
+    properties:
+        quantity:
+            - NotBlank: { groups: [arrival] }
+            - Range:
+                    min: 1O
+                    max: 1000
+                    minMessage: 10 minimum
+                    maxMessage: 1000 maximum
+                    groups: [arrival]
+
