@@ -53,7 +53,7 @@
         <one-to-one
                 field="stockValidation"
                 target-entity="App\Entity\StockValidation"
-                inversed-by="pendingValidation"
+                mapped-by="pendingValidation"
         />
 
     </entity>
