@@ -30,9 +30,12 @@ class StockValidationFixtures extends Fixture implements DependentFixtureInterfa
     {
         $stockValidation = new StockValidation();
         $stockValidation->setProcessedBy(
-            $this->getReference(UserFixtures::ADMIN_REFERENCE)
+            $this->getReference(UserFixtures::LOGISTIC_REFERENCE)
         );
         $stockValidation->setProcessedOn('Y-m-d');
+        $stockValidation->setPendingValidation(
+            $this->getReference(PendingValidationStockFixtures::PENDING_REFERENCE)
+        );
 
         $manager->persist($stockValidation);
         $manager->flush();
@@ -45,6 +48,9 @@ class StockValidationFixtures extends Fixture implements DependentFixtureInterfa
      */
     public function getDependencies()
     {
-        return [UserFixtures::class];
+        return [
+            UserFixtures::class,
+            PendingValidationStockFixtures::class
+         ];
     }
 }

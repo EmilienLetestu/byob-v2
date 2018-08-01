@@ -16,23 +16,38 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class CategoryFixtures extends Fixture implements DependentFixtureInterface
 {
-    public const CATEGORY_REFERENCE = 'category';
+    public const SODA_REFERENCE = 'soda';
+
+    public const BEER_REFERENCE = 'beer';
 
     /**
      * @param ObjectManager $manager
      */
     public function load(ObjectManager $manager)
     {
-        $category = new Category();
+        $soda = new Category();
 
-        $category->setName('soda');
-        $category->setAddedOn('Y-m-d');
-        $category->setAddedBy($this->getReference(UserFixtures::ADMIN_REFERENCE));
+        $soda->setName('soda');
+        $soda->setAddedOn('Y-m-d');
+        $soda->setAddedBy($this->getReference(UserFixtures::ADMIN_REFERENCE));
 
-        $manager->persist($category);
+        $manager->persist($soda);
         $manager->flush();
 
-        $this->addReference(self::CATEGORY_REFERENCE, $category);
+        $this->addReference(self::SODA_REFERENCE, $soda);
+
+
+        $beer = new Category();
+
+        $beer->setName('biere');
+        $beer->setAddedOn('Y-m-d');
+        $beer->setAddedBy($this->getReference(UserFixtures::ADMIN_REFERENCE));
+
+        $manager->persist($beer);
+        $manager->flush();
+
+        $this->addReference(self::BEER_REFERENCE, $beer);
+
     }
 
 

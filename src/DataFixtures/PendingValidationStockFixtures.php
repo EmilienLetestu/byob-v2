@@ -20,32 +20,33 @@ use Doctrine\Common\Persistence\ObjectManager;
  */
 class PendingValidationStockFixtures extends Fixture implements DependentFixtureInterface
 {
+    public const PENDING_REFERENCE = 'pending';
+
     /**
      * @param ObjectManager $manager
      */
     public function load(ObjectManager $manager)
     {
-        $pendingValidation = new PendingValidationStock();
-        $pendingValidation->setQuantity(22);
-        $pendingValidation->setProcessed(true);
-        $pendingValidation->setValidated(false);
-        $pendingValidation->setAskedOn('Y-m-d');
-        $pendingValidation->setProcessedOn(new \DateTime(date('Y-m-d')));
-        $pendingValidation->setStockValidation(
-            $this->getReference(StockValidationFixtures::STOCK_VALIDATION_REFERENCE)
+        $pending = new PendingValidationStock();
+        $pending->setQuantity(22);
+        $pending->setProcessed(true);
+        $pending->setValidated(false);
+        $pending->setAskedOn('Y-m-d');
+        $pending->setProcessedOn(new \DateTime(date('Y-m-d')));
+        $pending->setAskedBy(
+            $this->getReference(UserFixtures::WAREHOUSEMAN_REFERENCE)
         );
-        $pendingValidation->setAskedBy(
-            $this->getReference(UserFixtures::LOGISTIC_REFERENCE)
-        );
-        $pendingValidation->setProduct(
+        $pending->setProduct(
             $this->getReference(ProductFixtures::PRODUCT_REFERENCE)
         );
-        $pendingValidation->setWarehouse(
+        $pending->setWarehouse(
             $this->getReference(WarehouseFixtures::WAREHOUSE_REFERENCE)
         );
 
-        $manager->persist($pendingValidation);
+        $manager->persist($pending);
         $manager->flush();
+
+        $this->addReference(self::PENDING_REFERENCE, $pending);
     }
 
     /**
@@ -54,7 +55,6 @@ class PendingValidationStockFixtures extends Fixture implements DependentFixture
     public function getDependencies(): array
     {
         return [
-            StockValidationFixtures::class,
             UserFixtures::class,
             ProductFixtures::class,
             WarehouseFixtures::class

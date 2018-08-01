@@ -16,23 +16,36 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class DesignationFixtures extends Fixture implements DependentFixtureInterface
 {
-    public const DESIGNATION_REFERENCE = 'designation';
+    public const COCA_REFERENCE = 'coca';
+
+    public const PELFORTH_REFERENCE = 'pelforth';
 
     /**
      * @param ObjectManager $manager
      */
     public function load(ObjectManager $manager)
     {
-        $designation = new Designation();
+        $coca = new Designation();
 
-        $designation->setName('coca light');
-        $designation->setAddedOn('Y-m-d');
-        $designation->setAddedBy($this->getReference(UserFixtures::ADMIN_REFERENCE));
+        $coca->setName('coca light');
+        $coca->setAddedOn('Y-m-d');
+        $coca->setAddedBy($this->getReference(UserFixtures::ADMIN_REFERENCE));
 
-        $manager->persist($designation);
+        $manager->persist($coca);
         $manager->flush();
 
-        $this->addReference(self::DESIGNATION_REFERENCE, $designation);
+        $this->addReference(self::COCA_REFERENCE, $coca);
+
+        $pelforth = new Designation();
+
+        $pelforth->setName('pelforth blonde');
+        $pelforth->setAddedOn('Y-m-d');
+        $pelforth->setAddedBy($this->getReference(UserFixtures::ADMIN_REFERENCE));
+
+        $manager->persist($pelforth);
+        $manager->flush();
+
+        $this->addReference(self::PELFORTH_REFERENCE, $pelforth);
     }
 
 
