@@ -154,26 +154,20 @@ class Warehouse
         $this->users->removeElement($user);
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getPendingValidations(): ArrayCollection
+
+    public function getPendingValidations()
     {
         return $this->pendingValidations;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getInStockProducts() :ArrayCollection
+
+    public function getInStockProducts()
     {
         return $this->inStockProducts;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getUsers(): ArrayCollection
+
+    public function getUsers()
     {
         return $this->users;
     }

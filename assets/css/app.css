@@ -24,7 +24,10 @@ h1{
 }
 
 .create-entity-large{
-    width: 100%;
     margin-top: 3rem;
 
+}
+
+.create-entity-large a{
+    width: 100%;
 }
