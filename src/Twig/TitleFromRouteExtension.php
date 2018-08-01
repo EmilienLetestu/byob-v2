@@ -37,7 +37,8 @@ class TitleFromRouteExtension extends AbstractExtension
             'createWarehouse' => 'Ajouter un entrepôt',
             'createUser'      => 'Ajouter un utilisateur',
             'createProduct'   => 'Ajouter un produit',
-            'productList'     => 'Produits référencés'
+            'productList'     => 'Produits référencés',
+            'productArrival'  => 'Arrivage de '
         ];
 
         return $routeNames[$routeName];
