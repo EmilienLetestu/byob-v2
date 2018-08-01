@@ -22,7 +22,7 @@
                     <ul class="right hide-on-med-and-down" id="default-nav">
                         <li><a href="{{ path('productList') }}"><i class="material-icons">local_bar</i></a></li>
                         <li><a href=""><i class="material-icons">local_shipping</i></a></li>
-                        <li><a href="#"><i class="material-icons">people</i></a></li>
+                        <li><a href="{{ path('userList') }}"><i class="material-icons">people</i></a></li>
                         <li><a href="#"><i class="material-icons">store_mall_directory</i></a></li>
                         <li><a href="#"><i class="material-icons">attach_money</i></a></li>
                         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
