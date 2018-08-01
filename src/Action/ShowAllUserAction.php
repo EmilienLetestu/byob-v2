@@ -3,20 +3,20 @@
  * Created by PhpStorm.
  * User: emilien
  * Date: 01/08/2018
- * Time: 10:35
+ * Time: 22:20
  */
 
 namespace App\Action;
 
 
-use App\Entity\Product;
-use App\Responder\ShowAllProductResponder;
-
+use App\Entity\User;
+use App\Responder\ShowAllUserResponder;
 use Doctrine\ORM\EntityManagerInterface;
 
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ShowAllProductAction
+class ShowAllUserAction
 {
     /**
      * @var EntityManagerInterface
@@ -33,20 +33,20 @@ class ShowAllProductAction
     }
 
     /**
-     * @Route("/produit", name="productList")
+     *  @Route("/user", name="userList")
      *
-     * @param ShowAllProductResponder $responder
+     * @param ShowAllUserResponder $responder
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(ShowAllProductResponder $responder)
+    public function __invoke(ShowAllUserResponder $responder): Response
     {
         return $responder(
             $this->doctrine
-                ->getRepository(Product::class)
-                ->findAllProduct()
+                ->getRepository(User::class)
+                ->findAllUser()
         );
     }
 }
