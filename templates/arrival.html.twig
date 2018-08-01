@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+    {% block body %}
+
+        <h1>{{ app.request.get('_route')|title }}: {{ product.model }}</h1>
+
+        <div class="container form-container">
+            {% include formTemplate %}
+        </div>
+
+    {% endblock %}

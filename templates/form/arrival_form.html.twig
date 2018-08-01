@@ -1,0 +1,14 @@
+<div class="col s12 m12">
+    {{ form_start(form) }}
+    <div>
+        {{ form_label(form.quantity) }}
+        {{ form_widget(form.quantity, {'attr': {'step' : '10'}}) }}
+    </div>
+    <div>
+        <button class="btn waves-effect waves-light color-action-darken" type="submit"><i class="material-icons right">send
+            </i>Valider
+        </button>
+    </div>
+    {{ form_end(form) }}
+</div>
+
