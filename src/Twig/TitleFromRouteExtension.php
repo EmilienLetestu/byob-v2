@@ -36,7 +36,8 @@ class TitleFromRouteExtension extends AbstractExtension
             'dashboard'       => 'Tableau de bord',
             'createWarehouse' => 'Ajouter un entrepôt',
             'createUser'      => 'Ajouter un utilisateur',
-            'createProduct'   => 'Ajouter un produit'
+            'createProduct'   => 'Ajouter un produit',
+            'productList'     => 'Produits référencés'
         ];
 
         return $routeNames[$routeName];

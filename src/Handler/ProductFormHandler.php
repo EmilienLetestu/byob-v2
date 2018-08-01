@@ -29,6 +29,9 @@ class ProductFormHandler implements EntityFormHandlerInterface
      */
     private $product;
 
+    /**
+     * @var TokenStorageInterface
+     */
     private $tokenStorage;
 
     /**

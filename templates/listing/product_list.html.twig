@@ -1,0 +1,60 @@
+<table>
+    <thead>
+        <tr>
+            <th>
+                Model
+            </th>
+            <th>
+                Designation
+            </th>
+            <th>
+                Famile
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                type
+            </th>
+            <th>
+                Référence
+            </th>
+            <th>
+                Ajouter
+            </th>
+            <th>
+                Détails
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for product in products %}
+        <tr>
+            <td>
+                {{ product.model }}
+            </td>
+            <td>
+                {{ product.designation.name }}
+            </td>
+            <td>
+                {{ product.family.name }}
+            </td>
+            <td>
+                {{ product.category.name }}
+            </td>
+            <td>
+                {{ product.type.name }}
+            </td>
+            <td>
+                {{ product.reference }}
+            </td>
+            <td>
+                <a href="#"><i class="material-icons">add</i></a>
+            </td>
+            <td>
+                <a href="#"><i class="material-icons">info</i></a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
