@@ -23,6 +23,8 @@ class ShowAllProductAction
      */
     private $doctrine;
 
+    private $formHandler;
+
     /**
      * ShowAllProductAction constructor.
      * @param EntityManagerInterface $doctrine
