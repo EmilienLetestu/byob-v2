@@ -17,16 +17,11 @@
         <div class="navbar-fixed">
             <nav class="color-main-lighten">
                 <div class="nav-wrapper">
-                    <a href="{{ path('dashboard') }}" class="brand-logo">BYOB</a>
+                    <a href="{{ path('dashboard') }}" class="brand-logo">BYOB {% if is_granted('IS_AUTHENTICATED_FULLY') %} - ROLE {{ app.user.role }} {% endif %}</a>
                     <a href="#" data-target="mobile-nav" class="sidenav-trigger" id="trigger"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down" id="default-nav">
-                        <li><a href="{{ path('productList') }}"><i class="material-icons">local_bar</i></a></li>
-                        <li><a href=""><i class="material-icons">local_shipping</i></a></li>
-                        <li><a href="{{ path('userList') }}"><i class="material-icons">people</i></a></li>
-                        <li><a href="{{ path('warehouseList') }}"><i class="material-icons">store_mall_directory</i></a></li>
-                        <li><a href="#"><i class="material-icons">attach_money</i></a></li>
                         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                            <li><a href="{{ path('logout')}}" id="logout"><i class="material-icons">input</i></a></li>
+                            {% include 'navbar/' ~ app.user.role|lower  ~ '_navbar.html.twig' %}
                         {% endif %}
                     </ul>
                 </div>
@@ -35,10 +30,9 @@
 
 
         <ul class="sidenav" id="mobile-nav">
-            <li><a href="#"><i class="material-icons">info</i></a></li>
-            <li><a href=#"><i class="material-icons">build</i></a></li>
-            <li><a href="#"><i class="material-icons">brush</i></a></li>
-            <li><a href="#"><i class="material-icons">email</i></a></li>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                {% include 'navbar/' ~ app.user.role|lower  ~ '_navbar.html.twig' %}
+            {% endif %}
         </ul>
 
         <main>
