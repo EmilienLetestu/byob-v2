@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+    {% block body %}
+
+        <h1>{{ product.model }}</h1>
+
+        <div class="container form-container">
+            <ul class="collection">
+                <li class="collection-item"><div>Référence: {{ product.reference }}</div></li>
+                <li class="collection-item"><div>Référencé depuis : {{ product.referencedOn|date('m-d-Y') }}</div></li>
+                <li class="collection-item"><div>Référencé par : {{ product.referencedBy.name }} {{ product.referencedBy.surname }}<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+                <li class="collection-item"><div>Niveau du stock: {{ product.inStockProduct.level }}<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+                <li class="collection-item"><div>Nombre d'arrivages en attentes de validation: {% set unvalidated = [] %}
+                        {% for pendingValidation in product.pendingValidations %}
+                            {% if pendingValidation.processed == false %}
+                                {% set unvalidated = unvalidated|merge([pendingValidation]) %}
+                            {% endif %}
+                             {{ unvalidated|length }}
+                        {% endfor %}
+                     <a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div>
+                </li>
+                <li class="collection-item"><div>Nombre de commandes : {{ product.inOrderProducts|length }}<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+            </ul>
+        </div>
+
+
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large red">
+                <i class="large material-icons">settings</i>
+            </a>
+            <ul>
+                <li><a class="btn-floating red"><i class="material-icons">delete</i></a></li>
+                <li><a class="btn-floating blue" href="{{  path('productArrival', {'id' : product.id }) }}"><i class="material-icons">add</i></a></li>
+                <li><a class="btn-floating green"><i class="material-icons">edit</i></a></li>
+                <li><a class="btn-floating yellow darken-1" href="{{ app.request.headers.get('referer') }}"><i class="material-icons">arrow_back</i></a></li>
+            </ul>
+        </div>
+
+    {% endblock %}
+

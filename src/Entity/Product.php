@@ -327,19 +327,13 @@ class Product
         $this->pendingValidations->removeElement($pendingValidationStock);
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getInOrderProducts(): ArrayCollection
+    public function getInOrderProducts()
     {
         return $this->inOrderProducts;
     }
 
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getPendingValidations(): ArrayCollection
+    public function getPendingValidations()
     {
         return $this->pendingValidations;
     }

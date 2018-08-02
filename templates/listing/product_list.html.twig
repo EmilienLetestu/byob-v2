@@ -52,7 +52,7 @@
                 <a href="{{ path('productArrival', {'id' : product.id }) }}"><i class="material-icons">add</i></a>
             </td>
             <td>
-                <a href="#"><i class="material-icons">info</i></a>
+                <a href="{{ path('productInfo', {'id' : product.id }) }}"><i class="material-icons">info</i></a>
             </td>
         </tr>
     {% endfor %}
