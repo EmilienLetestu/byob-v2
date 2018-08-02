@@ -19,7 +19,7 @@
     {% for pendigValidation in pendingValidations %}
         <tr>
             <td>
-                {{ pendigValidation.askedOn }}
+                {{ pendigValidation.askedOn|date('m-d-Y') }}
             </td>
             <td>
                 {{ pendigValidation.askedBy.surname }}

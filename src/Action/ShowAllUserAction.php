@@ -33,7 +33,7 @@ class ShowAllUserAction
     }
 
     /**
-     *  @Route("/user", name="userList")
+     *  @Route("/utilisateur", name="userList")
      *
      * @param ShowAllUserResponder $responder
      * @return \Symfony\Component\HttpFoundation\Response

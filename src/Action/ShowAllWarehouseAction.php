@@ -32,7 +32,7 @@ class ShowAllWarehouseAction
     }
 
     /**
-     * @Route("/warehouse", name="warehouseList")
+     * @Route("/entrepot", name="warehouseList")
      *
      * @param ShowAllWarehouseResponder $responder
      * @return Response
