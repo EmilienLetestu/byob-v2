@@ -22,9 +22,11 @@
             <th>
                 Stocker
             </th>
+            {% if app.user.role != 'WAREHOUSEMAN' and app.user.role != 'DELIVERYMAN' %}
             <th>
                 <i class="material-icons">info</i>
             </th>
+            {% endif %}
         </tr>
     </thead>
     <tbody>
@@ -51,14 +53,18 @@
             <td>
                 <a href="{{ path('productArrival', {'id' : product.id }) }}"><i class="material-icons">add</i></a>
             </td>
+            {% if app.user.role != 'WAREHOUSEMAN' and app.user.role != 'DELIVERYMAN' %}
             <td>
                 <a href="{{ path('productInfo', {'id' : product.id }) }}"><i class="material-icons">info</i></a>
             </td>
+            {% endif %}
         </tr>
     {% endfor %}
     </tbody>
 </table>
 
-<div class="create-entity-large">
-    <a href="{{ path('createProduct') }}" class="btn red"><i class="material-icons">add</i></a>
-</div>
+{% if  app.user.role == 'ADMIN' or app.user.role == 'SUPPLY' %}
+    <div class="create-entity-large">
+        <a href="{{ path('createProduct') }}" class="btn red"><i class="material-icons">add</i></a>
+    </div>
+{% endif %}
