@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: emilien
- * Date: 31/07/2018
- * Time: 15:33
+ * Date: 05/08/2018
+ * Time: 20:53
  */
 
 namespace App\Entity;
@@ -11,13 +11,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-/**
- * Where to set and store some products families
- *
- * Class Family
- * @package App\Entity
- */
-class Family
+class RefMaster
 {
     /**
      * @var
@@ -45,9 +39,9 @@ class Family
     private $addedBy;
 
     /**
-     * @var ArrayCollection
+     * @var
      */
-    private $products;
+    private $refDetails;
 
     /**
      * @param string $name
@@ -123,37 +117,36 @@ class Family
         return $this->addedBy;
     }
 
-    /*----------------------------------------ArrayCollection------------------------------------------------*/
+    /*----------------------- Array Collections -----------------------*/
 
-
+    /**
+     * Product constructor.
+     */
     public function __construct()
     {
-        $this->products = new ArrayCollection();
+       $this->refDetails = new ArrayCollection();
     }
 
     /**
-     * @param Product $product
+     * @param RefDetail $refDetail
      */
-    public function addProduct(Product $product)
+    public function addRefDetail(RefDetail $refDetail): void
     {
-        $this->products[] = $product;
+        $this->refDetails[] = $refDetail;
     }
 
     /**
-     * @param Product $product
+     * @param RefDetail $refDetail
      */
-    public function removeProduct(Product $product)
+    public function removeRefDetail(RefDetail $refDetail): void
     {
-        $this->products->removeElement($product);
+        $this->refDetails->removeElement($refDetail);
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getProducts(): ArrayCollection
-    {
-        return $this->products;
-    }
 
+    public function getRefDetails()
+    {
+        return $this->refDetails;
+    }
 
 }

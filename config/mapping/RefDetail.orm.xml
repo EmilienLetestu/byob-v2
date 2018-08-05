@@ -4,7 +4,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
         http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="App\Entity\Designation">
+    <entity name="App\Entity\RefDetail">
         <id name="id" type="integer">
             <generator strategy="AUTO"/>
         </id>
@@ -15,18 +15,22 @@
         <many-to-one
                 field="addedBy"
                 target-entity="App\Entity\User"
-                inversed-by="designations">
+                inversed-by="refDetails">
             <join-column
                     name="added_by"
                     referenced-column-name="id"
             />
         </many-to-one>
 
-        <one-to-many
-                field="products"
-                target-entity="App\Entity\Product"
-                mapped-by="designation"
-        />
+        <many-to-one
+                field="refMaster"
+                target-entity="App\Entity\RefMaster"
+                inversed-by="refDetails">
+            <join-column
+                    name="ref_detail"
+                    referenced-column-name="id"
+            />
+        </many-to-one>
 
     </entity>
 </doctrine-mapping>

@@ -29,32 +29,7 @@ class Product
     /**
      * @var
      */
-    private $family;
-
-    /**
-     * @var
-     */
-    private $type;
-
-    /**
-     * @var
-     */
-    private $category;
-
-    /**
-     * @var
-     */
-    private $make;
-
-    /**
-     * @var
-     */
     private $model;
-
-    /**
-     * @var
-     */
-    private $designation;
 
     /**
      * @var
@@ -91,53 +66,18 @@ class Product
      */
     private $inOrderProducts;
 
-
     /**
-     * @param Family $family
+     * @var
      */
-    public function setFamily(Family $family): void
-    {
-        $this->family = $family;
-    }
+    private $refDetails;
 
-    /**
-     * @param Type $type
-     */
-    public function setType(Type $type): void
-    {
-        $this->type  = $type;
-    }
-
-    /**
-     * @param Category $category
-     */
-    public function setCategory(Category $category): void
-    {
-        $this->category = $category;
-    }
-
-    /**
-     * @param Make $make
-     */
-    public function setMake(Make $make): void
-    {
-        $this->make = $make;
-    }
 
     /**
      * @param string $model
      */
-    public function setModel(string $model): void
+    public function setModel(string $model)
     {
         $this->model = $model;
-    }
-
-    /**
-     * @param Designation $designation
-     */
-    public function setDesignation(Designation $designation): void
-    {
-        $this->designation = $designation;
     }
 
     /**
@@ -191,38 +131,6 @@ class Product
     }
 
     /**
-     * @return Family
-     */
-    public function getFamily(): Family
-    {
-        return $this->family;
-    }
-
-    /**
-     * @return Type
-     */
-    public function getType(): Type
-    {
-        return $this->type;
-    }
-
-    /**
-     * @return Category
-     */
-    public function getCategory(): Category
-    {
-        return $this->category;
-    }
-
-    /**
-     * @return Make
-     */
-    public function getMake(): Make
-    {
-        return $this->make;
-    }
-
-    /**
      * @return string
      */
     public function getModel(): string
@@ -230,13 +138,6 @@ class Product
         return $this->model;
     }
 
-    /**
-     * @return Designation
-     */
-    public function getDesignation(): Designation
-    {
-        return $this->designation;
-    }
 
     /**
      * @return string
@@ -287,6 +188,7 @@ class Product
     {
         $this->inOrderProducts    = new ArrayCollection();
         $this->pendingValidations = new ArrayCollection();
+        $this->refDetails         = new ArrayCollection();
     }
 
     /**
@@ -309,13 +211,20 @@ class Product
     }
 
     /**
+     * @param RefDetail $refDetail
+     */
+    public function addRefDetail(RefDetail $refDetail): void
+    {
+        $this->refDetails[] = $refDetail;
+    }
+
+    /**
      * @param InOrderProduct $inOrderProduct
      */
     public function removeInOrderProduct(InOrderProduct $inOrderProduct): void
     {
         $this->inOrderProducts->removeElement($inOrderProduct);
     }
-
 
     /**
      * @param PendingValidationStock $pendingValidationStock
@@ -327,6 +236,14 @@ class Product
         $this->pendingValidations->removeElement($pendingValidationStock);
     }
 
+    /**
+     * @param RefDetail $refDetail
+     */
+    public function removeRefDetail(RefDetail $refDetail): void
+    {
+        $this->refDetails->removeElement($refDetail);
+    }
+
     public function getInOrderProducts()
     {
         return $this->inOrderProducts;
@@ -336,6 +253,12 @@ class Product
     public function getPendingValidations()
     {
         return $this->pendingValidations;
+    }
+
+
+    public function getRefDetails()
+    {
+        return $this->refDetails;
     }
 
 }

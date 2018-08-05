@@ -37,32 +37,14 @@
         />
 
         <one-to-many
-                field="families"
-                target-entity="App\Entity\Family"
+                field="refDetails"
+                target-entity="App\Entity\RefDetail"
                 mapped-by="addedBy"
         />
 
         <one-to-many
-                field="categories"
-                target-entity="App\Entity\Category"
-                mapped-by="addedBy"
-        />
-
-        <one-to-many
-                field="types"
-                target-entity="App\Entity\Type"
-                mapped-by="addedBy"
-        />
-
-        <one-to-many
-                field="makes"
-                target-entity="App\Entity\Make"
-                mapped-by="addedBy"
-        />
-
-        <one-to-many
-                field="designations"
-                target-entity="App\Entity\Designation"
+                field="refMasters"
+                target-entity="App\Entity\RefMaster"
                 mapped-by="addedBy"
         />
 

@@ -100,27 +100,12 @@ class User implements UserInterface
     /**
      * @var ArrayCollection
      */
-    private $types;
+    private $refDetails;
 
     /**
      * @var ArrayCollection
      */
-    private $families;
-
-    /**
-     * @var ArrayCollection
-     */
-    private $makes;
-
-    /**
-     * @var ArrayCollection
-     */
-    private $designations;
-
-    /**
-     * @var ArrayCollection
-     */
-    private $categories;
+    private $refMasters;
 
 
     /**
@@ -373,11 +358,8 @@ class User implements UserInterface
         $this->pendingValidations = new ArrayCollection();
         $this->stockValidations   = new ArrayCollection();
         $this->products           = new ArrayCollection();
-        $this->types              = new ArrayCollection();
-        $this->families           = new ArrayCollection();
-        $this->makes              = new ArrayCollection();
-        $this->designations       = new ArrayCollection();
-        $this->categories         = new ArrayCollection();
+        $this->refDetails         = new ArrayCollection();
+        $this->refMasters         = new ArrayCollection();
 
     }
 
@@ -415,43 +397,19 @@ class User implements UserInterface
     }
 
     /**
-     * @param Type $type
+     * @param RefDetail $refDetail
      */
-    public function addType(Type $type)
+    public function addRefDetail(RefDetail $refDetail)
     {
-        $this->types[] = $type;
+        $this->refDetails[] = $refDetail;
     }
 
     /**
-     * @param Family $family
+     * @param RefMaster $refMaster
      */
-    public function addFamily(Family $family)
+    public function addRefMaster(RefMaster $refMaster)
     {
-        $this->families[] = $family;
-    }
-
-    /**
-     * @param Make $make
-     */
-    public function addMake(Make $make)
-    {
-        $this->makes[] = $make;
-    }
-
-    /**
-     * @param Designation $designation
-     */
-    public function addDesignation(Designation $designation)
-    {
-        $this->designations[] = $designation;
-    }
-
-    /**
-     * @param Category $category
-     */
-    public function addCategory(Category $category)
-    {
-        $this->categories[] = $category;
+        $this->refMasters[] = $refMaster;
     }
 
     /**
@@ -480,7 +438,6 @@ class User implements UserInterface
         $this->stockValidations->removeElement($stockValidation);
     }
 
-
     /**
      * @param Product $product
      */
@@ -490,115 +447,57 @@ class User implements UserInterface
     }
 
     /**
-     * @param Type $type
+     * @param RefDetail $refDetail
      */
-    public function removeType(Type $type)
+    public function removeRefDetail(RefDetail $refDetail)
     {
-        $this->types->removeElement($type);
+        $this->refDetails->removeElement($refDetail);
     }
 
     /**
-     * @param Family $family
+     * @param RefMaster $refMaster
      */
-    public function removeFamily(Family $family)
+    public function removeRefMaster(RefMaster $refMaster)
     {
-        $this->families->removeElement($family);
+        $this->refMasters->removeElement($refMaster);
     }
 
-    /**
-     * @param Make $make
-     */
-    public function removeMake(Make $make)
-    {
-        $this->makes->removeElement($make);
-    }
 
-    /**
-     * @param Designation $designation
-     */
-    public function removeDesignation(Designation $designation)
-    {
-        $this->designations->removeElement($designation);
-    }
 
-    /**
-     * @param Category $category
-     */
-    public function removeCategory(Category $category)
-    {
-        $this->categories->removeElement($category);
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getOrders(): ArrayCollection
+    public function getOrders()
     {
         return $this->orders;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getPendingValidations(): ArrayCollection
+
+    public function getPendingValidations()
     {
         return $this->pendingValidations;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getStockValidations(): ArrayCollection
+
+    public function getStockValidations()
     {
         return $this->stockValidations;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getProducts(): ArrayCollection
+
+    public function getProducts()
     {
         return $this->products;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getTypes(): ArrayCollection
+
+    public function getRefDetails()
     {
-        return $this->types;
+        return $this->refDetails;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getFamilies(): ArrayCollection
+
+    public function getRefMasters()
     {
-        return $this->families;
+        return $this->refMasters;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getMakes(): ArrayCollection
-    {
-        return $this->makes;
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getDesignations(): ArrayCollection
-    {
-        return $this->designations;
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getCategories(): ArrayCollection
-    {
-        return $this->categories;
-    }
 
 }

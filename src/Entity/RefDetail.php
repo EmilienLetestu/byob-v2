@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: emilien
- * Date: 31/07/2018
- * Time: 15:36
+ * Date: 05/08/2018
+ * Time: 20:54
  */
 
 namespace App\Entity;
@@ -11,13 +11,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-/**
- * Where to set and store some products designations
- *
- * Class Designation
- * @package App\Entity
- */
-class Designation
+class RefDetail
 {
     /**
      * @var
@@ -45,9 +39,10 @@ class Designation
     private $addedBy;
 
     /**
-     * @var ArrayCollection
+     * @var
      */
-    private $products;
+    private $refMaster;
+
 
     /**
      * @param string $name
@@ -81,6 +76,14 @@ class Designation
     public function setAddedBy(User $user): void
     {
         $this->addedBy = $user;
+    }
+
+    /**
+     * @param RefMaster $refMaster
+     */
+    public function setRefMaster(RefMaster $refMaster): void
+    {
+        $this->refMaster = $refMaster;
     }
 
     /**
@@ -123,37 +126,12 @@ class Designation
         return $this->addedBy;
     }
 
-    /*----------------------------------------ArrayCollection------------------------------------------------*/
-
-
-    public function __construct()
-    {
-        $this->products = new ArrayCollection();
-    }
-
     /**
-     * @param Product $product
+     * @return RefMaster
      */
-    public function addProduct(Product $product)
+    public function getRefMaster(): RefMaster
     {
-        $this->products[] = $product;
+        return $this->refMaster;
     }
-
-    /**
-     * @param Product $product
-     */
-    public function removeProduct(Product $product)
-    {
-        $this->products->removeElement($product);
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getProducts(): ArrayCollection
-    {
-        return $this->products;
-    }
-
 
 }

@@ -44,65 +44,12 @@
                     />
         </many-to-one>
 
-        <many-to-one
-                field="family"
-                target-entity="App\Entity\Family"
-                inversed-by="products">
+        <many-to-many
+                field="refDetails"
+                target-entity="App\Entity\RefDetail"
+        />
 
-            <join-column
-                    nullable="false"
-                    name="family_id"
-                    referenced-column-name="id"
-            />
-        </many-to-one>
 
-        <many-to-one
-                field="category"
-                target-entity="App\Entity\Category"
-                inversed-by="products">
-
-            <join-column
-                    nullable="false"
-                    name="category_id"
-                    referenced-column-name="id"
-            />
-        </many-to-one>
-
-        <many-to-one
-                field="make"
-                target-entity="App\Entity\Make"
-                inversed-by="products">
-
-            <join-column
-                    nullable="false"
-                    name="make_id"
-                    referenced-column-name="id"
-            />
-        </many-to-one>
-
-        <many-to-one
-                field="type"
-                target-entity="App\Entity\Type"
-                inversed-by="products">
-
-            <join-column
-                    nullable="false"
-                    name="type_id"
-                    referenced-column-name="id"
-            />
-        </many-to-one>
-
-        <many-to-one
-                field="designation"
-                target-entity="App\Entity\Designation"
-                inversed-by="products">
-
-            <join-column
-                    nullable="false"
-                    name="designation_id"
-                    referenced-column-name="id"
-            />
-        </many-to-one>
 
     </entity>
 </doctrine-mapping>
