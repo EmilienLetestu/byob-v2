@@ -32,23 +32,29 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $product->setModel('coca-cola light cannette 33cl');
         $product->setReference('coca-7848748');
         $product->setReferencedOn('Y-m-d');
-        $product->setFamily(
-            $this->getReference(FamilyFixtures::FAMILY_REFERENCE)
-        );
-        $product->setType(
-            $this->getReference(TypeFixtures::TYPE_REFERENCE)
-        );
-        $product->setCategory(
-            $this->getReference(CategoryFixtures::SODA_REFERENCE)
-        );
-        $product->setMake(
-            $this->getReference(MakeFixtures::COCA_COLA_COMPANY_REFERENCE)
-        );
-        $product->setDesignation(
-            $this->getReference(DesignationFixtures::COCA_REFERENCE)
-        );
+
         $product->setReferencedBy(
             $this->getReference(UserFixtures::SUPPLY_REFERENCE)
+        );
+
+        $product->addRefDetail(
+            $this->getReference(RefDetailFixtures::FAMILY_DETAIL_REFERENCE)
+        );
+
+        $product->addRefDetail(
+            $this->getReference(RefDetailFixtures::TYPE_DETAIL_REFERENCE)
+        );
+
+        $product->addRefDetail(
+            $this->getReference(RefDetailFixtures::COCA_COLA_COMPANY_REFERENCE)
+        );
+
+        $product->addRefDetail(
+            $this->getReference(RefDetailFixtures::SODA_REFERENCE)
+        );
+
+        $product->addRefDetail(
+            $this->getReference(RefDetailFixtures::COCA_REFERENCE)
         );
 
         $manager->persist($product);
@@ -63,12 +69,9 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies(): array
     {
         return [
-            FamilyFixtures::class,
-            TypeFixtures::class,
-            CategoryFixtures::class,
-            MakeFixtures::class,
-            DesignationFixtures::class,
-            UserFixtures::class
+            UserFixtures::class,
+            RefDetailFixtures::class
+
         ];
     }
 }

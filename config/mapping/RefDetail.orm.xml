@@ -27,7 +27,7 @@
                 target-entity="App\Entity\RefMaster"
                 inversed-by="refDetails">
             <join-column
-                    name="ref_detail"
+                    name="ref_master"
                     referenced-column-name="id"
             />
         </many-to-one>
