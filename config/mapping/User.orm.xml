@@ -60,16 +60,10 @@
             mapped-by="user"
         />
 
-        <many-to-one
-            field="warehouse"
-            target-entity="App\Entity\Warehouse"
-            inversed-by="users">
-        <join-column
-                nullable="false"
-                name="warehouse_id"
-                referenced-column-name="id"
+        <many-to-many
+                field="warehouses"
+                target-entity="App\Entity\Warehouse"
         />
-        </many-to-one>
 
     </entity>
 </doctrine-mapping>

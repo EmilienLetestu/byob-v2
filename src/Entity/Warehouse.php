@@ -44,10 +44,6 @@ class Warehouse
      */
     private $inStockProducts;
 
-    /**
-     * @var
-     */
-    private $users;
 
 
     /**

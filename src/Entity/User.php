@@ -73,9 +73,9 @@ class User implements UserInterface
     private $person;
 
     /**
-     * @var
+     * @var ArrayCollection
      */
-    private $warehouse;
+    private $warehouses;
 
     /**
      * @var ArrayCollection
@@ -189,14 +189,6 @@ class User implements UserInterface
     }
 
     /**
-     * @param Warehouse|null $warehouse
-     */
-    public function  setWarehouse(?Warehouse $warehouse)
-    {
-        $this->warehouse = $warehouse;
-    }
-
-    /**
      * @return int
      */
     public function getId(): int
@@ -284,14 +276,6 @@ class User implements UserInterface
         return $this->person;
     }
 
-    /**
-     * @return Warehouse|null
-     */
-    public function getWarehouse():? Warehouse
-    {
-        return $this->warehouse;
-    }
-
     /*---------------------- UserInterface requested methods ------------------*/
 
     /**
@@ -360,6 +344,7 @@ class User implements UserInterface
         $this->products           = new ArrayCollection();
         $this->refDetails         = new ArrayCollection();
         $this->refMasters         = new ArrayCollection();
+        $this->warehouses         = new ArrayCollection();
 
     }
 
@@ -413,6 +398,14 @@ class User implements UserInterface
     }
 
     /**
+     * @param Warehouse $warehouse
+     */
+    public function addWarehouse(Warehouse $warehouse)
+    {
+        $this->warehouses[] = $warehouse;
+    }
+
+    /**
      * @param Orders $order
      */
     public function removeOrder(Orders $order)
@@ -462,6 +455,13 @@ class User implements UserInterface
         $this->refMasters->removeElement($refMaster);
     }
 
+    /**
+     * @param Warehouse $warehouse
+     */
+    public function removeWarehouse(Warehouse $warehouse)
+    {
+        $this->warehouses->removeElement($warehouse);
+    }
 
 
     public function getOrders()
@@ -497,6 +497,11 @@ class User implements UserInterface
     public function getRefMasters()
     {
         return $this->refMasters;
+    }
+
+    public function getWarehouses()
+    {
+        return $this->warehouses;
     }
 
 
