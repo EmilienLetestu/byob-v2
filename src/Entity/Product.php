@@ -271,9 +271,9 @@ class Product
     }
 
     /**
-     * @return mixed
+     * @return InStockProduct|null
      */
-    public function getInStockProduct(): InStockProduct
+    public function getInStockProduct():? InStockProduct
     {
         return $this->inStockProduct;
     }
