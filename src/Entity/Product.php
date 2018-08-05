@@ -258,6 +258,7 @@ class Product
 
     public function getRefDetails()
     {
+
         return $this->refDetails;
     }
 

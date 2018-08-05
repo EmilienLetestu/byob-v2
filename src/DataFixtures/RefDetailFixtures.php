@@ -92,7 +92,7 @@ class RefDetailFixtures extends Fixture implements DependentFixtureInterface
         $type->setAddedBy(
             $this->getReference(UserFixtures::ADMIN_REFERENCE)
         );
-        $family->setRefMaster(
+        $type->setRefMaster(
             $this->getReference(RefMasterFixtures::TYPE_REFERENCE)
         );
 

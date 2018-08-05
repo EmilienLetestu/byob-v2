@@ -5,16 +5,19 @@
                 Model
             </th>
             <th>
+               Famille
+            </th>
+            <th>
+                Categorie
+            </th>
+            <th>
                 Designation
             </th>
             <th>
-                Famile
-            </th>
-            <th>
-                Category
-            </th>
-            <th>
                 Type
+            </th>
+            <th>
+                Fabricant
             </th>
             <th>
                 Référence
@@ -35,18 +38,11 @@
             <td>
                 {{ product.model }}
             </td>
+            {% for refDetails in product.refDetails %}
             <td>
-                {{ product.designation.name }}
+                {{ refDetails.name }}
             </td>
-            <td>
-                {{ product.family.name }}
-            </td>
-            <td>
-                {{ product.category.name }}
-            </td>
-            <td>
-                {{ product.type.name }}
-            </td>
+            {% endfor %}
             <td>
                 {{ product.reference }}
             </td>
