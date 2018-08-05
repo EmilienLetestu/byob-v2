@@ -33,7 +33,7 @@ class InStockProductFixtures extends Fixture implements DependentFixtureInterfac
            $this->getReference(ProductFixtures::PRODUCT_REFERENCE)
        );
        $inStockProduct->setWarehouse(
-           $this->getReference(WarehouseFixtures::WAREHOUSE_REFERENCE)
+           $this->getReference(WarehouseFixtures::FIRST_WAREHOUSE_REFERENCE)
        );
 
        $manager->persist($inStockProduct);

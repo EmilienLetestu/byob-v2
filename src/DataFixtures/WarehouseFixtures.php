@@ -20,21 +20,32 @@ use Doctrine\Common\Persistence\ObjectManager;
 class WarehouseFixtures extends Fixture
 {
 
-    public const  WAREHOUSE_REFERENCE = 'warehouse';
+    public const  FIRST_WAREHOUSE_REFERENCE = 'first';
+
+    public const  SECOND_WAREHOUSE_REFERENCE = 'second';
 
     /**
      * @param ObjectManager $manager
      */
     public function load(ObjectManager $manager)
     {
-        $warehouse = new Warehouse();
-        $warehouse->setName('Entrepôt fixture');
-        $warehouse->setAddress('Rue de la base de données 40 000 Symfony Cedex 4');
+        $first = new Warehouse();
+        $first->setName('Entrepôt fixture');
+        $first->setAddress('Rue de la base de données 40 000 Symfony Cedex 4');
 
-        $manager->persist($warehouse);
+        $manager->persist($first);
         $manager->flush();
 
-        $this->addReference(self::WAREHOUSE_REFERENCE, $warehouse);
+        $this->addReference(self::FIRST_WAREHOUSE_REFERENCE, $first);
+
+        $second = new Warehouse();
+        $second->setName('Entrepôt bam');
+        $second->setAddress('Rue des fixtures 40 000 Symfony Cedex 4');
+
+        $manager->persist($second);
+        $manager->flush();
+
+        $this->addReference(self::SECOND_WAREHOUSE_REFERENCE, $second);
 
     }
 }

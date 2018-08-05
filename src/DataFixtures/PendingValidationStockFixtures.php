@@ -40,7 +40,7 @@ class PendingValidationStockFixtures extends Fixture implements DependentFixture
             $this->getReference(ProductFixtures::PRODUCT_REFERENCE)
         );
         $pending->setWarehouse(
-            $this->getReference(WarehouseFixtures::WAREHOUSE_REFERENCE)
+            $this->getReference(WarehouseFixtures::FIRST_WAREHOUSE_REFERENCE)
         );
 
         $manager->persist($pending);
