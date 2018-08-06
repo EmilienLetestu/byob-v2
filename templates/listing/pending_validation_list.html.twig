@@ -23,25 +23,25 @@
     </tr>
     </thead>
     <tbody>
-    {% for pendigValidation in pendingValidations %}
+    {% for pendingValidation in pendingValidations %}
         <tr>
             <td>
-                {{ pendigValidation.askedOn|date('m-d-Y') }}
+                {{ pendingValidation.askedOn|date('m-d-Y') }}
             </td>
             <td>
-                {{ pendigValidation.askedBy.surname }}
+                {{ pendingValidation.askedBy.surname }}
             </td>
             <td>
-                {{ pendigValidation.product.model }}
+                {{ pendingValidation.product.model }}
             </td>
             <td>
-                {{ pendigValidation.quantity }}
+                {{ pendingValidation.quantity }}
             </td>
             <td>
-                <a href="#" class="validate-link"><i class="material-icons">check</i></a>
+                <a href="{{ path('validateArrival', { 'pendingId' : pendingValidation.id }) }}" class="validate-link"><i class="material-icons">check</i></a>
             </td>
             <td>
-                <a href="#" class="reject-link"><i class="material-icons">close</i></a>
+                <a href="{{ path('rejectArrival', { 'pendingId' : pendingValidation.id }) }}" class="reject-link"><i class="material-icons">close</i></a>
             </td>
         </tr>
     {% endfor %}
