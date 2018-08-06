@@ -60,9 +60,10 @@
             mapped-by="user"
         />
 
-        <many-to-many
-                field="warehouses"
-                target-entity="App\Entity\Warehouse"
+        <one-to-many
+                field="userInWarehouses"
+                target-entity="App\Entity\UserInWarehouse"
+                mapped-by="user"
         />
 
     </entity>

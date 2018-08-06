@@ -75,7 +75,7 @@ class User implements UserInterface
     /**
      * @var ArrayCollection
      */
-    private $warehouses;
+    private $userInWarehouses;
 
     /**
      * @var ArrayCollection
@@ -106,6 +106,7 @@ class User implements UserInterface
      * @var ArrayCollection
      */
     private $refMasters;
+
 
 
     /**
@@ -344,7 +345,7 @@ class User implements UserInterface
         $this->products           = new ArrayCollection();
         $this->refDetails         = new ArrayCollection();
         $this->refMasters         = new ArrayCollection();
-        $this->warehouses         = new ArrayCollection();
+        $this->userInWarehouses   = new ArrayCollection();
 
     }
 
@@ -398,11 +399,11 @@ class User implements UserInterface
     }
 
     /**
-     * @param Warehouse $warehouse
+     * @param UserInWarehouse $userInWarehouse
      */
-    public function addWarehouse(Warehouse $warehouse)
+    public function addUserInWarehouse(UserInWarehouse $userInWarehouse)
     {
-        $this->warehouses[] = $warehouse;
+        $this->userInWarehouses[] = $userInWarehouse;
     }
 
     /**
@@ -456,11 +457,11 @@ class User implements UserInterface
     }
 
     /**
-     * @param Warehouse $warehouse
+     * @param UserInWarehouse $userInWarehouse
      */
-    public function removeWarehouse(Warehouse $warehouse)
+    public function removeUserInWarehouse(UserInWarehouse $userInWarehouse)
     {
-        $this->warehouses->removeElement($warehouse);
+        $this->userInWarehouses->removeElement($userInWarehouse);
     }
 
 
@@ -499,9 +500,9 @@ class User implements UserInterface
         return $this->refMasters;
     }
 
-    public function getWarehouses()
+    public function getUserInWarehouses()
     {
-        return $this->warehouses;
+        return $this->userInWarehouses;
     }
 
 

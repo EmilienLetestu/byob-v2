@@ -19,7 +19,7 @@ use Doctrine\Common\Persistence\ObjectManager;
  * Class UserFixtures
  * @package App\DataFixtures
  */
-class UserFixtures extends Fixture implements DependentFixtureInterface
+class UserFixtures extends Fixture
 {
     public const ADMIN_REFERENCE = 'admin';
     public const ACCOUNTANT_REFERENCE  = 'accountant';
@@ -47,9 +47,6 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
       $accountant->setActivatedOn(
           new \DateTime(date('Y-m-d'))
       );
-      $accountant->addWarehouse(
-           $this->getReference(WarehouseFixtures::FIRST_WAREHOUSE_REFERENCE)
-      );
       $manager->persist($accountant);
       $manager->flush();
 
@@ -67,12 +64,6 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
       $admin->setActivated(true);
       $admin->setActivatedOn(
             new \DateTime(date('Y-m-d'))
-      );
-      $admin->addWarehouse(
-          $this->getReference(WarehouseFixtures::FIRST_WAREHOUSE_REFERENCE)
-      );
-      $admin->addWarehouse(
-          $this->getReference(WarehouseFixtures::SECOND_WAREHOUSE_REFERENCE)
       );
 
       $manager->persist($admin);
@@ -92,9 +83,6 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
       $supply->setActivatedOn(
             new \DateTime(date('Y-m-d'))
       );
-      $supply->addWarehouse(
-          $this->getReference(WarehouseFixtures::FIRST_WAREHOUSE_REFERENCE)
-      );
       $manager->persist($supply);
       $manager->flush();
 
@@ -111,9 +99,6 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
       $logistic->setActivated(true);
       $logistic->setActivatedOn(
             new \DateTime(date('Y-m-d'))
-      );
-      $logistic->addWarehouse(
-          $this->getReference(WarehouseFixtures::FIRST_WAREHOUSE_REFERENCE)
       );
       $manager->persist($logistic);
       $manager->flush();
@@ -132,9 +117,6 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
       $warehouseman->setActivatedOn(
             new \DateTime(date('Y-m-d'))
       );
-      $warehouseman->addWarehouse(
-          $this->getReference(WarehouseFixtures::FIRST_WAREHOUSE_REFERENCE)
-      );
       $manager->persist($warehouseman);
       $manager->flush();
 
@@ -151,9 +133,6 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
       $salesman->setActivated(true);
       $salesman->setActivatedOn(
             new \DateTime(date('Y-m-d'))
-      );
-      $salesman->addWarehouse(
-          $this->getReference(WarehouseFixtures::FIRST_WAREHOUSE_REFERENCE)
       );
       $manager->persist($salesman);
       $manager->flush();
@@ -172,21 +151,10 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
       $deliveryman->setActivatedOn(
             new \DateTime(date('Y-m-d'))
       );
-      $deliveryman->addWarehouse(
-          $this->getReference(WarehouseFixtures::FIRST_WAREHOUSE_REFERENCE)
-      );
       $manager->persist($deliveryman);
       $manager->flush();
 
       $this->addReference(self::DELIVERYMAN_REFERENCE, $deliveryman);
-    }
-
-    /**
-     * @return array
-     */
-    public function getDependencies(): array
-    {
-        return[WarehouseFixtures::class];
     }
 
 }

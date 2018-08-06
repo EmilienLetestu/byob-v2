@@ -24,6 +24,11 @@
                 mapped-by="warehouse"
         />
 
+        <one-to-many
+                field="userInWarehouses"
+                target-entity="App\Entity\UserInWarehouse"
+                mapped-by="warehouse"
+        />
 
     </entity>
 </doctrine-mapping>

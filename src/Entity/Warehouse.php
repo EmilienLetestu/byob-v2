@@ -44,6 +44,11 @@ class Warehouse
      */
     private $inStockProducts;
 
+    /**
+     * @var
+     */
+    private $userInWarehouses;
+
 
 
     /**
@@ -95,7 +100,7 @@ class Warehouse
     {
         $this->pendingValidations = new ArrayCollection();
         $this->inStockProducts    = new ArrayCollection();
-        $this->users              = new ArrayCollection();
+        $this->userInWarehouses   = new ArrayCollection();
     }
 
     /**
@@ -117,11 +122,11 @@ class Warehouse
     }
 
     /**
-     * @param User $user
+     * @param UserInWarehouse $userInWarehouse
      */
-    public function addUser(User $user)
+    public function addUserInWareHouse(UserInWarehouse $userInWarehouse)
     {
-        $this->users[] = $user;
+        $this->userInWarehouses[] = $userInWarehouse;
     }
 
     /**
@@ -143,11 +148,11 @@ class Warehouse
     }
 
     /**
-     * @param User $user
+     * @param UserInWarehouse $userInWarehouse
      */
-    public function removeUser(User $user)
+    public function removeUserInWarehouse(UserInWarehouse $userInWarehouse)
     {
-        $this->users->removeElement($user);
+        $this->userInWarehouses->removeElement($userInWarehouse);
     }
 
 
@@ -163,9 +168,9 @@ class Warehouse
     }
 
 
-    public function getUsers()
+    public function getUserInWarehouses()
     {
-        return $this->users;
+        return $this->userInWarehouses;
     }
 
 }
