@@ -28,7 +28,7 @@ class PendingValidationStockRepository extends ServiceEntityRepository
      * @param $id
      * @return array
      */
-    public function findAllPendingFromWarehouse($id): array
+    public function findAllPendingFromWarehouse(int $id): array
     {
         return
             $queryBuilder = $this->createQueryBuilder('pe')
@@ -40,5 +40,21 @@ class PendingValidationStockRepository extends ServiceEntityRepository
             ->getResult()
         ;
 
+    }
+
+    /**
+     * @param int $id
+     * @return PendingValidationStock|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findPendingWithId(int $id):? PendingValidationStock
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('pe')
+            ->where('pe.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
     }
 }
