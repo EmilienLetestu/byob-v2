@@ -10,6 +10,7 @@ namespace App\DTO;
 
 
 use App\Entity\Warehouse;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class UserDTO
@@ -38,9 +39,9 @@ class UserDTO
     public $role;
 
     /**
-     * @var Warehouse
+     * @var ArrayCollection
      */
-    public $warehouse;
+    public $warehouses;
 
     /**
      * UserDTO constructor.
@@ -48,14 +49,14 @@ class UserDTO
      * @param string $surname
      * @param string $email
      * @param string $role
-     * @param Warehouse $warehouse
+     * @param ArrayCollection $warehouses
      */
     public function __construct(
         string $name,
         string $surname,
         string $email,
         string $role,
-        Warehouse $warehouse
+        ArrayCollection $warehouses
 
     )
     {
@@ -63,6 +64,6 @@ class UserDTO
         $this->surname   = $surname;
         $this->email     = $email;
         $this->role      = $role;
-        $this->warehouse = $warehouse;
+        $this->warehouses = $warehouses;
     }
 }

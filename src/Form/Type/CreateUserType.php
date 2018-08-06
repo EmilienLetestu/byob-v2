@@ -50,9 +50,11 @@ class CreateUserType extends AbstractType
                     'Livreur'                => 'DELIVERYMAN'
                 ]
             ])
-            ->add('warehouse',EntityType::class,[
+            ->add('warehouses',EntityType::class,[
                 'class' => Warehouse::class,
-                'choice_label' => 'name'
+                'choice_label' => 'name',
+                'multiple'     => true,
+                'expanded'     => true
             ]);
     }
 
@@ -70,7 +72,7 @@ class CreateUserType extends AbstractType
                     $form->get('surname')->getData(),
                     $form->get('email')->getData(),
                     $form->get('role')->getData(),
-                    $form->get('warehouse')->getData()
+                    $form->get('warehouses')->getData()
                 );
             }
         ]);

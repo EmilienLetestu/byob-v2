@@ -31,3 +31,9 @@ h1{
 .create-entity-large a{
     width: 100%;
 }
+
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked{
+    position: relative;
+    opacity: 1;
+}
