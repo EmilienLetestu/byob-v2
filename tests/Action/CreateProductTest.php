@@ -25,11 +25,11 @@ class CreateProductTest extends LoginActionTest
         $this->assertEquals(200,$this->client->getResponse()->getStatusCode());
 
         $form = $crawler->filter("form")->form();
-        $form['product[family]'] = '1';
+        $form['product[family]'] = '3';
         $form['product[category]'] = '1';
-        $form['product[type]'] = '1';
-        $form['product[make]'] = '1';
-        $form['product[designation]'] = '3';
+        $form['product[type]'] = '4';
+        $form['product[make]'] = '7';
+        $form['product[designation]'] = '5';
         $form['product[model]'] = 'coca-cola zero bouteille verre 33cl';
 
         $crawler = $this->client->submit($form);

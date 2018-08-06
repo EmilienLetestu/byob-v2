@@ -21,7 +21,7 @@ class ShowAllProductActionTest extends LoginActionTest
         $this->assertEquals(200,$this->client->getResponse()->getStatusCode());
 
         $this->assertEquals(
-            1, $crawler->filter('h1:contains("Produits référencés")')->count()
+            1, $crawler->filter('h1:contains("Catalogue produits")')->count()
         );
 
         $this->logout();

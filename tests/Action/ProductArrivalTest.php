@@ -24,7 +24,8 @@ class ProductArrivalTest extends LoginActionTest
         );
 
         $form = $crawler->filter("form")->form();
-        $form['product_arrival[quantity]'] = 250;
+        $form['product_arrival[quantity]']  = 250;
+        $form['product_arrival[warehouse]'] = '9';
 
 
         $crawler = $this->client->submit($form);
