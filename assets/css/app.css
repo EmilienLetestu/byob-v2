@@ -23,6 +23,10 @@ h1{
     margin-bottom: 3rem;
 }
 
+h2{
+    text-align: center;
+}
+
 .create-entity-large{
     margin-top: 3rem;
 
@@ -36,4 +40,12 @@ h1{
 [type="checkbox"]:checked{
     position: relative;
     opacity: 1;
+}
+
+a.validate-link{
+    color: #51c062;
+}
+
+a.reject-link{
+    color: #ff4f3d;
 }

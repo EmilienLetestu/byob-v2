@@ -1,3 +1,4 @@
+<h2>{{ pendingValidations[0].warehouse.name }}</h2>
 <table>
     <thead>
     <tr>
@@ -12,6 +13,12 @@
         </th>
         <th>
             Quantité
+        </th>
+        <th>
+            Valider
+        </th>
+        <th>
+            Refuser
         </th>
     </tr>
     </thead>
@@ -29,6 +36,12 @@
             </td>
             <td>
                 {{ pendigValidation.quantity }}
+            </td>
+            <td>
+                <a href="#" class="validate-link"><i class="material-icons">check</i></a>
+            </td>
+            <td>
+                <a href="#" class="reject-link"><i class="material-icons">close</i></a>
             </td>
         </tr>
     {% endfor %}
