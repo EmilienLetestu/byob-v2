@@ -47,6 +47,8 @@ class RefDetailFixtures extends Fixture implements DependentFixtureInterface
             $this->getReference(RefMasterFixtures::CATEGORY_REFERENCE)
         );
 
+        $soda->setConstantKey($soda->getRefMaster()->getName());
+
         $manager->persist($soda);
         $manager->flush();
 
@@ -63,6 +65,7 @@ class RefDetailFixtures extends Fixture implements DependentFixtureInterface
         $beer->setRefMaster(
             $this->getReference(RefMasterFixtures::CATEGORY_REFERENCE)
         );
+        $beer->setConstantKey($beer->getRefMaster()->getName());
 
         $manager->persist($beer);
         $manager->flush();
@@ -79,6 +82,8 @@ class RefDetailFixtures extends Fixture implements DependentFixtureInterface
         $family->setRefMaster(
             $this->getReference(RefMasterFixtures::FAMILY_REFERENCE)
         );
+        $family->setConstantKey($family->getRefMaster()->getName());
+
 
         $manager->persist($family);
         $manager->flush();
@@ -95,6 +100,7 @@ class RefDetailFixtures extends Fixture implements DependentFixtureInterface
         $type->setRefMaster(
             $this->getReference(RefMasterFixtures::TYPE_REFERENCE)
         );
+        $type->setConstantKey($type->getRefMaster()->getName());
 
         $manager->persist($type);
         $manager->flush();
@@ -111,6 +117,7 @@ class RefDetailFixtures extends Fixture implements DependentFixtureInterface
         $coca->setRefMaster(
             $this->getReference(RefMasterFixtures::DESIGNATION_REFERENCE)
         );
+        $coca->setConstantKey($coca->getRefMaster()->getName());
 
         $manager->persist($coca);
         $manager->flush();
@@ -127,6 +134,7 @@ class RefDetailFixtures extends Fixture implements DependentFixtureInterface
         $pelforth->setRefMaster(
             $this->getReference(RefMasterFixtures::DESIGNATION_REFERENCE)
         );
+        $pelforth->setConstantKey($pelforth->getRefMaster()->getName());
 
         $manager->persist($pelforth);
         $manager->flush();
@@ -143,6 +151,7 @@ class RefDetailFixtures extends Fixture implements DependentFixtureInterface
         $company->setRefMaster(
             $this->getReference(RefMasterFixtures::MAKE_REFERENCE)
         );
+        $company->setConstantKey($company->getRefMaster()->getName());
 
         $manager->persist($company);
         $manager->flush();
@@ -159,6 +168,7 @@ class RefDetailFixtures extends Fixture implements DependentFixtureInterface
         $heineken->setRefMaster(
             $this->getReference(RefMasterFixtures::MAKE_REFERENCE)
         );
+        $heineken->setConstantKey($heineken->getRefMaster()->getName());
 
         $manager->persist($heineken);
         $manager->flush();

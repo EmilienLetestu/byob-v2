@@ -41,6 +41,11 @@ class RefDetail
     /**
      * @var
      */
+    private $constantKey;
+
+    /**
+     * @var
+     */
     private $refMaster;
 
 
@@ -84,6 +89,14 @@ class RefDetail
     public function setRefMaster(RefMaster $refMaster): void
     {
         $this->refMaster = $refMaster;
+    }
+
+    /**
+     * @param string $constantKey
+     */
+    public function setConstantKey(string $constantKey): void
+    {
+        $this->constantKey = $constantKey;
     }
 
     /**
@@ -132,6 +145,14 @@ class RefDetail
     public function getRefMaster(): RefMaster
     {
         return $this->refMaster;
+    }
+
+    /**
+     * @return string
+     */
+    public function getConstantKey(): string
+    {
+        return $this->constantKey;
     }
 
 }

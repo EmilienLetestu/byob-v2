@@ -48,7 +48,7 @@
                 field="refDetails"
                 target-entity="App\Entity\RefDetail">
             <order-by>
-                <order-by-field name="name" direction="ASC"/>
+                <order-by-field name="constantKey" direction="ASC"/>
             </order-by>
         </many-to-many>
 

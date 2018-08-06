@@ -5,9 +5,6 @@
                 Model
             </th>
             <th>
-               Famille
-            </th>
-            <th>
                 Categorie
             </th>
             <th>
@@ -15,9 +12,6 @@
             </th>
             <th>
                 Type
-            </th>
-            <th>
-                Fabricant
             </th>
             <th>
                 Référence
@@ -38,7 +32,7 @@
             <td>
                 {{ product.model }}
             </td>
-            {% for refDetails in product.refDetails %}
+            {% for refDetails in product.refDetails if refDetails.constantKey == 'category' or refDetails.constantKey == 'type'  or refDetails.constantKey == 'designation'%}
             <td>
                 {{ refDetails.name }}
             </td>

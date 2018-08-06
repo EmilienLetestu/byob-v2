@@ -43,10 +43,13 @@ class ShowAllProductAction
      */
     public function __invoke(ShowAllProductResponder $responder)
     {
-        return $responder(
-            $this->doctrine
-                ->getRepository(Product::class)
-                ->findAllProduct()
-        );
+
+        return
+            $responder(
+                $this->doctrine
+                    ->getRepository(Product::class)
+                    ->findAllProduct()
+            )
+        ;
     }
 }

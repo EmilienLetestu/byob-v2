@@ -11,6 +11,7 @@ namespace App\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use App\Entity\Product;
+use Doctrine\ORM\Query\Expr;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class ProductRepository extends ServiceEntityRepository
