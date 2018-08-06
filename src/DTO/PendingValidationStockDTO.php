@@ -9,6 +9,8 @@
 namespace App\DTO;
 
 
+use App\Entity\Warehouse;
+
 class PendingValidationStockDTO
 {
     /**
@@ -17,12 +19,22 @@ class PendingValidationStockDTO
     public $quantity;
 
     /**
+     * @var
+     */
+    public $warehouse;
+
+    /**
      * PendingValidationStockDTO constructor.
      * @param int $quantity
+     * @param Warehouse $warehouse
      */
-    public function __construct(int $quantity)
+    public function __construct(
+        int $quantity,
+        Warehouse $warehouse
+    )
     {
-        $this->quantity = $quantity;
+        $this->quantity  = $quantity;
+        $this->warehouse = $warehouse;
     }
 
 }

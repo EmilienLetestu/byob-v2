@@ -57,7 +57,9 @@ class ProductArrivalHandler implements ProductArrivalHandlerInterface
             $this->pendingValidation->setProduct($product);
             $this->pendingValidation->setAskedBy($user);
             $this->pendingValidation->setQuantity($form->get('quantity')->getData());
-            $this->pendingValidation->setWarehouse($user->getWarehouse());
+            $this->pendingValidation->setWarehouse(
+                $form->get('warehouse')->getData()->getWarehouse()
+            );
             $this->pendingValidation->setAskedOn('Y-m-d');
 
             $this->doctrine->persist($this->pendingValidation);

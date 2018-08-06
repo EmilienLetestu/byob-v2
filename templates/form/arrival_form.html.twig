@@ -5,6 +5,10 @@
         {{ form_widget(form.quantity, {'attr': {'step' : '10'}}) }}
     </div>
     <div>
+        {{ form_label(form.warehouse) }}
+        {{ form_widget(form.warehouse, {'attr': {'class' : 'browser-default'}}) }}
+    </div>
+    <div>
         <button class="btn waves-effect waves-light color-action-darken" type="submit"><i class="material-icons right">send
             </i>Valider
         </button>
