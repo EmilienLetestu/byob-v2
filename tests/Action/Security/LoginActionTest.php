@@ -52,7 +52,9 @@ class LoginActionTest extends WebTestCase
 
         $crawler = $this->login('admin@gmail.com','adminToto');
 
-        $this->assertSame(1, $crawler->filter('h1:contains("Tableau de bord")')->count());
+        $this->assertEquals(1, $crawler->filter('h1:contains("Tableau de bord")')->count());
+        $this->assertSame(1, $crawler->filter('p:contains("passez une bonne journée !")')->count());
+
     }
 
     /**
