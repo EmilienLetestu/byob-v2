@@ -26,8 +26,8 @@
                 mapped-by="product"
         />
 
-        <one-to-one
-                field="inStockProduct"
+        <one-to-many
+                field="inStockProducts"
                 target-entity="App\Entity\InStockProduct"
                 mapped-by="product"
         />

@@ -52,22 +52,22 @@ class Product
     private $referencedBy;
 
     /**
-     * @var
+     * @var ArrayCollection
      */
     private $pendingValidations;
 
     /**
-     * @var
+     * @var ArrayCollection
      */
-    private $inStockProduct;
+    private $inStockProducts;
 
     /**
-     * @var
+     * @var ArrayCollection
      */
     private $inOrderProducts;
 
     /**
-     * @var
+     * @var ArrayCollection
      */
     private $refDetails;
 
@@ -114,13 +114,6 @@ class Product
         $this->referencedBy = $user;
     }
 
-    /**
-     * @param InStockProduct $inStockProduct
-     */
-    public function setInStockProduct(InStockProduct $inStockProduct): void
-    {
-        $this->inStockProduct = $inStockProduct;
-    }
 
     /**
      * @return int
@@ -171,13 +164,6 @@ class Product
         return $this->referencedBy;
     }
 
-    /**
-     * @return InStockProduct|null
-     */
-    public function getInStockProduct():? InStockProduct
-    {
-        return $this->inStockProduct;
-    }
 
     /*----------------------- Array Collections -----------------------*/
 
@@ -189,6 +175,7 @@ class Product
         $this->inOrderProducts    = new ArrayCollection();
         $this->pendingValidations = new ArrayCollection();
         $this->refDetails         = new ArrayCollection();
+        $this->inStockProducts    = new ArrayCollection();
     }
 
     /**
@@ -219,6 +206,14 @@ class Product
     }
 
     /**
+     * @param InStockProduct $inStockProduct
+     */
+    public function addInStockProduct(InStockProduct $inStockProduct): void
+    {
+        $this->inStockProducts[] = $inStockProduct;
+    }
+
+    /**
      * @param InOrderProduct $inOrderProduct
      */
     public function removeInOrderProduct(InOrderProduct $inOrderProduct): void
@@ -244,6 +239,11 @@ class Product
         $this->refDetails->removeElement($refDetail);
     }
 
+    public function removeInStockProduct(InStockProduct $inStockProduct): void
+    {
+        $this->inStockProducts->removeElement($inStockProduct);
+    }
+
     public function getInOrderProducts()
     {
         return $this->inOrderProducts;
@@ -260,6 +260,11 @@ class Product
     {
 
         return $this->refDetails;
+    }
+
+    public function getInStockProducts()
+    {
+        return $this->inStockProducts;
     }
 
 }
