@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+    {% block body %}
+
+
+        <div class="msgErrorPage">
+            <p>{{ message }}</p>
+        </div>
+
+
+        <div>
+            <a class="btn btn-warning" href="{{ path('dashboard') }}">Retour à la page d'accueil</a>
+        </div>
+
+
+    {% endblock %}
