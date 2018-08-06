@@ -14,7 +14,9 @@ use App\Entity\Category;
 use App\Entity\Designation;
 use App\Entity\Family;
 use App\Entity\Make;
+use App\Entity\RefDetail;
 use App\Entity\Type;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -32,23 +34,53 @@ class ProductType extends AbstractType
     {
         $builder
             ->add('family', EntityType::class,[
-                'class'        => Family::class,
+                'class'        => RefDetail::class,
+                'query_builder'=> function(EntityRepository $repository){
+                    return $repository->createQueryBuilder('refD')
+                        ->where('refD.constantKey = :family')
+                        ->setParameter('family', 'family')
+                     ;
+                },
                 'choice_label' => 'name'
             ])
             ->add('category', EntityType::class,[
-                'class'        => Category::class,
+                'class'        => RefDetail::class,
+                'query_builder'=> function(EntityRepository $repository){
+                    return $repository->createQueryBuilder('refD')
+                        ->where('refD.constantKey = :category')
+                        ->setParameter('category', 'category')
+                    ;
+                },
                 'choice_label' => 'name'
             ])
             ->add('type', EntityType::class,[
-                'class'        => Type::class,
+                'class'        => RefDetail::class,
+                'query_builder'=> function(EntityRepository $repository){
+                    return $repository->createQueryBuilder('refD')
+                        ->where('refD.constantKey = :type')
+                        ->setParameter('type', 'type')
+                    ;
+                },
                 'choice_label' => 'name'
             ])
             ->add('make', EntityType::class,[
-                'class'        => Make::class,
+                'class'        => RefDetail::class,
+                'query_builder'=> function(EntityRepository $repository){
+                    return $repository->createQueryBuilder('refD')
+                        ->where('refD.constantKey = :make')
+                        ->setParameter('make', 'make')
+                    ;
+                },
                 'choice_label' => 'name'
             ])
             ->add('designation', EntityType::class,[
-                'class'        => Designation::class,
+                'class'        => RefDetail::class,
+                'query_builder'=> function(EntityRepository $repository){
+                    return $repository->createQueryBuilder('refD')
+                        ->where('refD.constantKey = :designation')
+                        ->setParameter('designation', 'designation')
+                    ;
+                },
                 'choice_label' => 'name'
             ])
             ->add('model', TextType::class,[

@@ -10,6 +10,7 @@ namespace App\Handler;
 
 
 use App\Entity\User;
+use App\Entity\UserInWarehouse;
 use App\Handler\Interfaces\EntityFormHandlerInterface;
 use App\Helper\IdentifierHelper;
 use Doctrine\ORM\EntityManagerInterface;
@@ -42,9 +43,9 @@ class UserFormHandler implements EntityFormHandlerInterface
         IdentifierHelper            $helper
     )
     {
-        $this->user     = new User();
-        $this->doctrine = $doctrine;
-        $this->helper   = $helper;
+        $this->user             = new User();
+        $this->doctrine         = $doctrine;
+        $this->helper           = $helper;
     }
 
     /**
@@ -60,13 +61,6 @@ class UserFormHandler implements EntityFormHandlerInterface
             $this->user->setEmail($form->get('email')->getData());
             $this->user->setRole($form->get('role')->getData());
 
-            $warehouses = $form->get('warehouses')->getData();
-
-            foreach ($warehouses as $warehouse)
-            {
-                $this->user->addWarehouse($warehouse);
-            }
-
             $this->user->setAddedOn('Y-m-d');
             $this->user->setPassword(
                 $this->helper->generateTempPassword(8)
@@ -75,7 +69,21 @@ class UserFormHandler implements EntityFormHandlerInterface
                 $this->helper->generateToken(20)
             );
 
+
             $this->doctrine->persist($this->user);
+
+            $warehouses = $form->get('warehouses')->getData();
+
+            foreach ($warehouses as $warehouse)
+            {
+                $userInWareHouse = new UserInWarehouse();
+                $userInWareHouse->setAddedOn('Y-m-d');
+                $userInWareHouse->setWarehouse($warehouse);
+                $userInWareHouse->setUser($this->user);
+
+                $this->doctrine->persist($userInWareHouse);
+            }
+
             $this->doctrine->flush();
 
             return true;

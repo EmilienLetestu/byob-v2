@@ -13,6 +13,7 @@ use App\Entity\Category;
 use App\Entity\Designation;
 use App\Entity\Family;
 use App\Entity\Make;
+use App\Entity\RefDetail;
 use App\Entity\Type;
 
 class ProductDTO
@@ -23,46 +24,46 @@ class ProductDTO
     public $model;
 
     /**
-     * @var Family
+     * @var RefDetail
      */
     public $family;
 
     /**
-     * @var Category
+     * @var RefDetail
      */
     public $category;
 
     /**
-     * @var Type
+     * @var RefDetail
      */
     public $type;
 
     /**
-     * @var Make
+     * @var RefDetail
      */
     public $make;
 
     /**
-     * @var Designation
+     * @var RefDetail
      */
     public $designation;
 
     /**
      * ProductDTO constructor.
      * @param string $model
-     * @param Family $family
-     * @param Category $category
-     * @param Type $type
-     * @param Make $make
-     * @param Designation $designation
+     * @param RefDetail $family
+     * @param RefDetail $category
+     * @param RefDetail $type
+     * @param RefDetail $make
+     * @param RefDetail $designation
      */
     public function __construct(
-        string      $model,
-        Family      $family,
-        Category    $category,
-        Type        $type,
-        Make        $make,
-        Designation $designation
+        string    $model,
+        RefDetail $family,
+        RefDetail $category,
+        RefDetail $type,
+        RefDetail $make,
+        RefDetail $designation
     )
     {
         $this->model       = $model;

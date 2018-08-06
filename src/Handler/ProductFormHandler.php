@@ -60,19 +60,19 @@ class ProductFormHandler implements EntityFormHandlerInterface
             $this->product->setModel(
                 $form->get('model')->getData()
             );
-            $this->product->setFamily(
+            $this->product->addRefDetail(
                 $form->get('family')->getData()
             );
-            $this->product->setCategory(
+            $this->product->addRefDetail(
                 $form->get('category')->getData()
             );
-            $this->product->setType(
+            $this->product->addRefDetail(
                 $form->get('type')->getData()
             );
-            $this->product->setMake(
+            $this->product->addRefDetail(
                 $form->get('make')->getData()
             );
-            $this->product->setDesignation(
+            $this->product->addRefDetail(
                 $form->get('designation')->getData()
             );
             $this->product->setReference('prod_');
