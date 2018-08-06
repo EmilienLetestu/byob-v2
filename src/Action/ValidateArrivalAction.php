@@ -12,6 +12,7 @@ namespace App\Action;
 use App\Responder\ValidateArrivalResponder;
 use App\Services\ArrivalValidation;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -31,6 +32,7 @@ class ValidateArrivalAction
     }
 
     /**
+     *
      * @Route(
      *     "valider/arrivage/{pendingId}",
      *      name = "validateArrival",
@@ -43,14 +45,16 @@ class ValidateArrivalAction
      * )
      *
      * @param Request $request
+     * @param ValidateArrivalResponder $responder
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function __invoke(Request $request, ValidateArrivalResponder $responder)
+    public function __invoke(Request $request, ValidateArrivalResponder $responder): Response
     {
-        $user = $this->token->getToken()->getUser();
-        $pendingId = $request->get('pendingId');
-        $route    = $request->attributes->get('_route');
-
-        $this->arrivalValidation->ValidateOrReject($route, $pendingId, $user);
+        $this->arrivalValidation->ValidateOrReject(
+            $request->attributes->get('_route'),
+            $request->get('pendingId'),
+            $this->token->getToken()->getUser()
+        );
 
         return $responder();
     }

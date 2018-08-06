@@ -89,7 +89,7 @@ class ArrivalValidation
                 $pendingValidation->getWarehouse(),
                 $pendingValidation->getQuantity()
             ):
-            $this->addToStock($inStock, $pendingValidation->getQuantity)
+            $this->addToStock($inStock, $pendingValidation->getQuantity())
         ;
 
         $this->updatePendingValidation($pendingValidation, true);
