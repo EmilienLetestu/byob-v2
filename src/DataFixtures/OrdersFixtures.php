@@ -37,16 +37,13 @@ class OrdersFixtures extends Fixture implements DependentFixtureInterface
            $this->getReference(UserFixtures::SALESMAN_REFERENCE)
        );
        $order->setOrderedFor(
-           $this->getReference(PersonFixtures::PERSON_REFERENCE)
+           $this->getReference(CustomerFixtures::CUSTOMER_REFERENCE)
        );
 
        $manager->persist($order);
        $manager->flush();
 
        $this->addReference(self::ORDER_REFERENCE, $order);
-
-
-
     }
 
     /**
@@ -56,7 +53,7 @@ class OrdersFixtures extends Fixture implements DependentFixtureInterface
     {
        return  [
            UserFixtures::class,
-           PersonFixtures::class
+           CustomerFixtures::class
        ];
     }
 }
