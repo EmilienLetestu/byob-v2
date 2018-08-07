@@ -42,11 +42,6 @@ class ShowAllWarehouseAction
      */
     public function __invoke(ShowAllWarehouseResponder $responder): Response
     {
-        $warehouses = $this->doctrine
-                ->getRepository(Warehouse::class)
-                ->findAllWarehouse()
-        ;
-
         return $responder(
             $this->doctrine
                 ->getRepository(Warehouse::class)
