@@ -41,7 +41,8 @@ class TitleFromRouteExtension extends AbstractExtension
             'userList'           => 'Liste des utilisateurs',
             'warehouseList'      => 'Liste des entrepôts',
             'arrivalInWarehouse' => 'Produit en attente de validation',
-            'arrival'            =>  'En attente de validation'
+            'arrival'            => 'En attente de validation',
+            'customerList'       => 'Liste des clients'
         ];
 
         return $routeNames[$routeName];
