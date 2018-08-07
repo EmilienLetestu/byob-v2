@@ -1,4 +1,3 @@
-<h2>{{ pendingValidations[0].warehouse.name }}</h2>
 <table>
     <thead>
     <tr>
@@ -38,10 +37,10 @@
                 {{ pendingValidation.quantity }}
             </td>
             <td>
-                <a href="{{ path('validateArrival', { 'pendingId' : pendingValidation.id }) }}" class="validate-link"><i class="material-icons">check</i></a>
+                <a href="{{ path('arrivalValidationProcess', { 'action' : 'valider', 'pendingId' : pendingValidation.id }) }}" class="validate-link"><i class="material-icons">check</i></a>
             </td>
             <td>
-                <a href="{{ path('rejectArrival', { 'pendingId' : pendingValidation.id }) }}" class="reject-link"><i class="material-icons">close</i></a>
+                <a href="{{ path('arrivalValidationProcess', { 'action' : 'refuser', 'pendingId' : pendingValidation.id }) }}" class="reject-link"><i class="material-icons">close</i></a>
             </td>
         </tr>
     {% endfor %}

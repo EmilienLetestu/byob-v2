@@ -43,7 +43,7 @@
                             {% set unvalidated = unvalidated|merge([pendingValidation]) %}
                         {% endif %}
                 {% endfor %}
-                <a href="{{ path('arrivalInWarehouse', {'warehouseId' : warehouse.id }) }}">{{ unvalidated|length }}</a>
+                <a href="{{ path('arrivalInWarehouse', {'warehouseName' : warehouse.name|toUrl, 'id' : warehouse.id }) }}">{{ unvalidated|length }}</a>
             </td>
             <td>
                 <a href="#"><i class="material-icons">info</i></a>

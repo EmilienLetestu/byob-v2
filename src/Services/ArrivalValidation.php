@@ -55,13 +55,13 @@ class ArrivalValidation
     /**
      * Based on route name decide which process to launch (validation or denial)
      *
-     * @param string $route
+     * @param string $action
      * @param int $pendingId
      * @param User $user
      */
-    public function ValidateOrReject(string $route, int $pendingId, User $user)
+    public function ValidateOrReject(string $action, int $pendingId, User $user)
     {
-        $route === 'validateArrival' ?
+        $action === 'valider' ?
             $this->validateArrival($pendingId, $user) :
             $this->rejectArrival($pendingId, $user)
         ;

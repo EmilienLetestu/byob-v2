@@ -9,6 +9,7 @@
 namespace App\Twig;
 
 
+use Symfony\Component\HttpFoundation\Request;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
@@ -25,8 +26,6 @@ class TitleFromRouteExtension extends AbstractExtension
     }
 
     /**
-     * add your routes names in the array below to generate a title from the matching route name
-     *
      * @param string $routeName
      * @return string
      */
@@ -41,7 +40,8 @@ class TitleFromRouteExtension extends AbstractExtension
             'productArrival'     => 'Arrivage de ',
             'userList'           => 'Liste des utilisateurs',
             'warehouseList'      => 'Liste des entrepôts',
-            'arrivalInWarehouse' => 'Produit en attente de validation'
+            'arrivalInWarehouse' => 'Produit en attente de validation',
+            'arrival'            =>  'En attente de validation'
         ];
 
         return $routeNames[$routeName];

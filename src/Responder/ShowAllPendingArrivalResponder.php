@@ -12,7 +12,7 @@ namespace App\Responder;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-class ShowArrivalInWarehouseResponder
+class ShowAllPendingArrivalResponder
 {
     /**
      * @var Environment

@@ -34,14 +34,10 @@ class ValidateArrivalAction
     /**
      *
      * @Route(
-     *     "valider/arrivage/{pendingId}",
-     *      name = "validateArrival",
-     *     requirements={"pendingId" = "\d+"}
-     * )
-     * @Route(
-     *     "refuser/arrivage/{pendingId}",
-     *      name = "rejectArrival",
-     *      requirements={"pendingId" = "\d+"}
+     *     "arrivage/{action}/{pendingId}",
+     *      name = "arrivalValidationProcess",
+     *      requirements={"pendingId" = "\d+"},
+     *      requirements={"action" = "valider|refuser"}
      * )
      *
      * @param Request $request
@@ -51,7 +47,7 @@ class ValidateArrivalAction
     public function __invoke(Request $request, ValidateArrivalResponder $responder): Response
     {
         $this->arrivalValidation->ValidateOrReject(
-            $request->attributes->get('_route'),
+            $request->get('action'),
             $request->get('pendingId'),
             $this->token->getToken()->getUser()
         );

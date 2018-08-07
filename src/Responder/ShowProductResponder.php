@@ -40,7 +40,7 @@ class ShowProductResponder
     public function __invoke(Product $product, int $stockLevel): Response
     {
         return new Response(
-            $this->twig->render('entity_info.html.twig',[
+            $this->twig->render('produc_info.html.twig',[
                 'product'    => $product,
                 'stockLevel' => $stockLevel
             ])

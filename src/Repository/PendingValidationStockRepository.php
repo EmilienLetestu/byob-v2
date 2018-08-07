@@ -25,6 +25,37 @@ class PendingValidationStockRepository extends ServiceEntityRepository
     }
 
     /**
+     * @return array
+     */
+    public function findAllPendingValidation(): array
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('pe')
+             ->where('pe.processed = 0')
+             ->orderBy('pe.askedOn', 'DESC')
+             ->getQuery()
+             ->getResult()
+        ;
+    }
+
+    /**
+     * @param int $id
+     * @return array
+     */
+    public function findAllPendingWithProduct(int $id): array
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('pe')
+            ->where('pe.product = :id')
+            ->andWhere('pe.processed = 0')
+            ->orderBy('pe.askedOn', 'DESC')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
      * @param $id
      * @return array
      */
