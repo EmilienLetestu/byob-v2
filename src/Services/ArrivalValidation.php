@@ -92,11 +92,8 @@ class ArrivalValidation
 
 
         $inStock === null ?
-            $this->createStock(
-                $pendingValidation->getProduct(),
-                $pendingValidation->getWarehouse(),
-                $pendingValidation->getQuantity()
-            ):
+            $this->createStock($pendingValidation)
+            :
             $this->addToStock($inStock, $pendingValidation->getQuantity())
         ;
 
@@ -133,11 +130,11 @@ class ArrivalValidation
      * @param $warehouse
      * @param $quantity
      */
-    private function createStock($product,$warehouse,$quantity)
+    private function createStock(PendingValidationStock $pending)
     {
-        $this->inStockProduct->setWarehouse($warehouse);
-        $this->inStockProduct->setProduct($product);
-        $this->inStockProduct->setLevel($quantity);
+        $this->inStockProduct->setWarehouse($pending->getWarehouse());
+        $this->inStockProduct->setProduct($pending->getProduct());
+        $this->inStockProduct->setLevel($pending->getQuantity());
         $this->inStockProduct->setAlertLevel(15);
 
         $this->doctrine->persist($this->inStockProduct);
