@@ -10,6 +10,7 @@ namespace App\Action;
 
 
 use App\Entity\Product;
+use App\Helper\StockLevelHelper;
 use App\Responder\ShowProductResponder;
 
 use Doctrine\ORM\EntityManagerInterface;
@@ -26,12 +27,21 @@ class ShowProductAction
     private $doctrine;
 
     /**
+     * @var
+     */
+    private $stockLevel;
+
+    /**
      * ShowProductAction constructor.
      * @param EntityManagerInterface $doctrine
      */
-    public function __construct(EntityManagerInterface $doctrine)
+    public function __construct(
+        EntityManagerInterface $doctrine,
+        StockLevelHelper       $stockLevel
+    )
     {
-        $this->doctrine = $doctrine;
+        $this->doctrine   = $doctrine;
+        $this->stockLevel = $stockLevel;
     }
 
     /**
@@ -50,9 +60,14 @@ class ShowProductAction
      */
     public function __invoke(Request $request, ShowProductResponder $responder): Response
     {
+        $product = $this->doctrine
+            ->getRepository(Product::class)
+            ->findProductWithId($request->get('id'))
+        ;
+
        return $responder(
-           $this->doctrine->getRepository(Product::class)
-           ->findProductWithId($request->get('id'))
+           $product,
+           $this->stockLevel->productGlobalStock($product)
        );
     }
 }

@@ -9,16 +9,14 @@
                 <li class="collection-item"><div>Référence: {{ product.reference }}</div></li>
                 <li class="collection-item"><div>Référencé depuis : {{ product.referencedOn|date('m-d-Y') }}</div></li>
                 <li class="collection-item"><div>Référencé par : {{ product.referencedBy.name }} {{ product.referencedBy.surname }}<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-                {% if product.inStockProduct %}
-                    <li class="collection-item"><div>Niveau du stock: {{ product.inStockProduct.level }}<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-                {% endif %}
+                <li class="collection-item"><div>Niveau du stock: {{ stockLevel }}<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
                 <li class="collection-item"><div>Nombre d'arrivages en attentes de validation: {% set unvalidated = [] %}
                         {% for pendingValidation in product.pendingValidations %}
                             {% if pendingValidation.processed == false %}
                                 {% set unvalidated = unvalidated|merge([pendingValidation]) %}
                             {% endif %}
-                             {{ unvalidated|length }}
                         {% endfor %}
+                        {{ unvalidated|length }}
                      <a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div>
                 </li>
                 <li class="collection-item"><div>Nombre de commandes : {{ product.inOrderProducts|length }}<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>

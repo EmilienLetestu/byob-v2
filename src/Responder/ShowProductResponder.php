@@ -31,16 +31,18 @@ class ShowProductResponder
 
     /**
      * @param Product $product
+     * @param int $stockLevel
      * @return Response
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(Product $product): Response
+    public function __invoke(Product $product, int $stockLevel): Response
     {
         return new Response(
             $this->twig->render('entity_info.html.twig',[
-                'product' => $product
+                'product'    => $product,
+                'stockLevel' => $stockLevel
             ])
         );
     }
