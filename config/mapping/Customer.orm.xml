@@ -4,28 +4,30 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
         http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="App\Entity\RefMaster">
+    <entity name="App\Entity\Customer">
         <id name="id" type="integer">
             <generator strategy="AUTO"/>
         </id>
-        <field name="name" column="name" type="string" length="25" unique="true"/>
-        <field name="addedOn" column="added_on" type="date"/>
+        <field name="company" column="company" type="string" length="50"/>
+        <field name="addedOn" column="added_on" type="date" />
         <field name="lastModification" column="last_modification" type="date" nullable="true"/>
 
         <many-to-one
                 field="addedBy"
                 target-entity="App\Entity\User"
-                inversed-by="refMasters">
-            <join-column
-                    name="added_by"
-                    referenced-column-name="id"
-            />
+                inversed-by="customers">
         </many-to-one>
 
         <one-to-many
-                field="refDetails"
-                target-entity="App\Entity\RefDetail"
-                mapped-by="refMaster">
+                field="persons"
+                target-entity="App\Entity\Person"
+                mapped-by="customer">
+        </one-to-many>
+
+        <one-to-many
+                field="orders"
+                target-entity="App\Entity\Orders"
+                mapped-by="customer">
         </one-to-many>
 
     </entity>

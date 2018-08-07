@@ -26,12 +26,12 @@
             </many-to-one>
 
             <many-to-one
-                    field="orderedFor"
-                    target-entity="App\Entity\Person"
+                    field="customer"
+                    target-entity="App\Entity\Customer"
                     inversed-by="orders">
                     <join-column
                             nullable="false"
-                            name="ordered_for"
+                            name="customer"
                             referenced-column-name="id"
                     />
             </many-to-one>
@@ -39,8 +39,8 @@
             <one-to-many
                     field="inOrderProducts"
                     target-entity="App\Entity\InOrderProduct"
-                    mapped-by="order"
-            />
+                    mapped-by="order">
+            </one-to-many>
 
     </entity>
 </doctrine-mapping>

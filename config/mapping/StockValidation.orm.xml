@@ -24,8 +24,8 @@
         <one-to-one
                 field="pendingValidation"
                 target-entity="App\Entity\PendingValidationStock"
-                inversed-by="stockValidation"
-        />
+                inversed-by="stockValidation">
+        </one-to-one>
 
     </entity>
 

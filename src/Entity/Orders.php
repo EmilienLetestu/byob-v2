@@ -52,7 +52,7 @@ class Orders
     /**
      * @var
      */
-    private $orderedFor;
+    private $customer;
 
     /**
      * @var
@@ -108,11 +108,11 @@ class Orders
     }
 
     /**
-     * @param Person $person
+     * @param Customer $customer
      */
-    public function setOrderedFor(Person $person): void
+    public function setOrderedFor(Customer $customer): void
     {
-        $this->orderedFor = $person;
+        $this->customer = $customer;
     }
 
     /**
@@ -132,6 +132,9 @@ class Orders
     }
 
 
+    /**
+     * @return \DateTime
+     */
     public function getOrderedOn(): \DateTime
     {
         return $this->orderedOn;
@@ -164,9 +167,9 @@ class Orders
     /**
      * @return mixed
      */
-    public function getOrderedFor(): Person
+    public function getOrderedFor(): Customer
     {
-        return $this->orderedFor;
+        return $this->customer;
     }
 
     /**

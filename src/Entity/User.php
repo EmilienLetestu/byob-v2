@@ -107,6 +107,11 @@ class User implements UserInterface
      */
     private $refMasters;
 
+    /**
+     * @var ArrayCollection
+     */
+    private $customers;
+
 
 
     /**
@@ -346,6 +351,7 @@ class User implements UserInterface
         $this->refDetails         = new ArrayCollection();
         $this->refMasters         = new ArrayCollection();
         $this->userInWarehouses   = new ArrayCollection();
+        $this->customers          = new ArrayCollection();
 
     }
 
@@ -407,6 +413,14 @@ class User implements UserInterface
     }
 
     /**
+     * @param Customer $customer
+     */
+    public function addCustomer(Customer $customer)
+    {
+        $this->customers[] = $customer;
+    }
+
+    /**
      * @param Orders $order
      */
     public function removeOrder(Orders $order)
@@ -464,6 +478,14 @@ class User implements UserInterface
         $this->userInWarehouses->removeElement($userInWarehouse);
     }
 
+    /**
+     * @param Customer $customer
+     */
+    public function removeCustomer(Customer $customer)
+    {
+        $this->customers->removeElement($customer);
+    }
+
 
     public function getOrders()
     {
@@ -505,5 +527,8 @@ class User implements UserInterface
         return $this->userInWarehouses;
     }
 
-
+    public function getCustomers()
+    {
+        return $this->customers;
+    }
 }

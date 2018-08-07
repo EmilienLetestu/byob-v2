@@ -47,14 +47,15 @@ class Person
     private $user;
 
     /**
-     * @var ArrayCollection
+     * @var
      */
-    private $contacts;
+    private $customer;
 
     /**
      * @var ArrayCollection
      */
-    private $orders;
+    private $contacts;
+
 
     /**
      * @param string $fullName
@@ -86,6 +87,14 @@ class Person
     public function setUser(?User $user): void
     {
         $this->user = $user;
+    }
+
+    /**
+     * @param Customer|null $customer
+     */
+    public function setCustomer(?Customer $customer): void
+    {
+        $this->customer = $customer;
     }
 
     /**
@@ -128,6 +137,14 @@ class Person
         return $this->user;
     }
 
+    /**
+     * @return Customer|null
+     */
+    public function getCustomer():? Customer
+    {
+        return $this->customer;
+    }
+
     /*----------------------- Array Collections -----------------------*/
 
     /**
@@ -136,7 +153,6 @@ class Person
     public function __construct()
     {
         $this->contacts = new ArrayCollection();
-        $this->orders   = new ArrayCollection();
     }
 
     /**
@@ -162,32 +178,4 @@ class Person
     {
         return $this->contacts;
     }
-
-    /**
-     * @param Orders $order
-     */
-    public function addOrder(Orders $order)
-    {
-        $this->orders[] = $order;
-    }
-
-    /**
-     * @param Orders $order
-     */
-    public function removeOrder(Orders $order)
-    {
-        $this->orders->removeElement($order);
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getOrders(): ArrayCollection
-    {
-        return $this->orders;
-    }
-
-
-
-
 }

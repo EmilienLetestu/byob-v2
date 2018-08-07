@@ -22,49 +22,56 @@
         <one-to-many
             field="orders"
             target-entity="App\Entity\Orders"
-            mapped-by="orderedBy"
-        />
+            mapped-by="orderedBy">
+        </one-to-many>
 
         <one-to-many field="products"
                  target-entity="App\Entity\Product"
-                 mapped-by="referencedBy"
-        />
+                 mapped-by="referencedBy">
+        </one-to-many>
 
         <one-to-many
             field="pendingValidations"
             target-entity="App\Entity\PendingValidationStock"
-            mapped-by="askedBy"
-        />
+            mapped-by="askedBy">
+        </one-to-many>
 
         <one-to-many
                 field="refDetails"
                 target-entity="App\Entity\RefDetail"
-                mapped-by="addedBy"
-        />
+                mapped-by="addedBy">
+        </one-to-many>
 
         <one-to-many
                 field="refMasters"
                 target-entity="App\Entity\RefMaster"
-                mapped-by="addedBy"
-        />
+                mapped-by="addedBy">
+        </one-to-many>
 
         <one-to-many
             field="stockValidations"
             target-entity="App\Entity\StockValidation"
-            mapped-by="processedBy"
-        />
-
-        <one-to-one
-            field="person"
-            target-entity="App\Entity\Person"
-            mapped-by="user"
-        />
+            mapped-by="processedBy">
+        </one-to-many>
 
         <one-to-many
                 field="userInWarehouses"
                 target-entity="App\Entity\UserInWarehouse"
-                mapped-by="user"
-        />
+                mapped-by="user">
+        </one-to-many>
+
+        <one-to-many
+                field="customers"
+                target-entity="App\Entity\customer"
+                mapped-by="addedBy">
+        </one-to-many>
+
+        <one-to-one
+            field="person"
+            target-entity="App\Entity\Person"
+            mapped-by="user">
+        </one-to-one>
+
 
     </entity>
 </doctrine-mapping>

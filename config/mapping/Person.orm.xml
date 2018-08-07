@@ -15,20 +15,27 @@
         <one-to-one
                 field="user"
                 target-entity="App\Entity\User"
-                inversed-by="person"
-        />
-
-        <one-to-many
-                field="orders"
-                target-entity="App\Entity\Orders"
-                mapped-by="orderedFor"
-        />
+                inversed-by="person">
+        </one-to-one>
 
         <one-to-many
                 field="contacts"
                 target-entity="App\Entity\Contact"
-                mapped-by="person"
-        />
+                mapped-by="person">
+        </one-to-many>
+
+        <many-to-one
+                field="customer"
+                target-entity="App\Entity\Customer"
+                inversed-by="persons">
+            <join-column
+                    name="customer"
+                    referenced-column-name="id"
+            />
+        </many-to-one>
+
+
+
 
     </entity>
 </doctrine-mapping>
