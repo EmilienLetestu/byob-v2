@@ -13,10 +13,14 @@ use App\Entity\InStockProduct;
 use App\Entity\PendingValidationStock;
 use App\Entity\StockValidation;
 use App\Entity\User;
-use App\Repository\InStockProductRepository;
-use App\Repository\PendingValidationStockRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
+/**
+ * where the whole product arrival request process will be handled
+ *
+ * Class ArrivalValidation
+ * @package App\Services
+ */
 class ArrivalValidation
 {
     /**
@@ -49,6 +53,8 @@ class ArrivalValidation
     }
 
     /**
+     * Based on route name decide which process to launch (validation or denial)
+     *
      * @param string $route
      * @param int $pendingId
      * @param User $user
@@ -63,6 +69,8 @@ class ArrivalValidation
     }
 
     /**
+     * Handle arrival validation
+     *
      * @param int $pendingId
      * @param User $user
      */
@@ -100,6 +108,8 @@ class ArrivalValidation
     }
 
     /**
+     * Handle denial process
+     *
      * @param int $pendingId
      * @param User $user
      */
@@ -117,6 +127,8 @@ class ArrivalValidation
     }
 
     /**
+     * Triggered if the product never has been stocked in the warehouse
+     *
      * @param $product
      * @param $warehouse
      * @param $quantity
@@ -132,6 +144,8 @@ class ArrivalValidation
     }
 
     /**
+     * Triggered if a stock already exist
+     *
      * @param InStockProduct $inStockProduct
      * @param int $quantity
      */
