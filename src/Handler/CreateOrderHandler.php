@@ -58,13 +58,13 @@ class CreateOrderHandler implements EntityFormHandlerInterface
         if($form->isSubmitted() && $form->isValid())
         {
             $this->order->setReference('cmd_');
-            $this->order->setOrderedBy(
-                $this->tokenStorage->getToken()->getUser()
-            );
             $this->order->setOrderedOn('Y-m-d');
             $this->order->setStatus('En attente de validation');
             $this->order->setOrderedFor(
                 $form->get('customer')->getData()
+            );
+            $this->order->setOrderedBy(
+                $this->tokenStorage->getToken()->getUser()
             );
 
             $this->session->set('order', $this->order);

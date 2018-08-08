@@ -206,10 +206,7 @@ class Orders
         $this->inOrderProducts->removeElement($inOrderProduct);
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getInOrderProducts(): ArrayCollection
+    public function getInOrderProducts()
     {
         return $this->inOrderProducts;
     }

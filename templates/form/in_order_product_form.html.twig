@@ -12,7 +12,9 @@
         <button class="btn waves-effect waves-light color-action-darken" type="submit"><i class="material-icons right">send
             </i>Ajouter
         </button>
-        <a href="#" class="btn waves-effect waves-light color-action">Finaliser</a>
+        <a href="{{ path('endOrder') }}" class="btn waves-effect waves-light color-action">Finaliser</a>
     </div>
     {{ form_end(form) }}
 </div>
+
+{{ dump(app.session.all) }}
