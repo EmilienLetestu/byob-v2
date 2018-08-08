@@ -1,0 +1,14 @@
+<div class="col s12 m12">
+    {{ form_start(form) }}
+    <div>
+        {{ form_label(form.customer) }}
+        {{ form_widget(form.customer, {'attr': {'class' : 'browser-default'}}) }}
+    </div>
+    <div>
+        <button class="btn waves-effect waves-light color-action-darken" type="submit"><i class="material-icons right">send
+            </i>Valider
+        </button>
+        <a class="btn waves-effect waves-light color-action" href="#">Nouveau client</a>
+    </div>
+    {{ form_end(form) }}
+</div>
