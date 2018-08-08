@@ -18,7 +18,7 @@
                     field="orderedBy"
                     target-entity="App\Entity\User"
                     inversed-by="orders">
-                    <join-column
+                <join-column
                             nullable="false"
                             name="ordered_by"
                             referenced-column-name="id"
@@ -29,18 +29,12 @@
                     field="customer"
                     target-entity="App\Entity\Customer"
                     inversed-by="orders">
-                    <join-column
+                <join-column
                             nullable="false"
                             name="customer"
                             referenced-column-name="id"
                     />
             </many-to-one>
-
-            <one-to-many
-                    field="inOrderProducts"
-                    target-entity="App\Entity\InOrderProduct"
-                    mapped-by="order">
-            </one-to-many>
 
     </entity>
 </doctrine-mapping>
