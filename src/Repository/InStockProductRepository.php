@@ -56,4 +56,25 @@ class InStockProductRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    /**
+     * @param int $id
+     * @param int $quantity
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findWithProductAndAtLeast(int $id, int $quantity):? InStockProduct
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('inStock')
+            ->where('inStock.product = :id')
+            ->andWhere('inStock.level >=  :quantity')
+            ->setParameter('id', $id)
+            ->setParameter('quantity', $quantity)
+            ->orderBy('inStock.level', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 }
