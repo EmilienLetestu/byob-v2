@@ -1,0 +1,43 @@
+<table>
+    <thead>
+    <tr>
+        <th>
+           Ref
+        </th>
+        <th>
+           Client
+        </th>
+        <th>
+            Vendeur
+        </th>
+        <th>
+            Etat
+        </th>
+        <th>
+            Date
+        </th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for order in orders %}
+        <tr>
+            <td>
+                {{ order.reference }}
+            </td>
+            <td>
+                {{ order.orderedFor.company }}
+            </td>
+            <td>
+                {{ order.orderedBy.name }} {{ order.orderedBy.surname }}
+            </td>
+            <td>
+                {{ order.status }}
+            </td>
+            <td>
+                {{ order.orderedOn|date('m-d-Y') }}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
