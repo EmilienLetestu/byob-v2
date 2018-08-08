@@ -1,0 +1,40 @@
+<table>
+    <thead>
+    <tr>
+        <th>
+            Entreprise
+        </th>
+        <th>
+            Client depuis
+        </th>
+        <th>
+            Ajouté par
+        </th>
+        <th>
+            Total commande
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for customer in customers %}
+        <tr>
+            <td>
+                {{ customer.company }}
+            </td>
+            <td>
+                {{ customer.addedOn|date('Y-m-d') }}
+            </td>
+            <td>
+                {{ customer.addedBy.name }} {{ customer.addedBy.surname }}
+            </td>
+            <td>
+                {{ customer.orders|length }}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<div class="create-entity-large">
+    <a href="#" class="btn red"><i class="material-icons">add</i></a>
+</div>
