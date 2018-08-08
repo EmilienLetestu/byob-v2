@@ -42,4 +42,18 @@ class InStockProductRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
+
+    /**
+     * @return array
+     */
+    public function findAllDistinctProduct(): array
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('inStock')
+            ->select('inStock')
+            ->distinct('product')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }
