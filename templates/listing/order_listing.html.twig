@@ -16,6 +16,9 @@
         <th>
             Date
         </th>
+        <th>
+            <i class="material-icons">info</i>
+        </th>
 
     </tr>
     </thead>
@@ -36,6 +39,9 @@
             </td>
             <td>
                 {{ order.orderedOn|date('m-d-Y') }}
+            </td>
+            <td>
+                <a href="{{ path('orderInfo', {'id' : order.id }) }}"><i class="material-icons">info</i></a>
             </td>
         </tr>
     {% endfor %}

@@ -37,4 +37,20 @@ class OrdersRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    /**
+     * @param int $id
+     * @return Orders
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findOrderWithId(int $id): Orders
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('o')
+            ->where('o.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 }

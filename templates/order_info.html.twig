@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+    {% block body %}
+
+        <h1>Commande : {{ inOrderProducts[0].order.reference }}</h1>
+
+        <div class="container form-container">
+            <ul class="collection with-header">
+                <li class="collection-header"><h4>Rappel sur la commande</h4></li>
+                <li class="collection-item"><div>Client <span class="secondary-content">{{ inOrderProducts[0].order.orderedFor.company }}</span></div></li>
+                <li class="collection-item"><div>Vendeur  <span class="secondary-content">{{ inOrderProducts[0].order.orderedBy.surname }}</span></div></li>
+                <li class="collection-item"><div>Commandé le <span class="secondary-content">{{ inOrderProducts[0].order.orderedOn|date('d-m-Y') }}</span></div></li>
+                <li class="collection-item"><div>Statut <span class="secondary-content">{{ inOrderProducts[0].order.status }}</span></div></li>
+                <li class="collection-item"><div>Nombre de produits <span class="secondary-content">{{ inOrderProducts[0]|length }}</span></div></li>
+            </ul>
+        </div>
+
+        <div class="container form-container">
+            <ul class="collection with-header">
+                <li class="collection-header"><h4>Contenu de la commande</h4></li>
+                {% for inOrderProduct in inOrderProducts %}
+                    <li class="collection-item"><div>{{ inOrderProduct.product.model }}<span class="secondary-content">{{ inOrderProduct.quantity }}</span></div></li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large red">
+                <i class="large material-icons">settings</i>
+            </a>
+            <ul>
+                <li><a class="btn-floating red"><i class="material-icons">delete</i></a></li>
+                <li><a class="btn-floating blue" href="#"><i class="material-icons">add</i></a></li>
+                <li><a class="btn-floating green"><i class="material-icons">edit</i></a></li>
+                <li><a class="btn-floating yellow darken-1" href="{{ app.request.headers.get('referer') }}"><i class="material-icons">arrow_back</i></a></li>
+            </ul>
+        </div>
+
+    {% endblock %}
