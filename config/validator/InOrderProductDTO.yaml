@@ -1,0 +1,14 @@
+App\InOrder\Product:
+    properties:
+
+        product:
+            - NotBlank: { groups: [inOrder] }
+
+        quantity:
+            - NotBlank: { groups: [inOrder] }
+            - Range:
+                min: 1O
+                max: 1000
+                minMessage: 10 minimum
+                maxMessage: 1000 maximum
+                groups: [inOrder]

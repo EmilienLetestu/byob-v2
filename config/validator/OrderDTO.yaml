@@ -1,4 +1,5 @@
 App\DTO\OrderDTO:
     properties:
+
         customer:
             - NotBlank: { groups: [order] }
