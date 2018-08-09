@@ -49,3 +49,7 @@ a.validate-link{
 a.reject-link{
     color: #ff4f3d;
 }
+
+.contact-info:hover{
+     background-color: #ffebee;
+ }

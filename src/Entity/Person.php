@@ -171,10 +171,7 @@ class Person
         $this->contacts->removeElement($contact);
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getContacts(): ArrayCollection
+    public function getContacts()
     {
         return $this->contacts;
     }

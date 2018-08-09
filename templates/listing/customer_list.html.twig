@@ -13,6 +13,9 @@
         <th>
             Total commande
         </th>
+        <th>
+            <i class="material-icons">info</i>
+        </th>
     </tr>
     </thead>
     <tbody>
@@ -29,6 +32,9 @@
             </td>
             <td>
                 {{ customer.orders|length }}
+            </td>
+            <td>
+                <a href="{{ path('customerInfo', {'id' : customer.id }) }}"><i class="material-icons">info</i></a>
             </td>
         </tr>
     {% endfor %}

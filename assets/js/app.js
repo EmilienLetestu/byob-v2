@@ -12,4 +12,7 @@ require('../css/app.css');
         let elems = document.querySelectorAll('.fixed-action-btn');
         let instances = M.FloatingActionButton.init(elems);
 
+        let collapsibleList = document.querySelectorAll('.collapsible');
+        let initCollapsible = M.Collapsible.init(collapsibleList);
+
 });

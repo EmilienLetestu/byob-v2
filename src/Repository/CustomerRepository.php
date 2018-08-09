@@ -37,4 +37,20 @@ class CustomerRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    /**
+     * @param int $id
+     * @return Customer
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findCustomerWithId(int $id): Customer
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('cu')
+            ->where('cu.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 }

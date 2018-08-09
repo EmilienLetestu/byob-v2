@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+    {% block body %}
+
+        <h1>{{ customer.company }}</h1>
+        <div class="container form-container">
+        {% for person in customer.persons %}
+            <ul class="collapsible">
+            <li>
+                <div class="collapsible-header"><i class="material-icons">person</i>{{ person.fullname }}</div>
+            </li>
+             <li>
+                <div class="collapsible-header"><i class="material-icons">work</i>{{ person.job }}</div>
+             </li>
+            {% for contact in person.contacts %}
+            <li>
+                <div class="collapsible-header contact-info"><i class="material-icons">contacts</i>Contacts</div>
+                <div class="collapsible-body">
+                    <ul>
+                        <li>{{ contact.type }}</li>
+                        <li>{{ contact.data }}</li>
+                        <li>{{ contact.comment }}</li>
+                    </ul>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        <div class="edit-person">
+            <a class="btn-floating red"><i class="material-icons">delete</i></a>
+            <a class="btn-floating green"><i class="material-icons">edit</i></a>
+        </div>
+        {% endfor %}
+        </div>
+
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large red">
+                <i class="large material-icons">settings</i>
+            </a>
+            <ul>
+                <li><a class="btn-floating red"><i class="material-icons">delete</i></a></li>
+                <li><a class="btn-floating blue" href="#"><i class="material-icons">add</i></a></li>
+                <li><a class="btn-floating green"><i class="material-icons">edit</i></a></li>
+                <li><a class="btn-floating yellow darken-1" href="{{ app.request.headers.get('referer') }}"><i class="material-icons">arrow_back</i></a></li>
+            </ul>
+        </div>
+
+    {% endblock %}
