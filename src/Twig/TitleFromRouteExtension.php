@@ -45,7 +45,7 @@ class TitleFromRouteExtension extends AbstractExtension
             'customerList'       => 'Liste des clients',
             'createOrder'        => 'Démarrer la commande',
             'addProductToOrder'  => 'Ajouter un produit à la commande : ',
-            'orderListing'       => 'Liste des commandes'
+            'orderList'          => 'Liste des commandes'
         ];
 
         return $routeNames[$routeName];

@@ -35,7 +35,7 @@ class ShowAllOrderAction
 
 
     /**
-     * @Route("/commande", name="orderListing")
+     * @Route("/commande", name="orderList")
      *
      * @param ShowAllOrderResponder $responder
      * @return \Symfony\Component\HttpFoundation\Response
