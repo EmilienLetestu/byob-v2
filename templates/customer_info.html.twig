@@ -37,7 +37,7 @@
             </a>
             <ul>
                 <li><a class="btn-floating red"><i class="material-icons">delete</i></a></li>
-                <li><a class="btn-floating blue" href="#"><i class="material-icons">add</i></a></li>
+                <li><a class="btn-floating blue" href="{{ path('addContactToCustomer',{ 'id' : customer.id }) }}"><i class="material-icons">add</i></a></li>
                 <li><a class="btn-floating green"><i class="material-icons">edit</i></a></li>
                 <li><a class="btn-floating yellow darken-1" href="{{ app.request.headers.get('referer') }}"><i class="material-icons">arrow_back</i></a></li>
             </ul>

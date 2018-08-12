@@ -1,0 +1,21 @@
+App\DTO\ContactDTO:
+
+    properties:
+
+        type:
+            - NotBlank: { groups: [contact] }
+
+        data:
+            - NotBlank: { groups: [contact] }
+            - Length:
+                min: 3
+                max: 50
+                minMessage: minimum 3 caractères
+                maxMessage: maximum 50 caractères
+
+        comment:
+            - Length:
+                min: 5
+                max: 255
+                minMessage: mimimum 5 caractères
+                maxMessage: maximum 255 caractères

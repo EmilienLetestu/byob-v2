@@ -1,0 +1,15 @@
+App\DTO\AddPersonContactDTO:
+
+    properties:
+
+        fullname:
+            - NotBlank: { groups: [addContact] }
+            - Length:
+                min: 10
+                max: 70
+                minMessage: 10 caractères minimum
+                maxMessage: 70 caractères maximum
+                groups: [addContact]
+
+        job:
+            - NotBlank: { groups: [addContact] }
