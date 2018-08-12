@@ -8,14 +8,8 @@
 
 namespace App\Form\Type;
 
-
 use App\DTO\ProductDTO;
-use App\Entity\Category;
-use App\Entity\Designation;
-use App\Entity\Family;
-use App\Entity\Make;
 use App\Entity\RefDetail;
-use App\Entity\Type;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -87,7 +81,6 @@ class ProductType extends AbstractType
                 'label' => 'Model'
             ])
         ;
-
     }
 
     /**

@@ -8,9 +8,6 @@
 
 namespace App\Responder;
 
-
-use App\Entity\InOrderProduct;
-use App\Entity\Orders;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
