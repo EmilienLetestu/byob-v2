@@ -1,0 +1,10 @@
+App\DTO\RefDetailDTO:
+    properties:
+        name:
+            - NotBlank: { groups: [refDetail] }
+            - Length:
+                min: 3
+                max: 20
+                minMessage: 3 caractères minimum
+                maxMessage: 25 caractères maximum
+                groups: [refDetail]
