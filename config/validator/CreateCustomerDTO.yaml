@@ -1,0 +1,43 @@
+App\DTO\CreateCustomerDTO:
+
+    properties:
+
+        company:
+            - NotBlank: { groups: [createCustomer] }
+            - Length:
+                min: 3
+                max: 50
+                minMessage: 3 carctères minimum
+                maxMessage: 50 caractères maximum
+                groups: [createCustomer]
+
+        fullname:
+            - NotBlank: { groups: [createCustomer] }
+            - Length:
+                min: 10
+                max: 70
+                minMessage: 10 caractères minimum
+                maxMessage: 70 caractères maximum
+                groups: [createCustomer]
+
+        job:
+            - NotBlank: { groups: [createCustomer] }
+
+        phone:
+            - Length:
+                min: 8
+                max: 10
+                minMessage: 8 caractères minimum
+                maxMessage: 10 caractères maximum
+                groups: [createCustomer]
+
+        mobile:
+            - Length:
+                min: 8
+                max: 10
+                minMessage: 8 caractères minimum
+                maxMessage: 10 caractères maximum
+                groups: [createCustomer]
+
+        email:
+            - NotBlank: { groups: [createCustomer] }
