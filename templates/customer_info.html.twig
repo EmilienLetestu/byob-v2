@@ -14,10 +14,9 @@
              </li>
             {% for contact in person.contacts %}
             <li>
-                <div class="collapsible-header contact-info"><i class="material-icons">contacts</i>Contacts</div>
+                <div class="collapsible-header contact-info"><i class="material-icons">contacts</i>{{ contact.type }}</div>
                 <div class="collapsible-body">
                     <ul>
-                        <li>{{ contact.type }}</li>
                         <li>{{ contact.data }}</li>
                         <li>{{ contact.comment }}</li>
                     </ul>
