@@ -9,13 +9,22 @@
 namespace App\Action;
 
 
+use App\Entity\Product;
 use App\Responder\DashboardResponder;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardAction
 
 {
+    private $doctrine;
+
+    public function __construct(EntityManagerInterface $doctrine)
+    {
+        $this->doctrine = $doctrine;
+    }
+
     /**
      * @Route("/dashboard", name = "dashboard")
      *
@@ -27,6 +36,11 @@ class DashboardAction
      */
     public function __invoke(DashboardResponder $responder): Response
     {
-       return $responder('it works');
+
+       return $responder(
+           $this->doctrine
+           ->getRepository(Product::class)
+           ->findFirstProduct()
+       );
     }
 }

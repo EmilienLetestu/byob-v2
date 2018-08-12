@@ -48,7 +48,7 @@ class RefDetail
      */
     private $refMaster;
 
-
+    
     /**
      * @param string $name
      */
@@ -154,5 +154,6 @@ class RefDetail
     {
         return $this->constantKey;
     }
+
 
 }

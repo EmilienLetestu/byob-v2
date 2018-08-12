@@ -29,17 +29,17 @@ class DashboardResponder
     }
 
     /**
-     * @param string $title
+     * @param array $product
      * @return Response
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(string $title): Response
+    public function __invoke(array $product): Response
     {
         return new Response(
             $this->twig->render('dashboard.html.twig',[
-                'title' => $title
+                'product' => $product
             ])
         );
     }

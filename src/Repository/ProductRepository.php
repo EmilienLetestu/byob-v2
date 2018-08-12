@@ -40,6 +40,20 @@ class ProductRepository extends ServiceEntityRepository
     }
 
     /**
+     * @return array
+     */
+    public function findFirstProduct(): array
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('pr')
+                ->select('pr')
+                ->setMaxResults(1)
+                ->getQuery()
+                ->getResult()
+            ;
+    }
+
+    /**
      * @param int $id
      * @return null|Product
      * @throws \Doctrine\ORM\NonUniqueResultException
@@ -54,4 +68,5 @@ class ProductRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
+
 }
