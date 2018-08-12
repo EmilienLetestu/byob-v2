@@ -85,7 +85,7 @@ class Product
      */
     public function setReference(string $reference): void
     {
-        $this->reference = $reference;
+        $this->reference = uniqid($reference);
     }
 
     /**
