@@ -6,13 +6,13 @@
  * Time: 13:28
  */
 
-namespace App\Action;
+namespace App\Action\Create;
 
 
 use App\Form\Type\WareHouseType;
 use App\Handler\WareHouseFormHandler;
+use App\Responder\Create\CreateWarehouseResponder;
 
-use App\Responder\CreateWarehouseResponder;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;

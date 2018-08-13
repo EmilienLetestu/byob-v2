@@ -6,13 +6,13 @@
  * Time: 12:15
  */
 
-namespace App\Action;
+namespace App\Action\Create;
 
 
 use App\Form\Type\ProductType;
-
 use App\Handler\ProductFormHandler;
-use App\Responder\CreateProductResponder;
+use App\Responder\Create\CreateProductResponder;
+
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;

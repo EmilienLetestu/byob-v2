@@ -2,29 +2,29 @@
 /**
  * Created by PhpStorm.
  * User: emilien
- * Date: 30/07/2018
- * Time: 23:59
+ * Date: 12/08/2018
+ * Time: 20:30
  */
 
-namespace App\Responder;
+namespace App\Responder\Add;
 
 
 use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-class CreateUserResponder
+class AddContactResponder
 {
     /**
      * @var Environment
      */
-    private $twig;
+    private  $twig;
 
     /**
-     * CreateUserResponder constructor.
+     * AddContactResponder constructor.
      * @param Environment $twig
      */
-    public function __construct(Environment $twig)
+    public  function __construct(Environment $twig)
     {
         $this->twig = $twig;
     }
@@ -38,11 +38,11 @@ class CreateUserResponder
      */
     public function __invoke(FormView $form)
     {
-       return new Response(
-           $this->twig->render('create_entity.html.twig',[
-               'form' => $form,
-               'formTemplate' => 'form/user_form.html.twig'
-           ])
-       );
+        return new Response(
+            $this->twig->render('create_entity.html.twig',[
+                'form' => $form,
+                'formTemplate' => 'form/add_contact.html.twig'
+            ])
+        );
     }
 }

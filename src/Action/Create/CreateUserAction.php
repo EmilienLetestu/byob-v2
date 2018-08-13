@@ -2,26 +2,30 @@
 /**
  * Created by PhpStorm.
  * User: emilien
- * Date: 12/08/2018
- * Time: 16:02
+ * Date: 30/07/2018
+ * Time: 19:02
  */
 
-namespace App\Action;
+namespace App\Action\Create;
 
-
-use App\Form\Type\CreateCustomerType;
-use App\Handler\CreateCustomerHandler;
-use App\Responder\CreateCustomerResponder;
+use App\Form\Type\CreateUserType;
+use App\Handler\UserFormHandler;
+use App\Responder\Create\CreateUserResponder;
 
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class CreateCustomerAction
+
+/**
+ * Class CreateUserAction
+ * @package App\Action
+ */
+class CreateUserAction
 {
     /**
      * @var FormFactoryInterface
@@ -29,14 +33,9 @@ class CreateCustomerAction
     private $formFactory;
 
     /**
-     * @var CreateCustomerHandler
+     * @var UserFormHandler
      */
     private $handler;
-
-    /**
-     * @var UrlGeneratorInterface
-     */
-    private $urlGenerator;
 
     /**
      * @var SessionInterface
@@ -44,50 +43,56 @@ class CreateCustomerAction
     private $session;
 
     /**
-     * CreateCustomerAction constructor.
+     * @var UrlGeneratorInterface
+     */
+    private $urlGenerator;
+
+
+    /**
+     * CreateUserAction constructor.
      * @param FormFactoryInterface $formFactory
-     * @param CreateCustomerHandler $handler
-     * @param UrlGeneratorInterface $urlGenerator
+     * @param UserFormHandler $handler
      * @param SessionInterface $session
+     * @param UrlGeneratorInterface $urlGenerator
      */
     public function __construct(
         FormFactoryInterface  $formFactory,
-        CreateCustomerHandler $handler,
-        UrlGeneratorInterface $urlGenerator,
-        SessionInterface      $session
+        UserFormHandler       $handler,
+        SessionInterface      $session,
+        UrlGeneratorInterface $urlGenerator
     )
     {
         $this->formFactory  = $formFactory;
         $this->handler      = $handler;
-        $this->urlGenerator = $urlGenerator;
         $this->session      = $session;
+        $this->urlGenerator = $urlGenerator;
     }
 
     /**
-     * @Route("/client/ajouter", name="createCustomer")
+     * @Route("/utilisateur/ajouter", name="createUser")
      *
      * @param Request $request
-     * @param CreateCustomerResponder $responder
-     * @return Response
+     * @param CreateUserResponder $responder
+     * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(Request $request, CreateCustomerResponder $responder): Response
+    public function __invoke(Request $request, CreateUserResponder $responder): Response
     {
         $form = $this->formFactory
-            ->create(CreateCustomerType::class)
+            ->create(CreateUserType::class)
             ->handleRequest($request)
         ;
 
         if($this->handler->handle($form))
         {
             $this->session->getFlashBag()
-                ->add('success', 'Client ajouté avec succès')
+                ->add('success', 'Utilisateur ajouter avec succès')
             ;
 
             return new RedirectResponse(
-                $this->urlGenerator->generate('customerList')
+                $this->urlGenerator->generate('dashboard')
             );
         }
 
@@ -95,4 +100,5 @@ class CreateCustomerAction
             $form->createView()
         );
     }
+
 }

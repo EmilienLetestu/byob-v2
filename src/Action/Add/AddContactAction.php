@@ -6,13 +6,12 @@
  * Time: 20:30
  */
 
-namespace App\Action;
+namespace App\Action\Add;
 
 
-use App\DTO\ContactDTO;
 use App\Form\Type\AddPersonContactType;
 use App\Handler\AddCustomerContactHandler;
-use App\Responder\AddContactResponder;
+use App\Responder\Add\AddContactResponder;
 
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;

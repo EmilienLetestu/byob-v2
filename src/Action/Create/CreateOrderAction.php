@@ -6,12 +6,12 @@
  * Time: 10:31
  */
 
-namespace App\Action;
+namespace App\Action\Create;
 
 
 use App\Form\Type\CreateOrderType;
 use App\Handler\CreateOrderHandler;
-use App\Responder\CreateOrderResponder;
+use App\Responder\Create\CreateOrderResponder;
 
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;

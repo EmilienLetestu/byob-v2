@@ -6,12 +6,12 @@
  * Time: 12:54
  */
 
-namespace App\Action;
+namespace App\Action\Add;
 
 
 use App\Form\Type\InOrderProductType;
 use App\Handler\InOrderProductHandler;
-use App\Responder\AddInOrderProductResponder;
+use App\Responder\Add\AddInOrderProductResponder;
 
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;

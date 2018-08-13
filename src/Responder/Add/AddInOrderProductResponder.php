@@ -2,18 +2,18 @@
 /**
  * Created by PhpStorm.
  * User: emilien
- * Date: 12/08/2018
- * Time: 10:54
+ * Date: 08/08/2018
+ * Time: 12:54
  */
 
-namespace App\Responder;
+namespace App\Responder\Add;
 
 
 use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-class CreateRefDetailResponder
+class AddInOrderProductResponder
 {
     /**
      * @var Environment
@@ -21,7 +21,7 @@ class CreateRefDetailResponder
     private $twig;
 
     /**
-     * CreateRefDetailResponder constructor.
+     * AddInOrderProductResponder constructor.
      * @param Environment $twig
      */
     public function __construct(Environment $twig)
@@ -36,12 +36,12 @@ class CreateRefDetailResponder
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(FormView $form)
+    public function __invoke(FormView $form): Response
     {
         return new Response(
             $this->twig->render('create_entity.html.twig',[
-                'form' => $form,
-                'formTemplate' => 'form/ref_detail_form.html.twig'
+                'form'         => $form,
+                'formTemplate' => 'form/in_order_product_form.html.twig'
             ])
         );
     }

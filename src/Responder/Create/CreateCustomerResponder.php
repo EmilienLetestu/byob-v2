@@ -3,28 +3,28 @@
  * Created by PhpStorm.
  * User: emilien
  * Date: 12/08/2018
- * Time: 20:30
+ * Time: 16:02
  */
 
-namespace App\Responder;
+namespace App\Responder\Create;
 
 
 use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-class AddContactResponder
+class CreateCustomerResponder
 {
     /**
      * @var Environment
      */
-    private  $twig;
+    private $twig;
 
     /**
-     * AddContactResponder constructor.
+     * CreateCustomerResponder constructor.
      * @param Environment $twig
      */
-    public  function __construct(Environment $twig)
+    public function __construct(Environment $twig)
     {
         $this->twig = $twig;
     }
@@ -36,13 +36,13 @@ class AddContactResponder
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(FormView $form)
+    public function __invoke(FormView $form): Response
     {
-        return new Response(
-            $this->twig->render('create_entity.html.twig',[
-                'form' => $form,
-                'formTemplate' => 'form/add_contact.html.twig'
-            ])
-        );
+       return new Response(
+           $this->twig->render('create_entity.html.twig',[
+               'form' => $form,
+               'formTemplate' => 'form/create_customer_form.html.twig'
+           ])
+       );
     }
 }

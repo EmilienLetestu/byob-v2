@@ -6,12 +6,12 @@
  * Time: 10:54
  */
 
-namespace App\Action;
+namespace App\Action\Create;
 
 
 use App\Form\Type\RefDetailType;
 use App\Handler\RefDetailHandler;
-use App\Responder\CreateRefDetailResponder;
+use App\Responder\Create\CreateRefDetailResponder;
 
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;

@@ -2,18 +2,18 @@
 /**
  * Created by PhpStorm.
  * User: emilien
- * Date: 12/08/2018
- * Time: 16:02
+ * Date: 08/08/2018
+ * Time: 10:31
  */
 
-namespace App\Responder;
+namespace App\Responder\Create;
 
 
 use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-class CreateCustomerResponder
+class CreateOrderResponder
 {
     /**
      * @var Environment
@@ -21,10 +21,10 @@ class CreateCustomerResponder
     private $twig;
 
     /**
-     * CreateCustomerResponder constructor.
+     * CreateOrderResponder constructor.
      * @param Environment $twig
      */
-    public function __construct(Environment $twig)
+    public  function __construct(Environment $twig)
     {
         $this->twig = $twig;
     }
@@ -41,7 +41,7 @@ class CreateCustomerResponder
        return new Response(
            $this->twig->render('create_entity.html.twig',[
                'form' => $form,
-               'formTemplate' => 'form/create_customer_form.html.twig'
+               'formTemplate' => 'form/order_form.html.twig'
            ])
        );
     }
