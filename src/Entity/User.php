@@ -282,6 +282,11 @@ class User implements UserInterface
         return $this->person;
     }
 
+    public function getFullname(): string
+    {
+        return ucfirst($this->name).' '. ucfirst($this->surname);
+    }
+
     /*---------------------- UserInterface requested methods ------------------*/
 
     /**
