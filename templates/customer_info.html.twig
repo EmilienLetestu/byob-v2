@@ -3,9 +3,11 @@
     {% block body %}
 
         <h1>{{ customer.company }}</h1>
+
         <div class="container form-container">
+
         {% for person in customer.persons %}
-            <ul class="collapsible">
+            <ul class="collapsible col m3">
             <li>
                 <div class="collapsible-header"><i class="material-icons">person</i>{{ person.fullname }}</div>
             </li>

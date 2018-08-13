@@ -42,7 +42,7 @@ class ShowAllPendingArrivalAction
      * )
      *
      * @Route(
-     *     "/produits/en-attente-de-validation/{model}/{id}",
+     *     "/{model}/en-attente-de-validation/{id}",
      *     name="arrival",
      *     requirements={"model" = "[a-z0-9-]+"},
      *     requirements={"id" = "\d+"}
