@@ -4,7 +4,8 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
         http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="App\Entity\Person">
+    <entity name="App\Entity\Person"
+            repository-class="App\Repository\PersonRepository">
         <id name="id" type="integer">
             <generator strategy="AUTO"/>
         </id>
@@ -22,6 +23,9 @@
                 field="contacts"
                 target-entity="App\Entity\Contact"
                 mapped-by="person">
+            <cascade>
+               <cascade-remove/>
+            </cascade>
         </one-to-many>
 
         <many-to-one
