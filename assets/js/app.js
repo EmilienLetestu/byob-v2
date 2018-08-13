@@ -1,6 +1,7 @@
 require('../css/app.css');
+import {ShowHide} from "./class/ShowHide";
 
-    document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
         let nav = document.querySelectorAll('.sidenav');
         let initNav = M.Sidenav.init(nav);
 
@@ -14,5 +15,11 @@ require('../css/app.css');
 
         let collapsibleList = document.querySelectorAll('.collapsible');
         let initCollapsible = M.Collapsible.init(collapsibleList);
+    });
 
-});
+
+new ShowHide('trigger-nav-menu','onMouse').showHide();
+
+
+
+

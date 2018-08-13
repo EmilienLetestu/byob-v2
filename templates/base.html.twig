@@ -19,23 +19,16 @@
             <nav class="color-main-lighten">
                 <div class="nav-wrapper">
                     <a href="{{ path('dashboard') }}" class="brand-logo">BYOB {% if is_granted('IS_AUTHENTICATED_FULLY') %} - ROLE {{ app.user.role }} {% endif %}</a>
-                    <a href="#" data-target="mobile-nav" class="sidenav-trigger" id="trigger"><i class="material-icons">menu</i></a>
-                    <ul class="right hide-on-med-and-down" id="default-nav">
+                    <i id="trigger-nav-menu" class="right material-icons" style="font-size: 3rem">menu</i>
                         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                            {% include 'navbar/' ~ app.user.role|lower  ~ '_navbar.html.twig' %}
+                            <ul id="nav-menu">
+                                {% include 'navbar/' ~ app.user.role|lower  ~ '_navbar.html.twig' %}
+                            </ul>
                         {% endif %}
-                    </ul>
                 </div>
             </nav>
         </div>
-
-
-        <ul class="sidenav" id="mobile-nav">
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                {% include 'navbar/' ~ app.user.role|lower  ~ '_navbar.html.twig' %}
-            {% endif %}
-        </ul>
-
+        
         <main>
             {% for label, messages in app.flashes(['denied','error','success','warning','welcome']) %}
                 {% for message in messages %}

@@ -27,6 +27,39 @@ h2{
     text-align: center;
 }
 
+#nav-menu{
+    position: absolute;
+    top: 4.2rem;
+    right: 0;
+    flex-flow: column;
+    border: 1px solid black;
+    width: 300px;
+    background: #FFFFFF;
+    display: none;
+}
+
+#nav-menu li:not(:last-child){
+    border-bottom: solid 1px black;
+}
+
+#nav-menu li,
+#nav-menu a,
+#nav-menu i{
+    line-height: 40px;
+    height: 40px;
+}
+
+#nav-menu i,
+#nav-menu a{
+    color: blueviolet;
+}
+
+#nav-menu i{
+    display: inline-flex;
+    vertical-align: top;
+    padding-right: 2rem;
+}
+
 .create-entity-large{
     margin-top: 3rem;
 
