@@ -102,7 +102,7 @@ class Person
      */
     public function getId(): int
     {
-        $this->id;
+      return $this->id;
     }
 
     /**
