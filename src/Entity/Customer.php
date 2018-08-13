@@ -30,6 +30,11 @@ class Customer
     /**
      * @var
      */
+    private $address;
+
+    /**
+     * @var
+     */
     private $addedOn;
 
     /**
@@ -59,6 +64,14 @@ class Customer
     public function setCompany(string $company): void
     {
         $this->company = $company;
+    }
+
+    /**
+     * @param string $address
+     */
+    public function setAddress(string $address): void
+    {
+        $this->address = $address;
     }
 
     /**
@@ -101,6 +114,14 @@ class Customer
     public function getCompany(): string
     {
         return $this->company;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAddress(): string
+    {
+        return$this->address;
     }
 
     /**

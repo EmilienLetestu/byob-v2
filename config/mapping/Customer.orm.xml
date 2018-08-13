@@ -10,6 +10,7 @@
             <generator strategy="AUTO"/>
         </id>
         <field name="company" column="company" type="string" length="50"/>
+        <field name="address" column="address" type="string" length="255"/>
         <field name="addedOn" column="added_on" type="date" />
         <field name="lastModification" column="last_modification" type="date" nullable="true"/>
 
