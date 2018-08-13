@@ -38,9 +38,8 @@ class ShowAllOrderResponder
     public function __invoke(array $orders): Response
     {
         return new Response(
-            $this->twig->render('entity_listing.html.twig',[
-                'orders' => $orders,
-                'listingTemplate' => 'listing/order_listing.html.twig'
+            $this->twig->render('listing/order_listing.html.twig',[
+                'orders' => $orders
             ])
         );
     }

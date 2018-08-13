@@ -39,9 +39,8 @@ class CreateWarehouseResponder
     public function __invoke(FormView $form): Response
     {
        return new Response(
-           $this->twig->render('create_Entity.html.twig',[
-               'form' => $form,
-               'formTemplate' => 'form/warehouse_form.html.twig'
+           $this->twig->render('form/warehouse_form.html.twig',[
+               'form' => $form
            ])
        );
     }

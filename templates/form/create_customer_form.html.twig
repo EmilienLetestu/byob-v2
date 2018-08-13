@@ -1,37 +1,50 @@
-<div class="col s12 m12">
-    {{ form_start(form) }}
-    <div>
-        {{ form_label(form.company) }}
-        {{ form_widget(form.company) }}
-    </div>
-    <div>
-        {{ form_label(form.address) }}
-        {{ form_widget(form.address) }}
-    </div>
-    <div>
-        {{ form_label(form.fullname) }}
-        {{ form_widget(form.fullname) }}
-    </div>
-    <div>
-        {{ form_label(form.job) }}
-        {{ form_widget(form.job, {'attr': {'class' : 'browser-default'}}) }}
-    </div>
-    <div>
-        {{ form_label(form.phone) }}
-        {{ form_widget(form.phone) }}
-    </div>
-    <div>
-        {{ form_label(form.mobile) }}
-        {{ form_widget(form.mobile) }}
-    </div>
-    <div>
-        {{ form_label(form.email) }}
-        {{ form_widget(form.email) }}
-    </div>
-    <div>
-        <button class="btn waves-effect waves-light color-action-darken" type="submit"><i class="material-icons right">send
-            </i>Valider
-        </button>
-    </div>
-    {{ form_end(form) }}
-</div>
+{% extends 'base.html.twig' %}
+
+    {% block body %}
+
+        <h1>{{ app.request.get('_route')|title }}</h1>
+
+        <div class="container form-container">
+            <div class="col s12 m12">
+                {{ form_start(form) }}
+                <div>
+                    {{ form_label(form.company) }}
+                    {{ form_widget(form.company) }}
+                </div>
+                <div>
+                    {{ form_label(form.address) }}
+                    {{ form_widget(form.address) }}
+                </div>
+                <div>
+                    {{ form_label(form.fullname) }}
+                    {{ form_widget(form.fullname) }}
+                </div>
+                <div>
+                    {{ form_label(form.job) }}
+                    {{ form_widget(form.job, {'attr': {'class' : 'browser-default'}}) }}
+                </div>
+                <div>
+                    {{ form_label(form.phone) }}
+                    {{ form_widget(form.phone) }}
+                </div>
+                <div>
+                    {{ form_label(form.mobile) }}
+                    {{ form_widget(form.mobile) }}
+                </div>
+                <div>
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email) }}
+                </div>
+                <div>
+                    <button class="btn waves-effect waves-light color-action-darken" type="submit"><i class="material-icons right">send
+                        </i>Valider
+                    </button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+
+    {% endblock %}
+
+
+

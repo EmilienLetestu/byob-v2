@@ -39,9 +39,8 @@ class CreateProductResponder
     public function __invoke(FormView $form): Response
     {
        return new Response(
-           $this->twig->render('create_entity.html.twig',[
-               'form' => $form,
-               'formTemplate' => 'form/product_form.html.twig'
+           $this->twig->render('form/product_form.html.twig',[
+               'form' => $form
            ])
        );
     }

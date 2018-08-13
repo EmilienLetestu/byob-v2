@@ -41,10 +41,9 @@ class ProductArrivalResponder
     public function __invoke(FormView $form, Product $product): Response
     {
         return new Response(
-            $this->twig->render('arrival.html.twig',[
-                'form' => $form,
-                'formTemplate' => 'form/arrival_form.html.twig',
-                'product'      => $product
+            $this->twig->render('form/arrival_form.html.twig',[
+                'form'    => $form,
+                'product' => $product
             ])
         );
     }

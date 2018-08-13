@@ -39,9 +39,8 @@ class ShowAllUserResponder
     public function __invoke(array $users): Response
     {
         return new Response(
-            $this->twig->render('entity_listing.html.twig',[
-                'users'           => $users,
-                'listingTemplate' => 'listing/user_list.html.twig'
+            $this->twig->render('listing/user_list.html.twig',[
+                'users'           => $users
             ])
         );
     }

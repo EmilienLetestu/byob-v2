@@ -38,9 +38,8 @@ class ShowAllProductResponder
     public function __invoke(array $products)
     {
         return new Response(
-            $this->twig->render('entity_listing.html.twig',[
-                'products'        => $products,
-                'listingTemplate' => 'listing/product_list.html.twig'
+            $this->twig->render('listing/product_list.html.twig',[
+                'products'        => $products
             ])
         );
     }

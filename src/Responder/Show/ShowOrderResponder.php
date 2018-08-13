@@ -37,7 +37,7 @@ class ShowOrderResponder
     public function __invoke(array $inOrderProducts): Response
     {
         return new Response(
-            $this->twig->render('order_info.html.twig',[
+            $this->twig->render('info/order_info.html.twig',[
                 'inOrderProducts' => $inOrderProducts
             ])
         );

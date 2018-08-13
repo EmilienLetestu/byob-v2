@@ -39,9 +39,8 @@ class CreateRefDetailResponder
     public function __invoke(FormView $form)
     {
         return new Response(
-            $this->twig->render('create_entity.html.twig',[
-                'form' => $form,
-                'formTemplate' => 'form/ref_detail_form.html.twig'
+            $this->twig->render('form/ref_detail_form.html.twig',[
+                'form' => $form
             ])
         );
     }

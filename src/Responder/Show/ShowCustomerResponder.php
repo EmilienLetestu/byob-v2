@@ -39,7 +39,7 @@ class ShowCustomerResponder
     public function __invoke(Customer $customer): Response
     {
         return new Response(
-            $this->twig->render('customer_info.html.twig',[
+            $this->twig->render('info/customer_info.html.twig',[
                 'customer' => $customer
             ])
         );

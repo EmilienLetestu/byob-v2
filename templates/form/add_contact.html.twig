@@ -1,64 +1,77 @@
-<div class="col s12 m12">
-    {{ form_start(form) }}
-    <div>
-        {{ form_label(form.fullname) }}
-        {{ form_widget(form.fullname) }}
-    </div>
-    <div>
-        {{ form_label(form.job) }}
-        {{ form_widget(form.job, {'attr': {'class' : 'browser-default'}}) }}
-    </div>
-    <div>
-        <ul id="contact-fields-list"
-            data-prototype="{{ form_widget(form.contacts.vars.prototype)|e }}"
-            data-widget-tags="{{ '<li></li>'|e }}">
-            {% for contactField in form.contacts %}
-                <li>
-                    {{ form_errors(contactField) }}
-                    {{ form_widget(contactField) }}
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-    <button type="button"
-            class="btn add-another-collection-widget waves-effect waves-light"
-            data-list="#contact-fields-list"><i class="material-icons">add</i>
-    </button>
+{% extends 'base.html.twig' %}
 
-    <div>
-        <button class="btn waves-effect waves-light color-action-darken" type="submit"><i class="material-icons right">send
-            </i>Valider
-        </button>
-    </div>
-    {{ form_end(form) }}
-</div>
+    {% block body %}
 
-{% block javascripts %}
-    <script type="text/javascript">
-        jQuery(document).ready(function () {
-            jQuery('.add-another-collection-widget').click(function (e) {
-                var list = jQuery(jQuery(this).attr('data-list'));
+        <h1>{{ app.request.get('_route')|title }}</h1>
 
-                // Try to find the counter of the list
-                var counter = list.data('widget-counter') | list.children().length;
-                // If the counter does not exist, use the length of the list
-                if (!counter) { counter = list.children().length; }
+        <div class="container form-container">
+            <div class="col s12 m12">
+                {{ form_start(form) }}
+                <div>
+                    {{ form_label(form.fullname) }}
+                    {{ form_widget(form.fullname) }}
+                </div>
+                <div>
+                    {{ form_label(form.job) }}
+                    {{ form_widget(form.job, {'attr': {'class' : 'browser-default'}}) }}
+                </div>
+                <div>
+                    <ul id="contact-fields-list"
+                        data-prototype="{{ form_widget(form.contacts.vars.prototype)|e }}"
+                        data-widget-tags="{{ '<li></li>'|e }}">
+                        {% for contactField in form.contacts %}
+                            <li>
+                                {{ form_errors(contactField) }}
+                                {{ form_widget(contactField) }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <button type="button"
+                        class="btn add-another-collection-widget waves-effect waves-light"
+                        data-list="#contact-fields-list"><i class="material-icons">add</i>
+                </button>
 
-                // grab the prototype template
-                var newWidget = list.attr('data-prototype');
-                // replace the "__name__" used in the id and name of the prototype
-                // with a number that's unique to your emails
-                // end name attribute looks like name="contact[emails][2]"
-                newWidget = newWidget.replace(/__name__/g, counter);
-                // Increase the counter
-                counter++;
-                // And store it, the length cannot be used if deleting widgets is allowed
-                list.data(' widget-counter', counter);
+                <div>
+                    <button class="btn waves-effect waves-light color-action-darken" type="submit"><i class="material-icons right">send
+                        </i>Valider
+                    </button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
 
-                // create a new list element and add it to the list
-                var newElem = jQuery(list.attr('data-widget-tags')).html(newWidget);
-                newElem.appendTo(list);
-            });
-        });
-    </script>
-{% endblock %}
+
+        {% block javascripts %}
+            {{ parent() }}
+            <script type="text/javascript">
+                jQuery(document).ready(function () {
+                    jQuery('.add-another-collection-widget').click(function (e) {
+                        var list = jQuery(jQuery(this).attr('data-list'));
+
+                        // Try to find the counter of the list
+                        var counter = list.data('widget-counter') | list.children().length;
+                        // If the counter does not exist, use the length of the list
+                        if (!counter) { counter = list.children().length; }
+
+                        // grab the prototype template
+                        var newWidget = list.attr('data-prototype');
+                        // replace the "__name__" used in the id and name of the prototype
+                        // with a number that's unique to your emails
+                        // end name attribute looks like name="contact[emails][2]"
+                        newWidget = newWidget.replace(/__name__/g, counter);
+                        // Increase the counter
+                        counter++;
+                        // And store it, the length cannot be used if deleting widgets is allowed
+                        list.data(' widget-counter', counter);
+
+                        // create a new list element and add it to the list
+                        var newElem = jQuery(list.attr('data-widget-tags')).html(newWidget);
+                        newElem.appendTo(list);
+                    });
+                });
+            </script>
+        {% endblock %}
+
+
+    {% endblock %}

@@ -1,58 +1,67 @@
-<table>
-    <thead>
-    <tr>
-        <th>
-            Nom
-        </th>
-        <th>
-            Adresse
-        </th>
-        <th>
-            Total employés
-        </th>
-        <th>
-            Nombre de produit référencés
-        </th>
-        <th>
-            Arrivage en attente de validation
-        </th>
-        <th>
-            Voir le stock
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for warehouse in warehouses %}
-        <tr>
-            <td>
-                {{ warehouse.name }}
-            </td>
-            <td>
-                {{ warehouse.address }}
-            </td>
-            <td>
-                {{ warehouse.userInWarehouses|length }}
-            </td>
-            <td>
-                {{  warehouse.inStockProducts|length }}
-            </td>
-            <td>
-                {% set unvalidated = [] %}
-                {% for pendingValidation in warehouse.pendingValidations %}
-                        {% if pendingValidation.processed == false %}
-                            {% set unvalidated = unvalidated|merge([pendingValidation]) %}
-                        {% endif %}
-                {% endfor %}
-                <a href="{{ path('arrivalInWarehouse', {'warehouseName' : warehouse.name|toUrl, 'id' : warehouse.id }) }}">{{ unvalidated|length }}</a>
-            </td>
-            <td>
-                <a href="{{ path('warehouseStock', {'warehouseName' : warehouse.name|toUrl, 'id' : warehouse.id }) }}"><i class="material-icons">info</i></a>
-            </td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
+{% extends 'base.html.twig' %}
 
-<div class="create-entity-large">
-    <a href="{{ path('createWarehouse') }}" class="btn red"><i class="material-icons">add</i></a>
-</div>
+    {% block body %}
+
+        <h1>{{ app.request.get('_route')|title }}</h1>
+
+        <table>
+            <thead>
+            <tr>
+                <th>
+                    Nom
+                </th>
+                <th>
+                    Adresse
+                </th>
+                <th>
+                    Total employés
+                </th>
+                <th>
+                    Nombre de produit référencés
+                </th>
+                <th>
+                    Arrivage en attente de validation
+                </th>
+                <th>
+                    Voir le stock
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for warehouse in warehouses %}
+                <tr>
+                    <td>
+                        {{ warehouse.name }}
+                    </td>
+                    <td>
+                        {{ warehouse.address }}
+                    </td>
+                    <td>
+                        {{ warehouse.userInWarehouses|length }}
+                    </td>
+                    <td>
+                        {{  warehouse.inStockProducts|length }}
+                    </td>
+                    <td>
+                        {% set unvalidated = [] %}
+                        {% for pendingValidation in warehouse.pendingValidations %}
+                            {% if pendingValidation.processed == false %}
+                                {% set unvalidated = unvalidated|merge([pendingValidation]) %}
+                            {% endif %}
+                        {% endfor %}
+                        <a href="{{ path('arrivalInWarehouse', {'warehouseName' : warehouse.name|toUrl, 'id' : warehouse.id }) }}">{{ unvalidated|length }}</a>
+                    </td>
+                    <td>
+                        <a href="{{ path('warehouseStock', {'warehouseName' : warehouse.name|toUrl, 'id' : warehouse.id }) }}"><i class="material-icons">info</i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="create-entity-large">
+            <a href="{{ path('createWarehouse') }}" class="btn red"><i class="material-icons">add</i></a>
+        </div>
+
+    {% endblock %}
+

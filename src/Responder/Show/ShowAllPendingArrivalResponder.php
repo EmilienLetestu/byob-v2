@@ -38,9 +38,8 @@ class ShowAllPendingArrivalResponder
     public function __invoke(array $pendingValidations): Response
     {
         return new Response(
-            $this->twig->render('entity_listing.html.twig',[
-                'pendingValidations' => $pendingValidations,
-                 'listingTemplate' => 'listing/pending_validation_list.html.twig'
+            $this->twig->render('listing/pending_validation_list.html.twig',[
+                'pendingValidations' => $pendingValidations
             ])
         );
     }

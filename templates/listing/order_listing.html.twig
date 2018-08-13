@@ -1,53 +1,62 @@
-<table>
-    <thead>
-    <tr>
-        <th>
-           Ref
-        </th>
-        <th>
-           Client
-        </th>
-        <th>
-            Vendeur
-        </th>
-        <th>
-            Etat
-        </th>
-        <th>
-            Date
-        </th>
-        <th>
-            <i class="material-icons">info</i>
-        </th>
+{% extends 'base.html.twig' %}
 
-    </tr>
-    </thead>
-    <tbody>
-    {% for order in orders %}
-        <tr>
-            <td>
-                {{ order.reference }}
-            </td>
-            <td>
-                {{ order.orderedFor.company }}
-            </td>
-            <td>
-                {{ order.orderedBy.name }} {{ order.orderedBy.surname }}
-            </td>
-            <td>
-                {{ order.status }}
-            </td>
-            <td>
-                {{ order.orderedOn|date('m-d-Y') }}
-            </td>
-            <td>
-                <a href="{{ path('orderInfo', {'id' : order.id }) }}"><i class="material-icons">info</i></a>
-            </td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
+    {% block body %}
 
-<div class="create-entity-large">
-    <a href="{{ path('createOrder') }}" class="btn red"><i class="material-icons">add</i></a>
-</div>
+        <h1>{{ app.request.get('_route')|title }}</h1>
+
+        <table>
+            <thead>
+            <tr>
+                <th>
+                    Ref
+                </th>
+                <th>
+                    Client
+                </th>
+                <th>
+                    Vendeur
+                </th>
+                <th>
+                    Etat
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    <i class="material-icons">info</i>
+                </th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td>
+                        {{ order.reference }}
+                    </td>
+                    <td>
+                        {{ order.orderedFor.company }}
+                    </td>
+                    <td>
+                        {{ order.orderedBy.name }} {{ order.orderedBy.surname }}
+                    </td>
+                    <td>
+                        {{ order.status }}
+                    </td>
+                    <td>
+                        {{ order.orderedOn|date('m-d-Y') }}
+                    </td>
+                    <td>
+                        <a href="{{ path('orderInfo', {'id' : order.id }) }}"><i class="material-icons">info</i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="create-entity-large">
+            <a href="{{ path('createOrder') }}" class="btn red"><i class="material-icons">add</i></a>
+        </div>
+
+    {% endblock %}
+

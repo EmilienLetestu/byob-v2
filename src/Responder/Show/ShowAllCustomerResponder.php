@@ -38,9 +38,8 @@ class ShowAllCustomerResponder
     public function __invoke(array $customers): Response
     {
         return new Response(
-            $this->twig->render('entity_listing.html.twig',[
-                'customers'       => $customers,
-                'listingTemplate' => 'listing/customer_list.html.twig'
+            $this->twig->render('listing/customer_list.html.twig',[
+                'customers'       => $customers
             ])
         );
     }

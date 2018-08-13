@@ -38,9 +38,8 @@ class ShowAllWarehouseResponder
     public function __invoke(array $warehouses): Response
     {
         return new Response(
-            $this->twig->render('entity_listing.html.twig',[
-                'warehouses'           => $warehouses,
-                'listingTemplate' => 'listing/warehouse_list.html.twig'
+            $this->twig->render('listing/warehouse_list.html.twig',[
+                'warehouses'           => $warehouses
             ])
         );
     }

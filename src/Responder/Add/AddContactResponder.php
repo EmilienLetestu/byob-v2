@@ -39,9 +39,8 @@ class AddContactResponder
     public function __invoke(FormView $form)
     {
         return new Response(
-            $this->twig->render('create_entity.html.twig',[
-                'form' => $form,
-                'formTemplate' => 'form/add_contact.html.twig'
+            $this->twig->render('form/add_contact.html.twig',[
+                'form' => $form
             ])
         );
     }

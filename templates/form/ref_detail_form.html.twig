@@ -1,13 +1,25 @@
-<div class="col s12 m12">
-{{ form_start(form) }}
-<div>
-    {{ form_label(form.name) }}
-    {{ form_widget(form.name) }}
-</div>
-<div>
-    <button class="btn waves-effect waves-light color-action-darken" type="submit"><i class="material-icons right">send
-        </i>Valider
-    </button>
-</div>
-{{ form_end(form) }}
-</div>
+{% extends 'base.html.twig' %}
+
+    {% block body %}
+
+        <h1>{{ app.request.get('_route')|title }}</h1>
+
+        <div class="container form-container">
+            <div class="col s12 m12">
+                {{ form_start(form) }}
+                <div>
+                    {{ form_label(form.name) }}
+                    {{ form_widget(form.name) }}
+                </div>
+                <div>
+                    <button class="btn waves-effect waves-light color-action-darken" type="submit"><i class="material-icons right">send
+                        </i>Valider
+                    </button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+
+    {% endblock %}
+
+

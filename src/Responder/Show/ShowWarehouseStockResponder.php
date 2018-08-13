@@ -38,7 +38,7 @@ class ShowWarehouseStockResponder
     public function __invoke(array $inStockProducts): Response
     {
         return new Response(
-            $this->twig->render('warehouse_stock.html.twig',[
+            $this->twig->render('info/warehouse_info.html.twig',[
                 'inStockProducts' => $inStockProducts
             ])
         );
