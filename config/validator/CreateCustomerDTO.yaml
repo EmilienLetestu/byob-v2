@@ -11,6 +11,14 @@ App\DTO\CreateCustomerDTO:
                 maxMessage: 50 caractères maximum
                 groups: [createCustomer]
 
+        address:
+            - NotBlank: { groups: [createCustomer] }
+            - Length:
+                min: 10
+                max: 255
+                minMessage: 10 caractères minimum
+                maxMessage: 255 cararctères maximum
+
         fullname:
             - NotBlank: { groups: [createCustomer] }
             - Length:

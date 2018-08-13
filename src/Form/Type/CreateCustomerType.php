@@ -29,6 +29,9 @@ class CreateCustomerType extends AbstractType
            ->add('company', TextType::class,[
                'label' => 'Nom de la société'
            ])
+           ->add('address', TextType::class,[
+               'label' => 'Adresse'
+           ])
            ->add('fullname', TextType::class,[
                'label' => 'nom et prénom (gérant, contact...)'
            ])
@@ -64,6 +67,7 @@ class CreateCustomerType extends AbstractType
             'empty_data'        => function(FormInterface $form){
                 return new CreateCustomerDTO(
                     $form->get('company')->getData(),
+                    $form->get('address')->getData(),
                     $form->get('fullname')->getData(),
                     $form->get('job')->getData(),
                     $form->get('phone')->getData(),

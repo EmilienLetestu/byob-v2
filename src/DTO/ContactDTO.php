@@ -42,28 +42,4 @@ class ContactDTO
         $this->data    = $data;
         $this->comment = $comment;
     }
-
-    /**
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->type;
-    }
-
-    /**
-     * @return string
-     */
-    public function getData(): string
-    {
-        return $this->data;
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getComment():? string
-    {
-        return $this->comment;
-    }
 }

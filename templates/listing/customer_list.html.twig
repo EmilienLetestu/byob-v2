@@ -5,6 +5,9 @@
             Entreprise
         </th>
         <th>
+            Adresse
+        </th>
+        <th>
             Client depuis
         </th>
         <th>
@@ -23,6 +26,9 @@
         <tr>
             <td>
                 {{ customer.company }}
+            </td>
+            <td>
+                {{ customer.address }}
             </td>
             <td>
                 {{ customer.addedOn|date('Y-m-d') }}

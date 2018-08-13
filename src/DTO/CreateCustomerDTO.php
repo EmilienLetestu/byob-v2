@@ -17,6 +17,11 @@ class CreateCustomerDTO
     public $company;
 
     /**
+     * @var
+     */
+    public $address;
+
+    /**
      * @var string
      */
     public $fullname;
@@ -44,6 +49,7 @@ class CreateCustomerDTO
     /**
      * CreateCustomerDTO constructor.
      * @param string $company
+     * @param string $address
      * @param string $fullname
      * @param string $job
      * @param null|string $phone
@@ -52,6 +58,7 @@ class CreateCustomerDTO
      */
     public function __construct(
         string  $company,
+        string  $address,
         string  $fullname,
         string  $job,
         ?string $phone,
@@ -60,6 +67,7 @@ class CreateCustomerDTO
     )
     {
         $this->company  = $company;
+        $this->address  = $address;
         $this->fullname = $fullname;
         $this->job      = $job;
         $this->phone    = $phone;

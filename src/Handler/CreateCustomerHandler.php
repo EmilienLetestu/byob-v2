@@ -68,6 +68,7 @@ class CreateCustomerHandler implements EntityFormHandlerInterface
            $this->customer->setAddedBy(
                $this->tokenStorage->getToken()->getUser()
            );
+           $this->customer->setAddress($form->get('address')->getData());
            $this->customer->setAddedOn('Y-m-d');
 
            $this->doctrine->persist($this->customer);
