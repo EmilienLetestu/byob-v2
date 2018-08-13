@@ -43,7 +43,7 @@
                 {{ user.addedOn|date("m/d/Y") }}
             </td>
             <td>
-                <i class="material-icons">{{ user.activated|statusIcon }}</i>
+                <i class="material-icons {{ user.activated|statusIcon }}">{{ user.activated|statusIcon }}</i>
             </td>
             <td>
                 <a href="#"><i class="material-icons">info</i></a>

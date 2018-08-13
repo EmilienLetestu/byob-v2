@@ -42,11 +42,15 @@ h2{
     opacity: 1;
 }
 
-a.validate-link{
+a.validate-link,
+.material-icons.done,
+.material-icons.alert-none{
     color: #51c062;
 }
 
-a.reject-link{
+a.reject-link,
+.material-icons.close,
+.material-icons.alert-warning{
     color: #ff4f3d;
 }
 

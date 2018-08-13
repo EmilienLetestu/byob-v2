@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+    {% block body %}
+
+        <h1>{{ app.request.get('warehouseName')|capitalize }} : niveau des stocks</h1>
+
+        <table>
+            <thead>
+            <tr>
+                <th>
+                    Model
+                </th>
+                <th>
+                    Référence
+                </th>
+                <th>
+                    Quantité
+                </th>
+                <th>
+                    En alerte
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for inStockProduct in inStockProducts %}
+                <tr>
+                    <td>
+                        {{ inStockProduct.product.model }}
+                    </td>
+                    <td>
+                        {{ inStockProduct.product.reference }}
+                    </td>
+                    <td>
+                        {{ inStockProduct.level }}
+                    </td>
+                    <td>
+                        {% set alert = inStockProduct.level <= inStockProduct.alertLevel %}
+                        <i class="material-icons alert-{{ alert == true ? 'warning' : 'none' }}">{{ alert == true ? 'warning' : 'done' }}</i>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    {% endblock %}
+
+
+
