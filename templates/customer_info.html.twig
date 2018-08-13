@@ -25,7 +25,7 @@
             {% endfor %}
         </ul>
         <div class="edit-person">
-            <a class="btn-floating red"><i class="material-icons">delete</i></a>
+            <a href="{{ path('deletePerson', {'id' : person.id }) }}" class="btn-floating red"><i class="material-icons">delete</i></a>
             <a class="btn-floating green"><i class="material-icons">edit</i></a>
         </div>
         {% endfor %}
