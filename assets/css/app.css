@@ -32,14 +32,14 @@ h2{
     top: 4.2rem;
     right: 0;
     flex-flow: column;
-    border: 1px solid black;
+    border: 1px solid  #ee6e73;
     width: 300px;
     background: #FFFFFF;
     display: none;
 }
 
 #nav-menu li:not(:last-child){
-    border-bottom: solid 1px black;
+    border-bottom: 1px solid  #ee6e73;
 }
 
 #nav-menu li,
@@ -51,7 +51,7 @@ h2{
 
 #nav-menu i,
 #nav-menu a{
-    color: blueviolet;
+    color: #ee6e73;
 }
 
 #nav-menu i{
