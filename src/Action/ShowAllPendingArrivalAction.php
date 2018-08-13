@@ -60,7 +60,7 @@ class ShowAllPendingArrivalAction
         $repository = $this->doctrine
             ->getRepository(PendingValidationStock::class)
         ;
-
+        
         return $responder(
             $request->attributes->get('_route') === 'arrival' ?
                 $repository->findAllPendingWithProduct($request->get('id')) :
