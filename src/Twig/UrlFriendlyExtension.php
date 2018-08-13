@@ -30,6 +30,6 @@ class UrlFriendlyExtension extends AbstractExtension
      */
     public function urlFriendlyFilter(string $string): string
     {
-        return str_replace(' ','-', $string);
+        return str_replace(' ','-', mb_strtolower($string));
     }
 }

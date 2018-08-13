@@ -44,6 +44,21 @@ class InStockProductRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param int $warehouseId
+     * @return array
+     */
+    public function findStockInWareHouse(int $warehouseId): array
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('inStock')
+            ->where('inStock.warehouse = :warehouseId')
+            ->setParameter('warehouseId', $warehouseId)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
      * @return array
      */
     public function findAllDistinctProduct(): array
