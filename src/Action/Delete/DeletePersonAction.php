@@ -6,10 +6,10 @@
  * Time: 09:55
  */
 
-namespace App\Action;
+namespace App\Action\Delete;
 
 use App\Entity\Person;
-use App\Responder\DeletePersonResponder;
+use App\Responder\Delete\DeletePersonResponder;
 
 use Doctrine\ORM\EntityManagerInterface;
 

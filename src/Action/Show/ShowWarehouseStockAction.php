@@ -2,22 +2,22 @@
 /**
  * Created by PhpStorm.
  * User: emilien
- * Date: 08/08/2018
- * Time: 23:16
+ * Date: 13/08/2018
+ * Time: 11:48
  */
 
-namespace App\Action;
+namespace App\Action\Show;
 
 
-use App\Entity\InOrderProduct;
-use App\Responder\ShowOrderResponder;
+use App\Entity\InStockProduct;
+use App\Responder\Show\ShowWarehouseStockResponder;
 
 use Doctrine\ORM\EntityManagerInterface;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ShowOrderAction
+class ShowWarehouseStockAction
 {
     /**
      * @var EntityManagerInterface
@@ -25,7 +25,7 @@ class ShowOrderAction
     private $doctrine;
 
     /**
-     * ShowOrderAction constructor.
+     * ShowWarehouseStockAction constructor.
      * @param EntityManagerInterface $doctrine
      */
     public function __construct(EntityManagerInterface $doctrine)
@@ -35,26 +35,27 @@ class ShowOrderAction
 
     /**
      * @Route(
-     *     "/commande/{id}",
-     *     name = "orderInfo",
-     *     requirements={"id" = "\d+"}
+     *     "/{warehouseName}/{id}/stock",
+     *      name="warehouseStock",
+     *     requirements={ "warehouseName" = "[a-z0-9-]+" },
+     *     requirements={ "id" = "\d+" }
      * )
      *
      * @param Request $request
-     * @param ShowOrderResponder $responder
+     * @param ShowWarehouseStockResponder $responder
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(Request $request, ShowOrderResponder $responder)
+    public function __invoke(Request $request, ShowWarehouseStockResponder $responder)
     {
        return
-            $responder(
-                $this->doctrine
-                    ->getRepository(InOrderProduct::class)
-                    ->findAllWithOrder($request->get('id'))
-            )
+           $responder(
+               $this->doctrine
+                   ->getRepository(InStockProduct::class)
+                   ->findStockInWarehouse($request->get('id'))
+           )
        ;
     }
 }

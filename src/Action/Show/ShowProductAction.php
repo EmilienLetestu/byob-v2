@@ -6,12 +6,12 @@
  * Time: 10:28
  */
 
-namespace App\Action;
+namespace App\Action\Show;
 
 
 use App\Entity\Product;
 use App\Helper\StockLevelHelper;
-use App\Responder\ShowProductResponder;
+use App\Responder\Show\ShowProductResponder;
 
 use Doctrine\ORM\EntityManagerInterface;
 

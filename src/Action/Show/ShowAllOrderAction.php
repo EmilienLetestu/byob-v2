@@ -6,11 +6,11 @@
  * Time: 22:03
  */
 
-namespace App\Action;
+namespace App\Action\Show;
 
 
 use App\Entity\Orders;
-use App\Responder\ShowAllOrderResponder;
+use App\Responder\Show\ShowAllOrderResponder;
 
 use Doctrine\ORM\EntityManagerInterface;
 

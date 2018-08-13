@@ -6,10 +6,10 @@
  * Time: 21:17
  */
 
-namespace App\Action;
+namespace App\Action\Show;
 
 use App\Entity\Customer;
-use App\Responder\ShowAllCustomerResponder;
+use App\Responder\Show\ShowAllCustomerResponder;
 
 use Doctrine\ORM\EntityManagerInterface;
 

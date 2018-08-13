@@ -2,23 +2,22 @@
 /**
  * Created by PhpStorm.
  * User: emilien
- * Date: 09/08/2018
- * Time: 09:03
+ * Date: 08/08/2018
+ * Time: 23:16
  */
 
-namespace App\Action;
+namespace App\Action\Show;
 
 
-use App\Entity\Customer;
-use App\Responder\ShowCustomerResponder;
+use App\Entity\InOrderProduct;
+use App\Responder\Show\ShowOrderResponder;
 
 use Doctrine\ORM\EntityManagerInterface;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ShowCustomerAction
+class ShowOrderAction
 {
     /**
      * @var EntityManagerInterface
@@ -26,7 +25,7 @@ class ShowCustomerAction
     private $doctrine;
 
     /**
-     * ShowCustomerAction constructor.
+     * ShowOrderAction constructor.
      * @param EntityManagerInterface $doctrine
      */
     public function __construct(EntityManagerInterface $doctrine)
@@ -36,24 +35,26 @@ class ShowCustomerAction
 
     /**
      * @Route(
-     *     "/client/{id}",
-     *     name="customerInfo",
+     *     "/commande/{id}",
+     *     name = "orderInfo",
      *     requirements={"id" = "\d+"}
      * )
      *
      * @param Request $request
-     * @param ShowCustomerResponder $responder
-     * @return Response
+     * @param ShowOrderResponder $responder
+     * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(Request $request, ShowCustomerResponder $responder): Response
+    public function __invoke(Request $request, ShowOrderResponder $responder)
     {
-        return $responder(
-            $this->doctrine
-            ->getRepository(Customer::class)
-            ->findCustomerWithId($request->get('id'))
-        );
+       return
+            $responder(
+                $this->doctrine
+                    ->getRepository(InOrderProduct::class)
+                    ->findAllWithOrder($request->get('id'))
+            )
+       ;
     }
 }

@@ -3,16 +3,17 @@
  * Created by PhpStorm.
  * User: emilien
  * Date: 02/08/2018
- * Time: 00:10
+ * Time: 10:30
  */
 
-namespace App\Responder;
+namespace App\Responder\Show;
 
 
+use App\Entity\Product;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-class ShowAllPendingArrivalResponder
+class ShowProductResponder
 {
     /**
      * @var Environment
@@ -20,7 +21,7 @@ class ShowAllPendingArrivalResponder
     private $twig;
 
     /**
-     * ShowArrivalInWarehouseResponder constructor.
+     * ShowProductResponder constructor.
      * @param Environment $twig
      */
     public function __construct(Environment $twig)
@@ -29,18 +30,19 @@ class ShowAllPendingArrivalResponder
     }
 
     /**
-     * @param array $pendingValidations
+     * @param Product $product
+     * @param int $stockLevel
      * @return Response
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(array $pendingValidations): Response
+    public function __invoke(Product $product, int $stockLevel): Response
     {
         return new Response(
-            $this->twig->render('entity_listing.html.twig',[
-                'pendingValidations' => $pendingValidations,
-                 'listingTemplate' => 'listing/pending_validation_list.html.twig'
+            $this->twig->render('produc_info.html.twig',[
+                'product'    => $product,
+                'stockLevel' => $stockLevel
             ])
         );
     }

@@ -2,17 +2,17 @@
 /**
  * Created by PhpStorm.
  * User: emilien
- * Date: 13/08/2018
- * Time: 11:49
+ * Date: 01/08/2018
+ * Time: 23:13
  */
 
-namespace App\Responder;
+namespace App\Responder\Show;
 
 
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-class ShowWarehouseStockResponder
+class ShowAllWarehouseResponder
 {
     /**
      * @var Environment
@@ -20,7 +20,7 @@ class ShowWarehouseStockResponder
     private $twig;
 
     /**
-     * ShowWarehouseResponder constructor.
+     * ShowAllProductResponder constructor.
      * @param Environment $twig
      */
     public function __construct(Environment $twig)
@@ -29,17 +29,18 @@ class ShowWarehouseStockResponder
     }
 
     /**
-     * @param array $inStockProducts
+     * @param array $warehouses
      * @return Response
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(array $inStockProducts): Response
+    public function __invoke(array $warehouses): Response
     {
         return new Response(
-            $this->twig->render('warehouse_stock.html.twig',[
-                'inStockProducts' => $inStockProducts
+            $this->twig->render('entity_listing.html.twig',[
+                'warehouses'           => $warehouses,
+                'listingTemplate' => 'listing/warehouse_list.html.twig'
             ])
         );
     }

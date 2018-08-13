@@ -6,11 +6,12 @@
  * Time: 00:09
  */
 
-namespace App\Action;
+namespace App\Action\Show;
 
 
 use App\Entity\PendingValidationStock;
-use App\Responder\ShowAllPendingArrivalResponder;
+use App\Responder\Show\ShowAllPendingArrivalResponder;
+
 use Doctrine\ORM\EntityManagerInterface;
 
 use Symfony\Component\HttpFoundation\Request;

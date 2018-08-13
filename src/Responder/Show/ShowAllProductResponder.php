@@ -2,17 +2,17 @@
 /**
  * Created by PhpStorm.
  * User: emilien
- * Date: 08/08/2018
- * Time: 22:09
+ * Date: 01/08/2018
+ * Time: 10:35
  */
 
-namespace App\Responder;
+namespace App\Responder\Show;
 
 
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-class ShowAllOrderResponder
+class ShowAllProductResponder
 {
     /**
      * @var Environment
@@ -20,7 +20,7 @@ class ShowAllOrderResponder
     private $twig;
 
     /**
-     * ShowAllOrderResponder constructor.
+     * ShowAllProductResponder constructor.
      * @param Environment $twig
      */
     public function __construct(Environment $twig)
@@ -29,18 +29,18 @@ class ShowAllOrderResponder
     }
 
     /**
-     * @param array $orders
+     * @param array $products
      * @return Response
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(array $orders): Response
+    public function __invoke(array $products)
     {
         return new Response(
             $this->twig->render('entity_listing.html.twig',[
-                'orders' => $orders,
-                'listingTemplate' => 'listing/order_listing.html.twig'
+                'products'        => $products,
+                'listingTemplate' => 'listing/product_list.html.twig'
             ])
         );
     }

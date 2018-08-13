@@ -6,7 +6,7 @@
  * Time: 09:55
  */
 
-namespace App\Responder;
+namespace App\Responder\Delete;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
