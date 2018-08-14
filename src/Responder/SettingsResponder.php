@@ -13,8 +13,15 @@ use Twig\Environment;
 
 class SettingsResponder
 {
+    /**
+     * @var Environment
+     */
     private $twig;
 
+    /**
+     * SettingsResponder constructor.
+     * @param Environment $twig
+     */
     public function __construct(Environment $twig)
     {
         $this->twig = $twig;
