@@ -100,7 +100,6 @@ class InStockProductRepository extends ServiceEntityRepository
     {
         return
             $queryBuilder = $this->createQueryBuilder('inStock')
-            ->select('COUNT(inStock.id)')
             ->where('inStock.alertLevel >= inStock.level')
             ->getQuery()
             ->getResult()

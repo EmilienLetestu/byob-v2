@@ -16,6 +16,7 @@ use App\Entity\PendingValidationStock;
 use App\Entity\Product;
 use App\Entity\User;
 use App\Entity\Warehouse;
+
 use Doctrine\ORM\EntityManagerInterface;
 
 class UserDashboard
@@ -39,28 +40,50 @@ class UserDashboard
 
     /**
      * @param string $role
+     * @param int $id
      * @return array
      */
-    public function getUserDashboard(string $role)
+    public function getUserDashboard(string $role, int $id)
     {
         switch ($role):
             case 'ADMIN':
-                return $this->adminDashboard();
+                return $this->adminDashboard($id);
+                break;
+
+            case 'WAREHOUSEMAN':
+                return $this->warehousemanDashboard($id);
+                break;
+
+            case 'DELIVERYMAN':
+                return $this->deliverymanDashbaord();
                 break;
 
             case 'SALESMAN':
-                return $this->salesmanDashbaord();
+                return $this->salesmanDashboard($id);
+                break;
+
+            case 'ACCOUNTANT':
+                return $this->accountantDashbaord();
+                break;
+
+            case 'SUPPLY':
+                return $this->supplyDashbaord();
+                break;
+
+            case 'LOGISTIC':
+                return $this->logisticDashbaord();
                 break;
 
             default:
-               return $this->adminDashboard();
+                return $this->adminDashboard();
+
         endswitch;
     }
 
     /**
      * @return array
      */
-    private function adminDashboard()
+    private function adminDashboard(): array
     {
         return [
           'total utilisateur'  =>  $this->doctrine->getRepository(User::class)->findAllUser(),
@@ -73,4 +96,30 @@ class UserDashboard
         ];
 
     }
+
+    /**
+     * @param int $id
+     * @return array
+     */
+    private function warehousemanDashboard(int $id): array
+    {
+        // todo => fetch all orders to prepare
+        return [
+            'mes arrivages'       => $this->doctrine->getRepository(PendingValidationStock::class)->findAllArrivalWithUser($id)
+        ];
+    }
+
+    /**
+     * @param int $id
+     * @return array
+     */
+    private function salesmanDashboard(int $id): array
+    {
+        return [
+            'produits référencés' =>  $this->doctrine->getRepository(Product::class)->findAllProduct(),
+            'total clients'       =>  $this->doctrine->getRepository(Customer::class)->findAllCustomer(),
+            'mes commande'        =>  $this->doctrine->getRepository(Orders::class)->finAllOrderWithUser($id)
+        ];
+    }
+
 }

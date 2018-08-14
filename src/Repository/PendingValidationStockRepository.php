@@ -96,8 +96,42 @@ class PendingValidationStockRepository extends ServiceEntityRepository
     {
         return
             $queryBuilder = $this->createQueryBuilder('pe')
-            ->select('COUNT(pe.id)')
             ->where('pe.processed = 0')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+     * @param int $id
+     * @return array
+     */
+    public function findAllArrivalWithUser(int $id): array
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('pe')
+                ->where('pe.askedBy = :id')
+                ->setParameter('id', $id)
+                ->getQuery()
+                ->getResult()
+            ;
+    }
+
+    /**
+     * @param int $id
+     * @return array
+     */
+    public function findAllArrivalInUserWarehouse(int $id):array
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('pe')
+            ->select('pe.id')
+            ->leftjoin('App\Entity\UserInWarehouse',
+                'userInWarehouse',
+                \Doctrine\ORM\Query\Expr\Join::WITH,
+                'pe.warehouse = userInWarehouse.id')
+            ->where('userInWarehouse.user = :id')
+            ->setParameter('id', $id)
             ->getQuery()
             ->getResult()
         ;

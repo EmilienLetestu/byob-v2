@@ -53,4 +53,20 @@ class OrdersRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
+
+    /**
+     * @param int $id
+     * @return array
+     */
+    public function findAllOrderWithUser(int $id): array
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('o')
+                ->where('o.orderedBy = :id')
+                ->setParameter('id', $id)
+                ->orderBy('o.orderedOn', 'DESC')
+                ->getQuery()
+                ->getResult()
+        ;
+    }
 }

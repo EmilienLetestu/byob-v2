@@ -55,11 +55,13 @@ class DashboardAction
      */
     public function __invoke(DashboardResponder $responder): Response
     {
+       $user = $this->tokenStorage->getToken()->getUser();
+
        return
            $responder(
                $this->userDashBoard->getUserDashboard(
-                   $this->tokenStorage->getToken()->getUser()->getRole()
-           )
+                   $user->getRole(), $user->getId()
+               )
        );
     }
 }
