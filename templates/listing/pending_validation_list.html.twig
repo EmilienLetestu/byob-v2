@@ -3,55 +3,59 @@
     {% block body %}
 
         <h1>{{ app.request.get('_route')|title }}</h1>
+        <div class="table-container">
 
-        <table>
-            <thead>
-            <tr>
-                <th>
-                    En attente depuis le
-                </th>
-                <th>
-                    Demandé par
-                </th>
-                <th>
-                    Produit
-                </th>
-                <th>
-                    Quantité
-                </th>
-                <th>
-                    Valider
-                </th>
-                <th>
-                    Refuser
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for pendingValidation in pendingValidations %}
+            <table>
+                <thead>
                 <tr>
-                    <td>
-                        {{ pendingValidation.askedOn|date('m-d-Y') }}
-                    </td>
-                    <td>
-                        {{ pendingValidation.askedBy.surname }}
-                    </td>
-                    <td>
-                        {{ pendingValidation.product.model }}
-                    </td>
-                    <td>
-                        {{ pendingValidation.quantity }}
-                    </td>
-                    <td>
-                        <a href="{{ path('arrivalValidationProcess', { 'action' : 'valider', 'pendingId' : pendingValidation.id }) }}" class="validate-link"><i class="material-icons">check</i></a>
-                    </td>
-                    <td>
-                        <a href="{{ path('arrivalValidationProcess', { 'action' : 'refuser', 'pendingId' : pendingValidation.id }) }}" class="reject-link"><i class="material-icons">close</i></a>
-                    </td>
+                    <th>
+                        En attente depuis le
+                    </th>
+                    <th>
+                        Demandé par
+                    </th>
+                    <th>
+                        Produit
+                    </th>
+                    <th>
+                        Quantité
+                    </th>
+                    <th>
+                        Valider
+                    </th>
+                    <th>
+                        Refuser
+                    </th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                {% for pendingValidation in pendingValidations %}
+                    <tr>
+                        <td>
+                            {{ pendingValidation.askedOn|date('m-d-Y') }}
+                        </td>
+                        <td>
+                            {{ pendingValidation.askedBy.surname }}
+                        </td>
+                        <td>
+                            {{ pendingValidation.product.model }}
+                        </td>
+                        <td>
+                            {{ pendingValidation.quantity }}
+                        </td>
+                        <td>
+                            <a href="{{ path('arrivalValidationProcess', { 'action' : 'valider', 'pendingId' : pendingValidation.id }) }}" class="validate-link"><i class="material-icons">check</i></a>
+                        </td>
+                        <td>
+                            <a href="{{ path('arrivalValidationProcess', { 'action' : 'refuser', 'pendingId' : pendingValidation.id }) }}" class="reject-link"><i class="material-icons">close</i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+
 
     {% endblock %}
 

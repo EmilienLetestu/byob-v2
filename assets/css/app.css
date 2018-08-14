@@ -27,6 +27,11 @@ h2{
     text-align: center;
 }
 
+.table-container{
+    padding-right: 3rem;
+    padding-left: 3rem;
+}
+
 #nav-menu{
     position: absolute;
     top: 4.2rem;

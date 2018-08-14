@@ -4,43 +4,49 @@
 
         <h1>{{ app.request.get('warehouseName')|capitalize }} : niveau des stocks</h1>
 
-        <table>
-            <thead>
-            <tr>
-                <th>
-                    Model
-                </th>
-                <th>
-                    Référence
-                </th>
-                <th>
-                    Quantité
-                </th>
-                <th>
-                    En alerte
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for inStockProduct in inStockProducts %}
+        <div class="table-container">
+
+            <table>
+                <thead>
                 <tr>
-                    <td>
-                        {{ inStockProduct.product.model }}
-                    </td>
-                    <td>
-                        {{ inStockProduct.product.reference }}
-                    </td>
-                    <td>
-                        {{ inStockProduct.level }}
-                    </td>
-                    <td>
-                        {% set alert = inStockProduct.level <= inStockProduct.alertLevel %}
-                        <i class="material-icons alert-{{ alert == true ? 'warning' : 'none' }}">{{ alert == true ? 'warning' : 'done' }}</i>
-                    </td>
+                    <th>
+                        Model
+                    </th>
+                    <th>
+                        Référence
+                    </th>
+                    <th>
+                        Quantité
+                    </th>
+                    <th>
+                        En alerte
+                    </th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                {% for inStockProduct in inStockProducts %}
+                    <tr>
+                        <td>
+                            {{ inStockProduct.product.model }}
+                        </td>
+                        <td>
+                            {{ inStockProduct.product.reference }}
+                        </td>
+                        <td>
+                            {{ inStockProduct.level }}
+                        </td>
+                        <td>
+                            {% set alert = inStockProduct.level <= inStockProduct.alertLevel %}
+                            <i class="material-icons alert-{{ alert == true ? 'warning' : 'none' }}">{{ alert == true ? 'warning' : 'done' }}</i>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+
+
 
     {% endblock %}
 

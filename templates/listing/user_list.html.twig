@@ -4,63 +4,66 @@
 
         <h1>{{ app.request.get('_route')|title }}</h1>
 
-        <table>
-            <thead>
-            <tr>
-                <th>
-                    Nom
-                </th>
-                <th>
-                    Prénom
-                </th>
-                <th>
-                    Role
-                </th>
-                <th>
-                    email
-                </th>
-                <th>
-                    Ajouté le
-                </th>
-                <th>
-                    Activé
-                </th>
-                <th>
-                    <i class="material-icons">info</i>
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for user in users %}
+        <div class="table-container">
+            <table>
+                <thead>
                 <tr>
-                    <td>
-                        {{ user.surname }}
-                    </td>
-                    <td>
-                        {{ user.name }}
-                    </td>
-                    <td>
-                        {{ user.role }}
-                    </td>
-                    <td>
-                        {{ user.email }}
-                    </td>
-                    <td>
-                        {{ user.addedOn|date("m/d/Y") }}
-                    </td>
-                    <td>
-                        <i class="material-icons {{ user.activated|statusIcon }}">{{ user.activated|statusIcon }}</i>
-                    </td>
-                    <td>
-                        <a href="#"><i class="material-icons">info</i></a>
-                    </td>
+                    <th>
+                        Nom
+                    </th>
+                    <th>
+                        Prénom
+                    </th>
+                    <th>
+                        Role
+                    </th>
+                    <th>
+                        email
+                    </th>
+                    <th>
+                        Ajouté le
+                    </th>
+                    <th>
+                        Activé
+                    </th>
+                    <th>
+                        <i class="material-icons">info</i>
+                    </th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>
+                            {{ user.surname }}
+                        </td>
+                        <td>
+                            {{ user.name }}
+                        </td>
+                        <td>
+                            {{ user.role }}
+                        </td>
+                        <td>
+                            {{ user.email }}
+                        </td>
+                        <td>
+                            {{ user.addedOn|date("m/d/Y") }}
+                        </td>
+                        <td>
+                            <i class="material-icons {{ user.activated|statusIcon }}">{{ user.activated|statusIcon }}</i>
+                        </td>
+                        <td>
+                            <a href="#"><i class="material-icons">info</i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
 
-        <div class="create-entity-large">
-            <a href="{{ path('createUser') }}" class="btn red"><i class="material-icons">add</i></a>
+            <div class="create-entity-large">
+                <a href="{{ path('createUser') }}" class="btn red"><i class="material-icons">add</i></a>
+            </div>
         </div>
+
 
     {% endblock %}

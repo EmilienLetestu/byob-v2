@@ -4,66 +4,71 @@
 
         <h1>{{ app.request.get('_route')|title }}</h1>
 
-        <table>
-            <thead>
-            <tr>
-                <th>
-                    Model
-                </th>
-                <th>
-                    Categorie
-                </th>
-                <th>
-                    Designation
-                </th>
-                <th>
-                    Type
-                </th>
-                <th>
-                    Référence
-                </th>
-                <th>
-                    Stocker
-                </th>
-                {% if app.user.role != 'WAREHOUSEMAN' and app.user.role != 'DELIVERYMAN' %}
-                    <th>
-                        <i class="material-icons">info</i>
-                    </th>
-                {% endif %}
-            </tr>
-            </thead>
-            <tbody>
-            {% for product in products %}
+        <div class="table-container">
+
+            <table>
+                <thead>
                 <tr>
-                    <td>
-                        {{ product.model }}
-                    </td>
-                    {% for refDetails in product.refDetails if refDetails.constantKey == 'category' or refDetails.constantKey == 'type'  or refDetails.constantKey == 'designation'%}
-                        <td>
-                            {{ refDetails.name }}
-                        </td>
-                    {% endfor %}
-                    <td>
-                        {{ product.reference }}
-                    </td>
-                    <td>
-                        <a href="{{ path('productArrival', {'id' : product.id }) }}"><i class="material-icons">add</i></a>
-                    </td>
+                    <th>
+                        Model
+                    </th>
+                    <th>
+                        Categorie
+                    </th>
+                    <th>
+                        Designation
+                    </th>
+                    <th>
+                        Type
+                    </th>
+                    <th>
+                        Référence
+                    </th>
+                    <th>
+                        Stocker
+                    </th>
                     {% if app.user.role != 'WAREHOUSEMAN' and app.user.role != 'DELIVERYMAN' %}
-                        <td>
-                            <a href="{{ path('productInfo', {'id' : product.id }) }}"><i class="material-icons">info</i></a>
-                        </td>
+                        <th>
+                            <i class="material-icons">info</i>
+                        </th>
                     {% endif %}
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>
+                            {{ product.model }}
+                        </td>
+                        {% for refDetails in product.refDetails if refDetails.constantKey == 'category' or refDetails.constantKey == 'type'  or refDetails.constantKey == 'designation'%}
+                            <td>
+                                {{ refDetails.name }}
+                            </td>
+                        {% endfor %}
+                        <td>
+                            {{ product.reference }}
+                        </td>
+                        <td>
+                            <a href="{{ path('productArrival', {'id' : product.id }) }}"><i class="material-icons">add</i></a>
+                        </td>
+                        {% if app.user.role != 'WAREHOUSEMAN' and app.user.role != 'DELIVERYMAN' %}
+                            <td>
+                                <a href="{{ path('productInfo', {'id' : product.id }) }}"><i class="material-icons">info</i></a>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
 
-        {% if  app.user.role == 'ADMIN' or app.user.role == 'SUPPLY' %}
-            <div class="create-entity-large">
-                <a href="{{ path('createProduct') }}" class="btn red"><i class="material-icons">add</i></a>
-            </div>
-        {% endif %}
+            {% if  app.user.role == 'ADMIN' or app.user.role == 'SUPPLY' %}
+                <div class="create-entity-large">
+                    <a href="{{ path('createProduct') }}" class="btn red"><i class="material-icons">add</i></a>
+                </div>
+            {% endif %}
+
+        </div>
+
 
     {% endblock %}
 
