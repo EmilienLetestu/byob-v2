@@ -11,18 +11,37 @@ namespace App\Action;
 
 use App\Entity\Product;
 use App\Responder\DashboardResponder;
+use App\Services\UserDashboard;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class DashboardAction
 
 {
-    private $doctrine;
+    /**
+     * @var UserDashboard
+     */
+    private $userDashBoard;
 
-    public function __construct(EntityManagerInterface $doctrine)
+    /**
+     * @var TokenStorageInterface
+     */
+    private $tokenStorage;
+
+    /**
+     * DashboardAction constructor.
+     * @param UserDashboard $userDashboard
+     * @param TokenStorageInterface $tokenStorage
+     */
+    public function __construct(
+        UserDashboard          $userDashboard,
+        TokenStorageInterface  $tokenStorage
+    )
     {
-        $this->doctrine = $doctrine;
+        $this->userDashBoard = $userDashboard;
+        $this->tokenStorage  = $tokenStorage;
     }
 
     /**
@@ -36,11 +55,11 @@ class DashboardAction
      */
     public function __invoke(DashboardResponder $responder): Response
     {
-
-       return $responder(
-           $this->doctrine
-           ->getRepository(Product::class)
-           ->findFirstProduct()
+       return
+           $responder(
+               $this->userDashBoard->getUserDashboard(
+                   $this->tokenStorage->getToken()->getUser()->getRole()
+           )
        );
     }
 }
