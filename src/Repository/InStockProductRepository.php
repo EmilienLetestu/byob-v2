@@ -92,4 +92,18 @@ class InStockProductRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
+
+    /**
+     * @return array
+     */
+    public function findAllWithAlert(): array
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('inStock')
+            ->select('COUNT(inStock.id)')
+            ->where('inStock.alertLevel >= inStock.level')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

@@ -88,4 +88,18 @@ class PendingValidationStockRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
+
+    /**
+     * @return array
+     */
+    public function findAllArrival(): array
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('pe')
+            ->select('COUNT(pe.id)')
+            ->where('pe.processed = 0')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }
