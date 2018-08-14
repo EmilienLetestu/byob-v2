@@ -90,7 +90,7 @@ class CreateRefDetailAction
                ->add('success', 'Ajouté avec succès');
 
            return new RedirectResponse(
-               $this->urlGenerator->generate('dashboard')
+               $this->urlGenerator->generate('settings')
            );
        }
 
