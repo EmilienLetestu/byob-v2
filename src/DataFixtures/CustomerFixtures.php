@@ -34,6 +34,7 @@ class CustomerFixtures extends Fixture implements DependentFixtureInterface
            $this->getReference(UserFixtures::ACCOUNTANT_REFERENCE)
        );
        $customer->setCompany('La frite a Nono');
+       $customer->setAddress('za de creully 14480 creully');
 
        $manager->persist($customer);
        $manager->flush();

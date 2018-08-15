@@ -37,23 +37,23 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $this->getReference(UserFixtures::SUPPLY_REFERENCE)
         );
 
-        $product->addRefDetail(
+        $product->setFamily(
             $this->getReference(RefDetailFixtures::FAMILY_DETAIL_REFERENCE)
         );
 
-        $product->addRefDetail(
+        $product->setType(
             $this->getReference(RefDetailFixtures::TYPE_DETAIL_REFERENCE)
         );
 
-        $product->addRefDetail(
+        $product->setMake(
             $this->getReference(RefDetailFixtures::COCA_COLA_COMPANY_REFERENCE)
         );
 
-        $product->addRefDetail(
+        $product->setCategory(
             $this->getReference(RefDetailFixtures::SODA_REFERENCE)
         );
 
-        $product->addRefDetail(
+        $product->setDesignation(
             $this->getReference(RefDetailFixtures::COCA_REFERENCE)
         );
 
