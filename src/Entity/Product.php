@@ -52,6 +52,31 @@ class Product
     private $referencedBy;
 
     /**
+     * @var
+     */
+    private $family;
+
+    /**
+     * @var
+     */
+    private $category;
+
+    /**
+     * @var
+     */
+    private $type;
+
+    /**
+     * @var
+     */
+    private $make;
+
+    /**
+     * @var
+     */
+    private $designation;
+
+    /**
      * @var ArrayCollection
      */
     private $pendingValidations;
@@ -65,11 +90,6 @@ class Product
      * @var ArrayCollection
      */
     private $inOrderProducts;
-
-    /**
-     * @var ArrayCollection
-     */
-    private $refDetails;
 
 
     /**
@@ -114,6 +134,45 @@ class Product
         $this->referencedBy = $user;
     }
 
+    /**
+     * @param mixed $family
+     */
+    public function setFamily(RefDetail $family): void
+    {
+        $this->family = $family;
+    }
+
+    /**
+     * @param mixed $category
+     */
+    public function setCategory(RefDetail $category): void
+    {
+        $this->category = $category;
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function setType(RefDetail $type): void
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * @param mixed $make
+     */
+    public function setMake(RefDetail $make): void
+    {
+        $this->make = $make;
+    }
+
+    /**
+     * @param mixed $designation
+     */
+    public function setDesignation(RefDetail $designation): void
+    {
+        $this->designation = $designation;
+    }
 
     /**
      * @return int
@@ -164,6 +223,46 @@ class Product
         return $this->referencedBy;
     }
 
+    /**
+     * @return RefDetail
+     */
+    public function getFamily(): RefDetail
+    {
+        return $this->family;
+    }
+
+    /**
+     * @return RefDetail
+     */
+    public function getType(): RefDetail
+    {
+        return $this->type;
+    }
+
+    /**
+     * @return RefDetail
+     */
+    public function getCategory(): RefDetail
+    {
+        return $this->category;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMake(): RefDetail
+    {
+        return $this->make;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDesignation(): RefDetail
+    {
+        return $this->designation;
+    }
+
 
     /*----------------------- Array Collections -----------------------*/
 
@@ -174,7 +273,6 @@ class Product
     {
         $this->inOrderProducts    = new ArrayCollection();
         $this->pendingValidations = new ArrayCollection();
-        $this->refDetails         = new ArrayCollection();
         $this->inStockProducts    = new ArrayCollection();
     }
 
@@ -197,13 +295,6 @@ class Product
         $this->pendingValidations[] = $pendingValidationStock;
     }
 
-    /**
-     * @param RefDetail $refDetail
-     */
-    public function addRefDetail(RefDetail $refDetail): void
-    {
-        $this->refDetails[] = $refDetail;
-    }
 
     /**
      * @param InStockProduct $inStockProduct
@@ -231,14 +322,6 @@ class Product
         $this->pendingValidations->removeElement($pendingValidationStock);
     }
 
-    /**
-     * @param RefDetail $refDetail
-     */
-    public function removeRefDetail(RefDetail $refDetail): void
-    {
-        $this->refDetails->removeElement($refDetail);
-    }
-
     public function removeInStockProduct(InStockProduct $inStockProduct): void
     {
         $this->inStockProducts->removeElement($inStockProduct);
@@ -255,12 +338,6 @@ class Product
         return $this->pendingValidations;
     }
 
-
-    public function getRefDetails()
-    {
-
-        return $this->refDetails;
-    }
 
     public function getInStockProducts()
     {

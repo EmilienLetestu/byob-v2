@@ -44,15 +44,65 @@
                     />
         </many-to-one>
 
-        <many-to-many
-                field="refDetails"
-                target-entity="App\Entity\RefDetail">
-            <order-by>
-                <order-by-field name="constantKey" direction="ASC"/>
-            </order-by>
-        </many-to-many>
+        <many-to-one
+                field="family"
+                target-entity="App\Entity\RefDetail"
+                inversed-by="families">
 
+            <join-column
+                    nullable="false"
+                    name="family"
+                    referenced-column-name="id"
+            />
+        </many-to-one>
 
+        <many-to-one
+                field="category"
+                target-entity="App\Entity\RefDetail"
+                inversed-by="categories">
+
+            <join-column
+                    nullable="false"
+                    name="category"
+                    referenced-column-name="id"
+            />
+        </many-to-one>
+
+        <many-to-one
+                field="type"
+                target-entity="App\Entity\RefDetail"
+                inversed-by="types">
+
+            <join-column
+                    nullable="false"
+                    name="type"
+                    referenced-column-name="id"
+            />
+        </many-to-one>
+
+        <many-to-one
+                field="designation"
+                target-entity="App\Entity\RefDetail"
+                inversed-by="designations">
+
+            <join-column
+                    nullable="false"
+                    name="designation"
+                    referenced-column-name="id"
+            />
+        </many-to-one>
+
+        <many-to-one
+                field="make"
+                target-entity="App\Entity\RefDetail"
+                inversed-by="makes">
+
+            <join-column
+                    nullable="false"
+                    name="make"
+                    referenced-column-name="id"
+            />
+        </many-to-one>
 
 
     </entity>

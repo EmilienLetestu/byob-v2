@@ -48,6 +48,31 @@ class RefDetail
      */
     private $refMaster;
 
+    /**
+     * @var ArrayCollection
+     */
+    private $categories;
+
+    /**
+     * @var ArrayCollection
+     */
+    private $families;
+
+    /**
+     * @var ArrayCollection
+     */
+    private $types;
+
+    /**
+     * @var ArrayCollection
+     */
+    private $makes;
+
+    /**
+     * @var ArrayCollection
+     */
+    private $designations;
+
     
     /**
      * @param string $name
@@ -153,6 +178,20 @@ class RefDetail
     public function getConstantKey(): string
     {
         return $this->constantKey;
+    }
+
+    /*----------------------- Array Collections -----------------------*/
+
+    /**
+     * Product constructor.
+     */
+    public function __construct()
+    {
+        $this->categories    = new ArrayCollection();
+        $this->families      = new ArrayCollection();
+        $this->types         = new ArrayCollection();
+        $this->designations  = new ArrayCollection();
+        $this->makes         = new ArrayCollection();
     }
 
 

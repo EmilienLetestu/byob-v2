@@ -33,5 +33,35 @@
             />
         </many-to-one>
 
+        <one-to-many
+                field="families"
+                target-entity="App\Entity\Product"
+                mapped-by="family"
+        />
+
+        <one-to-many
+                field="categories"
+                target-entity="App\Entity\Product"
+                mapped-by="category"
+        />
+
+        <one-to-many
+                field="types"
+                target-entity="App\Entity\Product"
+                mapped-by="type"
+        />
+
+        <one-to-many
+                field="makes"
+                target-entity="App\Entity\Product"
+                mapped-by="make"
+        />
+
+        <one-to-many
+                field="designations"
+                target-entity="App\Entity\Product"
+                mapped-by="designation"
+        />
+
     </entity>
 </doctrine-mapping>
