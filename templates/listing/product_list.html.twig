@@ -13,13 +13,16 @@
                         Model
                     </th>
                     <th>
+                        Type
+                    </th>
+                    <th>
                         Categorie
                     </th>
                     <th>
                         Designation
                     </th>
                     <th>
-                        Type
+                        Fabricant
                     </th>
                     <th>
                         Référence
@@ -40,11 +43,18 @@
                         <td>
                             {{ product.model }}
                         </td>
-                        {% for refDetails in product.refDetails if refDetails.constantKey == 'category' or refDetails.constantKey == 'type'  or refDetails.constantKey == 'designation'%}
-                            <td>
-                                {{ refDetails.name }}
-                            </td>
-                        {% endfor %}
+                        <td>
+                            {{ product.type.name }}
+                        </td>
+                        <td>
+                            {{ product.category.name }}
+                        </td>
+                        <td>
+                            {{ product.designation.name }}
+                        </td>
+                        <td>
+                            {{ product.make.name }}
+                        </td>
                         <td>
                             {{ product.reference }}
                         </td>
