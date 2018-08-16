@@ -1,0 +1,12 @@
+{% for key,info in data %}
+    <ul>
+        <li>
+            {{ key }}  {{ info }}
+        </li>
+    </ul>
+{% endfor %}
+
+<div class="user-dashboard-alias">
+    <a class="btn" href="{{ path('orderManagement') }}">gérer les commandes</a>
+    <a class="btn" href="#">gérer les arrivages</a>
+</div>

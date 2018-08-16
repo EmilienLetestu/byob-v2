@@ -2,13 +2,9 @@
 
     {% block body %}
         <h1>{{ app.request.get('_route')|title }}</h1>
+
         <div class="container">
-          {% for key,info in data %}
-              <ul>
-                  <li>
-                    {{ key }}  {{ info|length }}
-                  </li>
-              </ul>
-            {% endfor %}
+          {% include 'userDashboard/' ~ app.user.role|lower ~ '_dashboard.html.twig'  %}
         </div>
+
     {% endblock %}
