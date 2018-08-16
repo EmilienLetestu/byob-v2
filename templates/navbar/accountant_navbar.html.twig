@@ -1,4 +1,4 @@
 
-<li><a href="#"><i class="material-icons">local_bar</i>Gestion des arrivages</a></li>
+<li><a href="{{ path('arrival', { 'filter1': 'mes-entrepots','filter2' : app.user.id }) }}"><i class="material-icons">local_bar</i>Gestion des arrivages</a></li>
 <li><a href="{{ path('orderManagement') }}"><i class="material-icons">attach_money</i>Gestion des commandes</a></li>
 <li><a href="{{ path('logout')}}" class="logout"><i class="material-icons">input</i>Se déconnecter</a></li>

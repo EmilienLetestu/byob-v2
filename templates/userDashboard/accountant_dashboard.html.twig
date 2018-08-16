@@ -8,5 +8,5 @@
 
 <div class="user-dashboard-alias">
     <a class="btn" href="{{ path('orderManagement') }}">gérer les commandes</a>
-    <a class="btn" href="#">gérer les arrivages</a>
+    <a class="btn" href="{{ path('arrival', { 'filter1': 'mes-entrepots','filter2' : app.user.id }) }}">gérer les arrivages</a>
 </div>

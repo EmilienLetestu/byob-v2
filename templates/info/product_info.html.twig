@@ -20,7 +20,7 @@
                         {% endfor %}
                         {{ unvalidated|length }}
                         {% if unvalidated|length != 0 %}
-                            <a href="{{ path('arrival', {'model' : product.model|toUrl, 'id' : product.id }) }}" class="secondary-content"><i class="material-icons">send</i></a></div>
+                            <a href="{{ path('arrival', {'filter1' : 'produit', 'filter2' : product.id }) }}" class="secondary-content"><i class="material-icons">send</i></a></div>
                         {% endif %}
                 </li>
                 <li class="collection-item"><div>Nombre de commandes : {{ product.inOrderProducts|length }}<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
