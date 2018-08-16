@@ -9,8 +9,10 @@
 namespace App\Handler;
 
 
+use App\Entity\InOrderProduct;
 use App\Entity\Orders;
 use App\Handler\Interfaces\EntityFormHandlerInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -24,9 +26,9 @@ class CreateOrderHandler implements EntityFormHandlerInterface
     private $tokenStorage;
 
     /**
-     * @var SessionInterface
+     * @var
      */
-    private $session;
+    private $doctrine;
 
     /**
      * @var Orders
@@ -36,15 +38,15 @@ class CreateOrderHandler implements EntityFormHandlerInterface
     /**
      * CreateOrderHandler constructor.
      * @param TokenStorageInterface $tokenStorage
-     * @param SessionInterface $session
+     * @param EntityManagerInterface $doctrine
      */
     public function __construct(
-        TokenStorageInterface $tokenStorage,
-        SessionInterface      $session
+        TokenStorageInterface  $tokenStorage,
+        EntityManagerInterface $doctrine
     )
     {
         $this->tokenStorage = $tokenStorage;
-        $this->session      = $session;
+        $this->doctrine     = $doctrine;
         $this->order        = new Orders();
     }
 
@@ -67,7 +69,26 @@ class CreateOrderHandler implements EntityFormHandlerInterface
                 $this->tokenStorage->getToken()->getUser()
             );
 
-            $this->session->set('order', $this->order);
+            $this->doctrine->persist($this->order);
+
+            foreach($form->get('inOrderProducts') as $dto)
+            {
+                $inOrder = new InOrderProduct();
+
+                $inOrder->setProduct(
+                    $dto->get('product')->getData()->getProduct()
+                );
+
+                $inOrder->setQuantity(
+                    $dto->get('quantity')->getData()
+                );
+
+                $inOrder->setOrder($this->order);
+
+                $this->doctrine->persist($inOrder);
+            }
+
+            $this->doctrine->flush();
 
             return true;
         }

@@ -18,12 +18,19 @@ class OrderDTO
      */
     public $customer;
 
+    public $inOrderProducts;
+
     /**
      * OrderDTO constructor.
      * @param Customer $customer
+     * @param array $inOrderProducts
      */
-    public function __construct(Customer $customer)
+    public function __construct(
+        Customer $customer,
+        array    $inOrderProducts
+    )
     {
-        $this->customer = $customer;
+        $this->customer        = $customer;
+        $this->inOrderProducts = $inOrderProducts;
     }
 }

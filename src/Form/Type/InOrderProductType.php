@@ -39,6 +39,7 @@ class InOrderProductType extends AbstractType
                         ->distinct('product')
                     ;
                 },
+                'attr'          => ['class' => 'browser-default'],
                 'choice_label'  => 'product.model'
             ])
             ->add('quantity', IntegerType::class,[

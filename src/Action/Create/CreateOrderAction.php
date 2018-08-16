@@ -17,6 +17,7 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -38,20 +39,28 @@ class CreateOrderAction
     private $urlGenerator;
 
     /**
+     * @var SessionInterface
+     */
+    private $session;
+
+    /**
      * CreateOrderAction constructor.
      * @param FormFactoryInterface $formFactory
      * @param CreateOrderHandler $handler
      * @param UrlGeneratorInterface $urlGenerator
+     * @param SessionInterface $session
      */
     public function __construct(
         FormFactoryInterface  $formFactory,
         CreateOrderHandler    $handler,
-        UrlGeneratorInterface $urlGenerator
+        UrlGeneratorInterface $urlGenerator,
+        SessionInterface      $session
     )
     {
-        $this->formFactory         = $formFactory;
+        $this->formFactory  = $formFactory;
         $this->handler      = $handler;
         $this->urlGenerator = $urlGenerator;
+        $this->session      = $session;
     }
 
     /**
@@ -73,8 +82,12 @@ class CreateOrderAction
 
         if($this->handler->handle($form))
         {
+            $this->session->getFlashBag()
+                ->add('success', 'Commande soumisse pour validation avec succès')
+            ;
+
             return new RedirectResponse(
-                $this->urlGenerator->generate('addProductToOrder')
+                $this->urlGenerator->generate('orderList')
             );
         }
 

@@ -14,6 +14,7 @@ use App\Entity\Customer;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -31,7 +32,17 @@ class CreateOrderType extends AbstractType
                'class' => Customer::class,
                'choice_label' => 'company'
            ])
-       ;
+
+           ->add('inOrderProducts', CollectionType::class,[
+               'entry_type'   => InOrderProductType::class,
+               'allow_add'    => true,
+               'allow_delete' => true,
+               'by_reference' => false,
+               'mapped'       => false,
+               'required'     => false,
+               'prototype'    => true,
+               'label'        => ' '
+           ]);
     }
 
     /**
@@ -44,7 +55,8 @@ class CreateOrderType extends AbstractType
             'validation_groups' => 'order',
             'empty_data'        => function(FormInterface $form){
                 return new OrderDTO(
-                    $form->get('customer')->getData()
+                    $form->get('customer')->getData(),
+                    $form->get('inOrderProducts')->getData()
                 );
             }
         ]);
