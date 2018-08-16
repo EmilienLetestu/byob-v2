@@ -8,11 +8,9 @@
 
 namespace App\Action;
 
-
-use App\Entity\Product;
 use App\Responder\DashboardResponder;
 use App\Services\UserDashboard;
-use Doctrine\ORM\EntityManagerInterface;
+
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -29,6 +27,8 @@ class DashboardAction
      * @var TokenStorageInterface
      */
     private $tokenStorage;
+
+
 
     /**
      * DashboardAction constructor.

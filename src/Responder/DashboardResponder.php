@@ -39,7 +39,7 @@ class DashboardResponder
     {
         return new Response(
             $this->twig->render('dashboard.html.twig',[
-                'data' => $data
+                'data'     => $data
             ])
         );
     }
