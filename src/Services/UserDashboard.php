@@ -141,13 +141,11 @@ class UserDashboard
     {
         return [
             'arrivages à valider' => $this->doctrine
-                ->getRepository(PendingValidationStock::class)->countAllArrivalInUserWarehouse($id),
-            'commandes payés'     => $this->doctrine
-                ->getRepository(Orders::class)->countPayedOrder(),
+                ->getRepository(PendingValidationStock::class)->countArrivalInUserWarehouse($id),
             'commandes non payés' => $this->doctrine
-                ->getRepository(Orders::class)->countUnPayedOrder(),
+                ->getRepository(Orders::class)->countOrderWithStatus('en attente de paiement'),
             'comandes à valider'=> $this->doctrine
-                ->getRepository(Orders::class)->countUnvalidatedOrder(),
+                ->getRepository(Orders::class)->countOrderWithStatus('en attente de validation'),
         ];
     }
 
