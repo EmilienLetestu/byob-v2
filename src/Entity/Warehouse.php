@@ -45,9 +45,14 @@ class Warehouse
     private $inStockProducts;
 
     /**
-     * @var
+     * @var ArrayCollection
      */
     private $userInWarehouses;
+
+    /**
+     * @var ArrayCollection
+     */
+    private $inOrderProducts;
 
 
 
@@ -101,6 +106,7 @@ class Warehouse
         $this->pendingValidations = new ArrayCollection();
         $this->inStockProducts    = new ArrayCollection();
         $this->userInWarehouses   = new ArrayCollection();
+        $this->inOrderProducts    = new ArrayCollection();
     }
 
     /**
@@ -130,6 +136,14 @@ class Warehouse
     }
 
     /**
+     * @param InOrderProduct $inOrderProduct
+     */
+    public function addOrder(InOrderProduct $inOrderProduct)
+    {
+        $this->inOrderProducts[] = $inOrderProduct;
+    }
+
+    /**
      * @param PendingValidationStock $pendingValidationStock
      */
     public function  removePendingValidation(
@@ -155,6 +169,13 @@ class Warehouse
         $this->userInWarehouses->removeElement($userInWarehouse);
     }
 
+    /**
+     * @param InOrderProduct $inOrderProduct
+     */
+    public function removeOrder(InOrderProduct $inOrderProduct)
+    {
+        $this->inOrderProducts->removeElement($inOrderProduct);
+    }
 
     public function getPendingValidations()
     {
@@ -171,6 +192,11 @@ class Warehouse
     public function getUserInWarehouses()
     {
         return $this->userInWarehouses;
+    }
+
+    public function getInOrderProducts()
+    {
+        return $this->inOrderProducts;
     }
 
 }

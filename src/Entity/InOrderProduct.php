@@ -32,6 +32,11 @@ class InOrderProduct
      */
     private $order;
 
+    /**
+     * @var
+     */
+    private $warehouse;
+
 
     /**
      * @param int $quantity
@@ -55,6 +60,14 @@ class InOrderProduct
     public function setOrder(Orders $order): void
     {
         $this->order = $order;
+    }
+
+    /**
+     * @param Warehouse|null $warehouse
+     */
+    public function setWarehouse(?Warehouse $warehouse): void
+    {
+        $this->warehouse = $warehouse;
     }
 
     /**
@@ -87,5 +100,13 @@ class InOrderProduct
     public function getOrder(): Orders
     {
         return $this->order;
+    }
+
+    /**
+     * @return Warehouse|null
+     */
+    public function getWarehouse():? Warehouse
+    {
+        return $this->warehouse;
     }
 }

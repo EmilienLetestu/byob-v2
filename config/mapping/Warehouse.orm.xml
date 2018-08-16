@@ -30,5 +30,11 @@
                 mapped-by="warehouse"
         />
 
+        <one-to-many
+                field="inOrderProducts"
+                target-entity="App\Entity\InOrderProduct"
+                mapped-by="warehouse"
+        />
+
     </entity>
 </doctrine-mapping>
