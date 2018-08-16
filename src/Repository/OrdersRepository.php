@@ -86,4 +86,19 @@ class OrdersRepository extends ServiceEntityRepository
             ->getSingleScalarResult()
          ;
     }
+
+    /**
+     * @return array
+     */
+    public function findOrderForAccountant(): array
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('o')
+            ->where("o.status = 'en attente de paiement' ")
+            ->orWhere("o.status = 'en attente de validation' ")
+            ->getQuery()
+            ->getResult()
+        ;
+
+    }
 }
