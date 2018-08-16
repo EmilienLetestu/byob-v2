@@ -53,7 +53,7 @@ class ShowAllOrderAction
 
         return
             $responder(
-               $request->attributes->get('_route') === 'cmmande' ?
+               $request->attributes->get('_route') === 'commande' ?
                    $repo->findAllOrder() : $repo->findOrderForAccountant()
             )
         ;
