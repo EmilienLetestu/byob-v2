@@ -53,4 +53,20 @@ class CustomerRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
+
+
+    /**
+     * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function countCustomer(): int
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('cu')
+                ->select('COUNT(cu)')
+                ->getQuery()
+                ->getSingleScalarResult()
+            ;
+    }
+
 }

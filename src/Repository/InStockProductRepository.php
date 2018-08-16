@@ -105,4 +105,19 @@ class InStockProductRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    /**
+     * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function countWithAlert(): int
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('inStock')
+            ->select('COUNT(inStock)')
+            ->where('inStock.alertLevel >= inStock.level')
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
 }

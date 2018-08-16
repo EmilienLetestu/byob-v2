@@ -37,4 +37,18 @@ class UserRepository extends ServiceEntityRepository
                 ->getResult()
             ;
     }
+
+    /**
+     * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function countUser(): int
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('u')
+            ->select('COUNT(u)')
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
 }

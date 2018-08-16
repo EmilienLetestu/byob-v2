@@ -37,4 +37,18 @@ class WarehouseRepository extends ServiceEntityRepository
                 ->getResult()
             ;
     }
+
+    /**
+     * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function countWarehouse(): int
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('w')
+            ->select('COUNT(w)')
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
 }

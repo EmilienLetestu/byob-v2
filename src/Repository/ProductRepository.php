@@ -69,4 +69,18 @@ class ProductRepository extends ServiceEntityRepository
         ;
     }
 
+    /**
+     * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function countProduct(): int
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('pr')
+            ->select('COUNT(pr)')
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
+
 }

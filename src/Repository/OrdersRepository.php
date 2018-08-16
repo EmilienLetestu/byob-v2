@@ -62,11 +62,28 @@ class OrdersRepository extends ServiceEntityRepository
     {
         return
             $queryBuilder = $this->createQueryBuilder('o')
-                ->where('o.orderedBy = :id')
-                ->setParameter('id', $id)
-                ->orderBy('o.orderedOn', 'DESC')
-                ->getQuery()
-                ->getResult()
+            ->where('o.orderedBy = :id')
+            ->setParameter('id', $id)
+            ->orderBy('o.orderedOn', 'DESC')
+            ->getQuery()
+            ->getResult()
         ;
+    }
+
+    /**
+     * @param string $status
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function countOrderWithStatus(string $status):int
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('o')
+            ->select('COUNT(o)')
+            ->where('o.status = :status')
+            ->setParameter('status', strtolower($status))
+            ->getQuery()
+            ->getSingleScalarResult()
+         ;
     }
 }

@@ -118,22 +118,41 @@ class PendingValidationStockRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param int $id
-     * @return array
+     * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findAllArrivalInUserWarehouse(int $id):array
+    public function countArrival(): int
     {
         return
             $queryBuilder = $this->createQueryBuilder('pe')
-            ->select('pe.id')
-            ->leftjoin('App\Entity\UserInWarehouse',
+            ->select('COUNT(pe)')
+            ->where('pe.processed = 0')
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+
+    }
+
+    /**
+     * for a given user count all arrivals validations requests asked inside warehouses he has access to
+     *
+     * @param int $id
+     * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function countArrivalInUserWarehouse(int $id): int
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('pe')
+            ->select('COUNT(pe)')
+            ->innerJoin('App\Entity\UserInWarehouse',
                 'userInWarehouse',
                 \Doctrine\ORM\Query\Expr\Join::WITH,
-                'pe.warehouse = userInWarehouse.id')
-            ->where('userInWarehouse.user = :id')
+                'pe.warehouse = userInWarehouse.warehouse')
+            ->andwhere('userInWarehouse.user = :id')
             ->setParameter('id', $id)
             ->getQuery()
-            ->getResult()
+            ->getSingleScalarResult()
         ;
     }
 }
