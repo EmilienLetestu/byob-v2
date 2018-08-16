@@ -28,8 +28,15 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
  */
 class ProductArrivalType extends AbstractType
 {
+    /**
+     * @var TokenStorageInterface
+     */
     private $token;
 
+    /**
+     * ProductArrivalType constructor.
+     * @param TokenStorageInterface $token
+     */
     public function __construct(TokenStorageInterface $token)
     {
         $this->token = $token;

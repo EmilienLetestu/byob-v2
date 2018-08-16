@@ -34,6 +34,7 @@ class ShowProductAction
     /**
      * ShowProductAction constructor.
      * @param EntityManagerInterface $doctrine
+     * @param StockLevelHelper $stockLevel
      */
     public function __construct(
         EntityManagerInterface $doctrine,
