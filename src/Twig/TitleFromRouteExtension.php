@@ -40,7 +40,6 @@ class TitleFromRouteExtension extends AbstractExtension
             'productArrival'     => 'Arrivage de ',
             'userList'           => 'Liste des utilisateurs',
             'warehouseList'      => 'Liste des entrepôts',
-            'arrivalInWarehouse' => 'Produit en attente de validation',
             'arrival'            => 'En attente de validation',
             'customerList'       => 'Liste des clients',
             'createOrder'        => 'Démarrer la commande',

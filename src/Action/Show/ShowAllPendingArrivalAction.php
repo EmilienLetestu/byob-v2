@@ -36,17 +36,10 @@ class ShowAllPendingArrivalAction
 
     /**
      * @Route(
-     *     "/produits/en-attente-de-validation/{warehouseName}/{id}",
-     *     name="arrivalInWarehouse",
-     *     requirements={"warehouseName" = "[a-z0-9-]+"},
-     *     requirements={"id" = "\d+"}
-     * )
-     *
-     * @Route(
-     *     "/{model}/en-attente-de-validation/{id}",
+     *     "/arrivage/en-attente-de-validation/{filter1}/{filter2}",
      *     name="arrival",
-     *     requirements={"model" = "[a-z0-9-]+"},
-     *     requirements={"id" = "\d+"}
+     *     requirements={"filter1" = "[a-z0-9-]+"},
+     *     requirements={"filter2" = "\d+"}
      * )
      *
      * @param Request $request
@@ -61,11 +54,15 @@ class ShowAllPendingArrivalAction
         $repository = $this->doctrine
             ->getRepository(PendingValidationStock::class)
         ;
-        
+
         return $responder(
-            $request->attributes->get('_route') === 'arrival' ?
-                $repository->findAllPendingWithProduct($request->get('id')) :
-                $repository->findAllPendingFromWarehouse($request->get('id'))
+            $request->get('filter1') === 'produit' ?
+                $repository->findAllPendingWithProduct($request->get('filter2')) :
+                (
+                    $request->get('filter1') === 'mes-entrepots' ?
+                        $repository->findArrivalInUserWarehouse($request->get('filter2')) :
+                        $repository->findAllPendingFromWarehouse($request->get('filter2'))
+                )
         );
 
     }

@@ -118,6 +118,28 @@ class PendingValidationStockRepository extends ServiceEntityRepository
     }
 
     /**
+     * for a given user find all arrivals validations requests asked inside warehouses he has access to
+     *
+     * @param int $id
+     * @return array
+     */
+    public function findArrivalInUserWarehouse(int $id): array
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('pe')
+                ->select('pe')
+                ->innerJoin('App\Entity\UserInWarehouse',
+                    'userInWarehouse',
+                    \Doctrine\ORM\Query\Expr\Join::WITH,
+                    'pe.warehouse = userInWarehouse.warehouse')
+                ->andwhere('userInWarehouse.user = :id')
+                ->setParameter('id', $id)
+                ->getQuery()
+                ->getResult()
+            ;
+    }
+
+    /**
      * @return int
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
