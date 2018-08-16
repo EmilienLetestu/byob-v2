@@ -41,7 +41,7 @@ class AddContactAction
     /**
      * @var
      */
-    private $urlGenrator;
+    private $urlGenerator;
 
     /**
      * AddContactAction constructor.
@@ -60,7 +60,7 @@ class AddContactAction
         $this->formFactory  = $formFactory;
         $this->handler      = $handler;
         $this->session      = $session;
-        $this->urlGenrator  = $urlGenerator;
+        $this->urlGenerator = $urlGenerator;
     }
 
     /**
@@ -90,7 +90,7 @@ class AddContactAction
             ;
 
             return new RedirectResponse(
-                $this->urlGenrator->generate('customerInfo',
+                $this->urlGenerator->generate('customerInfo',
                     ['id' => $request->get('id')]
                 )
             );
