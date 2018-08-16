@@ -65,11 +65,6 @@ class SaveInSessionOrder
             $inOrderProduct->setOrder($order);
 
             $this->doctrine->persist($inOrderProduct);
-
-            $this->updateStock(
-                $inOrderProduct->getProduct()->getId(),
-                $inOrderProduct->getQuantity()
-            );
         }
 
         $this->doctrine->flush();
