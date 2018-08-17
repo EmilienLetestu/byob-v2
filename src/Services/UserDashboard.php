@@ -112,8 +112,10 @@ class UserDashboard
     {
         // todo => fetch all orders to prepare
         return [
-            'mes arrivages'       =>
-                $this->doctrine->getRepository(PendingValidationStock::class)->findAllArrivalWithUser($id)
+            'mes arrivages traités' =>
+                $this->doctrine->getRepository(PendingValidationStock::class)->countUserArrivalWithStatus($id, true),
+            'mes arrivages en attente de validation' =>
+                $this->doctrine->getRepository(PendingValidationStock::class)->countUserArrivalWithStatus($id, false)
         ];
     }
 

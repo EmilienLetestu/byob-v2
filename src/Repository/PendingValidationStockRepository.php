@@ -110,11 +110,11 @@ class PendingValidationStockRepository extends ServiceEntityRepository
     {
         return
             $queryBuilder = $this->createQueryBuilder('pe')
-                ->where('pe.askedBy = :id')
-                ->setParameter('id', $id)
-                ->getQuery()
-                ->getResult()
-            ;
+            ->where('pe.askedBy = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult()
+         ;
     }
 
     /**
@@ -173,6 +173,26 @@ class PendingValidationStockRepository extends ServiceEntityRepository
                 'pe.warehouse = userInWarehouse.warehouse')
             ->andwhere('userInWarehouse.user = :id')
             ->setParameter('id', $id)
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
+
+    /**
+     * @param int $id
+     * @param bool $status
+     * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function countUserArrivalWithStatus(int $id, bool $status): int
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('pe')
+            ->select('COUNT(pe)')
+            ->where('pe.askedBy = :id')
+            ->andWhere('pe.processed = :status')
+            ->setParameter('id', $id)
+            ->setParameter('status', $status)
             ->getQuery()
             ->getSingleScalarResult()
         ;
