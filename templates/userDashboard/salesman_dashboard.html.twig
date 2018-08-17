@@ -2,8 +2,14 @@
 
     <ul>
         <li>
-            {{ key }}  {{ info|length }}
+            {{ key }}  {{ info }}
         </li>
     </ul>
 
 {% endfor %}
+
+<div class="user-dashboard-alias">
+    <a class="btn" href="{{ path('createOrder') }}">nouvel commande</a>
+    <a class="btn" href="{{ path('customerList') }}">mes clients</a>
+    <a class="btn" href="{{ path('orderList') }}">mes commandes</a>
+</div>

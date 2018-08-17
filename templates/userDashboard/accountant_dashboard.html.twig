@@ -7,6 +7,6 @@
 {% endfor %}
 
 <div class="user-dashboard-alias">
-    <a class="btn" href="{{ path('orderManagement') }}">gérer les commandes</a>
+    <a class="btn" href="{{ path('orderList') }}">gérer les commandes</a>
     <a class="btn" href="{{ path('arrivalToValidate', { 'filter1': 'mes-entrepots','filter2' : app.user.id }) }}">gérer les arrivages</a>
 </div>
