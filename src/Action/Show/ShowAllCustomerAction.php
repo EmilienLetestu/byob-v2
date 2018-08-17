@@ -15,6 +15,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * Class ShowAllCustomerAction
@@ -27,14 +28,24 @@ class ShowAllCustomerAction
      */
     private $doctrine;
 
+    /**
+     * @var TokenStorageInterface
+     */
+    private $token;
+
 
     /**
      * ShowAllCustomerAction constructor.
      * @param EntityManagerInterface $doctrine
+     * @param TokenStorageInterface $token
      */
-    public function __construct(EntityManagerInterface $doctrine)
+    public function __construct(
+        EntityManagerInterface $doctrine,
+        TokenStorageInterface  $token
+    )
     {
         $this->doctrine = $doctrine;
+        $this->token    = $token;
     }
 
     /**
@@ -48,11 +59,17 @@ class ShowAllCustomerAction
      */
     public function __invoke(ShowAllCustomerResponder $responder): Response
     {
+        $repo = $this->doctrine
+            ->getRepository(Customer::class)
+        ;
+
+        $user = $this->token->getToken()->getUser();
+
        return
            $responder(
-               $this->doctrine
-                   ->getRepository(Customer::class)
-                   ->findAllCustomer()
+               $user->getRole() === 'ADMIN' ?
+                   $repo->findAllCustomer() :
+                   $repo->findUserCustomer($user->getId())
            )
        ;
     }

@@ -17,6 +17,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use SYmfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class ShowAllOrderAction
 {
@@ -26,18 +27,27 @@ class ShowAllOrderAction
     private $doctrine;
 
     /**
+     * @var TokenStorageInterface
+     */
+    private $token;
+
+    /**
      * ShowAllOrderAction constructor.
      * @param EntityManagerInterface $doctrine
+     * @param TokenStorageInterface $token
      */
-    public function __construct(EntityManagerInterface $doctrine)
+    public function __construct(
+        EntityManagerInterface $doctrine,
+        TokenStorageInterface  $token
+    )
     {
-        $this->doctrine = $doctrine;
+        $this->doctrine  = $doctrine;
+        $this->token     = $token;
     }
 
 
     /**
      * @Route("/commande", name="orderList")
-     * @Route("/gerer-les-commandes", name="orderManagement")
      *
      * @param ShowAllOrderResponder $responder
      * @return \Symfony\Component\HttpFoundation\Response
@@ -51,10 +61,16 @@ class ShowAllOrderAction
             ->getRepository(Orders::class)
         ;
 
+        $user = $this->token->getToken()->getUser();
+
         return
             $responder(
-               $request->attributes->get('_route') === 'commande' ?
-                   $repo->findAllOrder() : $repo->findOrderForAccountant()
+                $user->getRole() === 'ADMIN' ? $repo->findAllOrder() :
+                      (
+                        $user->getRole() === 'ACCOUNTANT' ?
+                        $repo->findOrderForAccountant() :
+                            $repo->findAllOrderWithUser($user->getId())
+                      )
             )
         ;
     }
