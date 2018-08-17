@@ -80,7 +80,8 @@ class ProductArrivalType extends AbstractType
                     $form->get('quantity')->getData(),
                     $form->get('warehouse')->getData()->getWarehouse()
                 );
-           }
+           },
+           'route' => 'productArrival'
        ]);
     }
 }
