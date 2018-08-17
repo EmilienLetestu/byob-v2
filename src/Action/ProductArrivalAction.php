@@ -68,7 +68,7 @@ class ProductArrivalAction
     /**
      *  * * @Route(
      *     "/arrivage/produit/{id}",
-     *     name = "productArrival",
+     *     name = "productModelArrival",
      *     requirements={"id" = "\d+"}
      * )
      *
@@ -85,6 +85,7 @@ class ProductArrivalAction
             ->getRepository(Product::class)
             ->findProductWithId($request->get('id'))
         ;
+
 
         $form = $this->formFactory
             ->create(ProductArrivalType::class)

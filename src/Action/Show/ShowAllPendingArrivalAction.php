@@ -37,7 +37,7 @@ class ShowAllPendingArrivalAction
     /**
      * @Route(
      *     "/arrivage/en-attente-de-validation/{filter1}/{filter2}",
-     *     name="arrival",
+     *     name="arrivalToValidate",
      *     requirements={"filter1" = "[a-z0-9-]+"},
      *     requirements={"filter2" = "\d+"}
      * )
