@@ -59,7 +59,7 @@
                             {{ product.reference }}
                         </td>
                         <td>
-                            <a href="{{ path('productArrival', {'id' : product.id }) }}"><i class="material-icons">add</i></a>
+                            <a href="{{ path('productModelArrival', {'id' : product.id }) }}"><i class="material-icons">add</i></a>
                         </td>
                         {% if app.user.role != 'WAREHOUSEMAN' and app.user.role != 'DELIVERYMAN' %}
                             <td>

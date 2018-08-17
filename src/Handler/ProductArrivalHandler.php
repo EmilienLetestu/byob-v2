@@ -43,9 +43,9 @@ class ProductArrivalHandler implements ProductArrivalHandlerInterface
         TokenStorageInterface  $tokenStorage
     )
     {
-        $this->doctrine     = $doctrine;
-        $this->pendingValidation      = new PendingValidationStock();
-        $this->tokenStorage = $tokenStorage;
+        $this->doctrine           = $doctrine;
+        $this->pendingValidation  = new PendingValidationStock();
+        $this->tokenStorage       = $tokenStorage;
     }
 
     public function handle(FormInterface $form, Product $product): bool
