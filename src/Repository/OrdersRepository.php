@@ -8,7 +8,6 @@
 
 namespace App\Repository;
 
-
 use App\Entity\Orders;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -99,6 +98,22 @@ class OrdersRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
+    }
 
+    /**
+     * @param int $id
+     * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function countUserOrder(int $id): int
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('o')
+            ->select('COUNT(o)')
+            ->where('o.orderedBy = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
     }
 }

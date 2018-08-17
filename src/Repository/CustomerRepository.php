@@ -54,6 +54,28 @@ class CustomerRepository extends ServiceEntityRepository
         ;
     }
 
+    /**
+     * @param int $id
+     * @return array
+     */
+    public function findUserCustomer(int $id): array
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('cu')
+            ->select('cu')
+            ->innerJoin(
+                'App\Entity\Orders',
+                'o',
+                \Doctrine\ORM\Query\Expr\Join::WITH,
+                'cu.id = o.customer'
+                )
+            ->andWhere('o.orderedBy = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 
     /**
      * @return int
@@ -64,6 +86,29 @@ class CustomerRepository extends ServiceEntityRepository
         return
             $queryBuilder = $this->createQueryBuilder('cu')
                 ->select('COUNT(cu)')
+                ->getQuery()
+                ->getSingleScalarResult()
+            ;
+    }
+
+    /**
+     * @param int $id
+     * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function countUserCustomer(int $id): int
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('cu')
+                ->select('COUNT(cu)')
+                ->innerJoin(
+                    'App\Entity\Orders',
+                    'o',
+                    \Doctrine\ORM\Query\Expr\Join::WITH,
+                    'cu.id = o.customer'
+                )
+                ->andWhere('o.orderedBy = :id')
+                ->setParameter('id', $id)
                 ->getQuery()
                 ->getSingleScalarResult()
             ;

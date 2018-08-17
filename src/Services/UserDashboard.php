@@ -127,11 +127,13 @@ class UserDashboard
     {
         return [
             'produits référencés' =>
-                $this->doctrine->getRepository(Product::class)->findAllProduct(),
+                $this->doctrine->getRepository(Product::class)->countProduct(),
             'total clients'       =>
-                $this->doctrine->getRepository(Customer::class)->findAllCustomer(),
+                $this->doctrine->getRepository(Customer::class)->countCustomer(),
+            'mes clients'         =>
+                $this->doctrine->getRepository(Customer::class)->countUserCustomer($id),
             'mes commande'        =>
-                $this->doctrine->getRepository(Orders::class)->finAllOrderWithUser($id)
+                $this->doctrine->getRepository(Orders::class)->countUserOrder($id)
         ];
     }
 
@@ -147,7 +149,7 @@ class UserDashboard
             'commandes non payés' => $this->doctrine
                 ->getRepository(Orders::class)->countOrderWithStatus('en attente de paiement'),
             'comandes à valider'=> $this->doctrine
-                ->getRepository(Orders::class)->countOrderWithStatus('en attente de validation'),
+                ->getRepository(Orders::class)->countOrderWithStatus('en attente de validation')
         ];
     }
 
