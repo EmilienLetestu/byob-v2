@@ -17,7 +17,6 @@ class DashboardBuilder
     {
         $builder->createDashBoard();
         $builder->addDataMonitoring();
-        $builder->addAlias();
 
         return $builder->getDashboard();
     }

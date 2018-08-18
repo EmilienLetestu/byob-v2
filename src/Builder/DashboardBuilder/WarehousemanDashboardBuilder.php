@@ -62,10 +62,6 @@ class WarehousemanDashboardBuilder implements DashboardBuilderInterface
 
     }
 
-    public function addAlias()
-    {
-        // TODO: Implement addAlias() method.
-    }
 
     public function createDashBoard()
     {

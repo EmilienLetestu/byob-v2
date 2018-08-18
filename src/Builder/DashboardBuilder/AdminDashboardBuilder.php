@@ -70,11 +70,6 @@ class AdminDashboardBuilder implements DashboardBuilderInterface
 
     }
 
-    public function addAlias()
-    {
-        // TODO: Implement addAlias() method.
-    }
-
     public function createDashBoard()
     {
         $this->dashboard;

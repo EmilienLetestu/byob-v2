@@ -16,6 +16,4 @@ interface DashboardBuilderInterface
     public function getDashboard();
 
     public function addDataMonitoring();
-
-    public function addAlias();
 }
