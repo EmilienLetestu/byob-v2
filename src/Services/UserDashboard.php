@@ -16,6 +16,8 @@ use App\Builder\DashboardBuilder\SalesmanDashboardBuilder;
 use App\Builder\DashboardBuilder\WarehousemanDashboardBuilder;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class UserDashboard
 {
@@ -29,76 +31,50 @@ class UserDashboard
      */
     private $builder;
 
-    /**
-     * @var AdminDashboardBuilder
-     */
-    private $admin;
-
-    /**
-     * @var WarehousemanDashboardBuilder
-     */
-    private $warehouseman;
-
-    /**
-     * @var SalesmanDashboardBuilder
-     */
-    private $salesman;
-
-    /**
-     * @var AccountantDashboardBuilder
-     */
-    private $accountant;
-
 
     /**
      * UserDashboard constructor.
      * @param EntityManagerInterface $doctrine
      * @param DashboardBuilder $builder
-     * @param AdminDashboardBuilder $admin
-     * @param WarehousemanDashboardBuilder $warehouseman
-     * @param SalesmanDashboardBuilder $salesman
-     * @param AccountantDashboardBuilder $accountant
+     * @param TokenStorageInterface $token
      */
     public function __construct(
         EntityManagerInterface        $doctrine,
-        DashboardBuilder              $builder,
-        AdminDashboardBuilder         $admin,
-        WarehousemanDashboardBuilder  $warehouseman,
-        SalesmanDashboardBuilder      $salesman,
-        AccountantDashboardBuilder    $accountant
+        DashboardBuilder              $builder
+
 
     )
     {
         $this->doctrine = $doctrine;
         $this->builder   = $builder;
-        $this->admin     = $admin;
-        $this->warehouseman = $warehouseman;
-        $this->salesman  = $salesman;
-        $this->accountant = $accountant;
     }
 
     /**
-     * @param string $role
-     * @return \App\Builder\DashboardBuilder\Dashboard
+     * @param TokenStorage $token
+     * @return array
      */
-    public function getUserDashboard(string $role)
+    public function getUserDashboard(TokenStorage $token): array
     {
-        switch ($role):
+        switch ($token->getToken()->getUser()->getRole()):
             case 'ADMIN':
-                return $this->builder->build($this->admin);
+                return $this->builder->build(
+                    new AdminDashboardBuilder($this->doctrine))->getData();
                 break;
 
             case 'WAREHOUSEMAN':
-                return $this->builder->build($this->warehouseman);
+                return $this->builder->build(
+                    new WarehousemanDashboardBuilder($this->doctrine, $token))->getData();
                 break;
 
 
             case 'SALESMAN':
-                return $this->builder->build($this->salesman);
+                return $this->builder->build(
+                    new SalesmanDashboardBuilder($this->doctrine, $token))->getData();
                 break;
 
             case 'ACCOUNTANT':
-                return $this->builder->build($this->accountant);
+                return $this->builder->build(
+                    new AccountantDashboardBuilder($this->doctrine, $token))->getData();
                 break;
 
         endswitch;

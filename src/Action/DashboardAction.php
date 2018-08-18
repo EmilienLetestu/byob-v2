@@ -59,9 +59,8 @@ class DashboardAction
 
        return
            $responder(
-              $this->userDashBoard->getUserDashboard(
-                  $this->tokenStorage->getToken()->getUser()->getRole()
-              )
-       );
+              $this->userDashBoard->getUserDashboard($this->tokenStorage)
+           )
+       ;
     }
 }
