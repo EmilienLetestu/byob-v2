@@ -29,13 +29,13 @@ class DashboardResponder
     }
 
     /**
-     * @param array $data
+     * @param $data
      * @return Response
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(array $data): Response
+    public function __invoke($data): Response
     {
         return new Response(
             $this->twig->render('dashboard.html.twig',[

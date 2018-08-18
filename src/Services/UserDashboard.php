@@ -9,13 +9,11 @@
 namespace App\Services;
 
 
-use App\Entity\Customer;
-use App\Entity\InStockProduct;
-use App\Entity\Orders;
-use App\Entity\PendingValidationStock;
-use App\Entity\Product;
-use App\Entity\User;
-use App\Entity\Warehouse;
+use App\Builder\DashboardBuilder\AccountantDashboardBuilder;
+use App\Builder\DashboardBuilder\AdminDashboardBuilder;
+use App\Builder\DashboardBuilder\DashboardBuilder;
+use App\Builder\DashboardBuilder\SalesmanDashboardBuilder;
+use App\Builder\DashboardBuilder\WarehousemanDashboardBuilder;
 
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -27,130 +25,83 @@ class UserDashboard
     private $doctrine;
 
     /**
+     * @var DashboardBuilder
+     */
+    private $builder;
+
+    /**
+     * @var AdminDashboardBuilder
+     */
+    private $admin;
+
+    /**
+     * @var WarehousemanDashboardBuilder
+     */
+    private $warehouseman;
+
+    /**
+     * @var SalesmanDashboardBuilder
+     */
+    private $salesman;
+
+    /**
+     * @var AccountantDashboardBuilder
+     */
+    private $accountant;
+
+
+    /**
      * UserDashboard constructor.
      * @param EntityManagerInterface $doctrine
+     * @param DashboardBuilder $builder
+     * @param AdminDashboardBuilder $admin
+     * @param WarehousemanDashboardBuilder $warehouseman
+     * @param SalesmanDashboardBuilder $salesman
+     * @param AccountantDashboardBuilder $accountant
      */
     public function __construct(
-        EntityManagerInterface $doctrine
+        EntityManagerInterface        $doctrine,
+        DashboardBuilder              $builder,
+        AdminDashboardBuilder         $admin,
+        WarehousemanDashboardBuilder  $warehouseman,
+        SalesmanDashboardBuilder      $salesman,
+        AccountantDashboardBuilder    $accountant
+
     )
     {
         $this->doctrine = $doctrine;
+        $this->builder   = $builder;
+        $this->admin     = $admin;
+        $this->warehouseman = $warehouseman;
+        $this->salesman  = $salesman;
+        $this->accountant = $accountant;
     }
-
 
     /**
      * @param string $role
-     * @param int $id
-     * @return array
+     * @return \App\Builder\DashboardBuilder\Dashboard
      */
-    public function getUserDashboard(string $role, int $id)
+    public function getUserDashboard(string $role)
     {
         switch ($role):
             case 'ADMIN':
-                return $this->adminDashboard($id);
+                return $this->builder->build($this->admin);
                 break;
 
             case 'WAREHOUSEMAN':
-                return $this->warehousemanDashboard($id);
+                return $this->builder->build($this->warehouseman);
                 break;
 
-            case 'DELIVERYMAN':
-                return $this->deliverymanDashbaord();
-                break;
 
             case 'SALESMAN':
-                return $this->salesmanDashboard($id);
+                return $this->builder->build($this->salesman);
                 break;
 
             case 'ACCOUNTANT':
-                return $this->accountantDashboard($id);
+                return $this->builder->build($this->accountant);
                 break;
-
-            case 'SUPPLY':
-                return $this->supplyDashbaord();
-                break;
-
-            case 'LOGISTIC':
-                return $this->logisticDashbaord();
-                break;
-
-            default:
-                return $this->adminDashboard();
 
         endswitch;
     }
-
-    /**
-     * @return array
-     */
-    private function adminDashboard(): array
-    {
-        return [
-          'total utilisateur'  =>
-              $this->doctrine->getRepository(User::class)->countUser(),
-          'toltal client'      =>
-              $this->doctrine->getRepository(Customer::class)->countCustomer(),
-          'total commande'     =>
-              $this->doctrine->getRepository(Orders::class)->countOrderWithStatus('en attente de livraison'),
-          'produits référencés'=>
-              $this->doctrine->getRepository(Product::class)->countProduct(),
-          'en alerte'          =>
-              $this->doctrine->getRepository(InStockProduct::class)->countWithAlert(),
-          'arrivages'          =>
-              $this->doctrine->getRepository(PendingValidationStock::class)->countArrival(),
-          'entrepôts'          =>
-              $this->doctrine->getRepository(Warehouse::class)->countWarehouse()
-        ];
-
-    }
-
-    /**
-     * @param int $id
-     * @return array
-     */
-    private function warehousemanDashboard(int $id): array
-    {
-        // todo => fetch all orders to prepare
-        return [
-            'mes arrivages traités' =>
-                $this->doctrine->getRepository(PendingValidationStock::class)->countUserArrivalWithStatus($id, true),
-            'mes arrivages en attente de validation' =>
-                $this->doctrine->getRepository(PendingValidationStock::class)->countUserArrivalWithStatus($id, false)
-        ];
-    }
-
-    /**
-     * @param int $id
-     * @return array
-     */
-    private function salesmanDashboard(int $id): array
-    {
-        return [
-            'produits référencés' =>
-                $this->doctrine->getRepository(Product::class)->countProduct(),
-            'total clients'       =>
-                $this->doctrine->getRepository(Customer::class)->countCustomer(),
-            'mes clients'         =>
-                $this->doctrine->getRepository(Customer::class)->countUserCustomer($id),
-            'mes commande'        =>
-                $this->doctrine->getRepository(Orders::class)->countUserOrder($id)
-        ];
-    }
-
-    /**
-     * @param int $id
-     * @return array
-     */
-    private function accountantDashboard(int $id)
-    {
-        return [
-            'arrivages à valider' => $this->doctrine
-                ->getRepository(PendingValidationStock::class)->countArrivalInUserWarehouse($id),
-            'commandes non payés' => $this->doctrine
-                ->getRepository(Orders::class)->countOrderWithStatus('en attente de paiement'),
-            'comandes à valider'=> $this->doctrine
-                ->getRepository(Orders::class)->countOrderWithStatus('en attente de validation')
-        ];
-    }
-
 }
+

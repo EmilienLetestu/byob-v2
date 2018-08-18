@@ -30,6 +30,7 @@ class DashboardAction
 
 
 
+
     /**
      * DashboardAction constructor.
      * @param UserDashboard $userDashboard
@@ -55,13 +56,12 @@ class DashboardAction
      */
     public function __invoke(DashboardResponder $responder): Response
     {
-       $user = $this->tokenStorage->getToken()->getUser();
 
        return
            $responder(
-               $this->userDashBoard->getUserDashboard(
-                   $user->getRole(), $user->getId()
-               )
+              $this->userDashBoard->getUserDashboard(
+                  $this->tokenStorage->getToken()->getUser()->getRole()
+              )
        );
     }
 }
