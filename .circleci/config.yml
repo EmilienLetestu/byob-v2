@@ -5,7 +5,7 @@ jobs:
             - image: circleci/php:7.2.5-apache-stretch-node
         steps:
             - checkout
-            - run: sudo comoser self-update
+            - run: sudo composer self-update
             - restore_cache:
                 keys:
                     - composer-v1-{{ checksum "composer.json" }}
