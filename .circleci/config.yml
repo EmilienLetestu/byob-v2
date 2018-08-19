@@ -27,7 +27,7 @@ jobs:
                 name: Install PHP zip
                 command: sudo docker-php-ext-install zip
 
-            - run: sudo apt-get install -y libsqlite3-dev zliblg-dev
+    
             - run: cp .env.dist .env
             - run: cp phpunit.xml.dist phpunit.xml
 
