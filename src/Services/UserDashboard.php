@@ -36,13 +36,10 @@ class UserDashboard
      * UserDashboard constructor.
      * @param EntityManagerInterface $doctrine
      * @param DashboardBuilder $builder
-     * @param TokenStorageInterface $token
      */
     public function __construct(
         EntityManagerInterface        $doctrine,
         DashboardBuilder              $builder
-
-
     )
     {
         $this->doctrine = $doctrine;
