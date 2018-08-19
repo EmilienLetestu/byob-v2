@@ -8,6 +8,7 @@
 
 namespace App\Responder\Show;
 
+use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
@@ -29,16 +30,18 @@ class ShowOrderResponder
 
     /**
      * @param array $inOrderProducts
+     * @param FormView $form
      * @return Response
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(array $inOrderProducts): Response
+    public function __invoke(array $inOrderProducts, FormView $form): Response
     {
         return new Response(
             $this->twig->render('info/order_info.html.twig',[
-                'inOrderProducts' => $inOrderProducts
+                'inOrderProducts' => $inOrderProducts,
+                'form'            => $form
             ])
         );
     }
