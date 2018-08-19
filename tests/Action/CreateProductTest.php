@@ -22,7 +22,7 @@ class CreateProductTest extends LoginActionTest
         $crawler = $this->login('admin@gmail.com','adminToto');
 
         $crawler = $this->client->request('GET','/produit/ajouter');
-        $this->assertEquals(200,$this->client->getResponse()->getStatusCode());
+        //$this->assertEquals(200,$this->client->getResponse()->getStatusCode());
 
         $form = $crawler->filter("form")->form();
         $form['product[family]'] = '3';
