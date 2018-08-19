@@ -27,7 +27,7 @@ jobs:
                 name: Install PHP zip
                 command: sudo docker-php-ext-install zip
 
-    
+
             - run: cp .env.dist .env
             - run: cp phpunit.xml.dist phpunit.xml
 
@@ -37,6 +37,7 @@ jobs:
                     - vendor
 
             - run: rm -rf var/cache/*
+            - run: chmod  -R 777 /home/circleci/project/var
             - run: ./bin/console d:d:c --env=test
             - run: ./bin/console d:s:c --env=test
             - run: ./bin/console d:f:l -n --env=test
