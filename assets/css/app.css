@@ -95,3 +95,10 @@ a.reject-link,
 .contact-info:hover{
      background-color: #ffebee;
  }
+
+.secondary-content form{
+    width: 20rem;
+}
+.secondary-content form select{
+    height: unset;
+}
