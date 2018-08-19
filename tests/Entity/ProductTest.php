@@ -30,7 +30,7 @@ class ProductTest extends TestCase
         $product->setReferencedOn('Y-m-d');
 
         $this->assertEquals('coca-cola light', $product->getModel());
-        $this->assertEquals('787787487', $product->getReference());
+        $this->assertContains('787787487', $product->getReference());
         $this->assertEquals($today, $product->getReferencedOn());
         $this->assertNull($product->getLastModification());
 

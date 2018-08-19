@@ -20,12 +20,12 @@ class ProductArrivalTest extends LoginActionTest
         $crawler = $this->client->request('GET','/arrivage/produit/1');
         $this->assertEquals(200,$this->client->getResponse()->getStatusCode());
         $this->assertEquals(
-            1, $crawler->filter('h1:contains("Arrivage de")')->count()
+            1, $crawler->filter('h1:contains("Arrivage : coca-cola light cannette 33cl")')->count()
         );
 
         $form = $crawler->filter("form")->form();
         $form['product_arrival[quantity]']  = 250;
-        $form['product_arrival[warehouse]'] = '9';
+        $form['product_arrival[warehouse]'] = '1';
 
 
         $crawler = $this->client->submit($form);
