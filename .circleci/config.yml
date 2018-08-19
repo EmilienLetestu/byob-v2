@@ -3,7 +3,7 @@ jobs:
     build:
         docker:
 
-            - image: circleci/php:7.2.5-apache-stretch-node
+            - image: circleci/php:7.2.4-apache-node-browsers
 
         steps:
 
@@ -27,12 +27,17 @@ jobs:
                 name: Install PHP zip
                 command: sudo docker-php-ext-install zip
 
+            - run: sudo apt install -y libsqlite3-dev zliblg-dev
+            - run: cp .env.dist .env
+            - run: cp phpunit.xml.dist phpunit.xml 
+
             - save_cache:
                 key: composer-v1-{{ checksum "composer.json" }}
                 paths:
                     - vendor
-        
+
+            - run: rm -rf var/cache/*
             - run: ./bin/console d:d:c --env=test
             - run: ./bin/console d:s:c --env=test
-            - run: ./bin/console d:f:l --env=test  --no-interaction
+            - run: ./bin/console d:f:l -n --env=test
             - run: ./bin/phpunit
