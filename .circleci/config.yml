@@ -9,8 +9,8 @@ jobs:
             - restore_cache:
                 keys:
                     - composer-v1-{{ checksum "composer.json" }}
-                    - composer-v1
-            - run: composer install 
+                    - composer-v1-
+            - run: composer install
             - save_cache:
                 key: composer-v1-{{ checksum "composer.json" }}
                 paths:
