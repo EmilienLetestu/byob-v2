@@ -2,7 +2,7 @@ version: 2
 jobs:
     build:
         docker:
-            - image: circle/php:7.2.5-apache-stretch-node
+            - image: circleci/php:7.2.5-apache-stretch-node
         steps:
             - checkout
             - run: sudo comoser self-update
