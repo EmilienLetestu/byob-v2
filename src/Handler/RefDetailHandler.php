@@ -11,12 +11,12 @@ namespace App\Handler;
 
 use App\Entity\RefDetail;
 use App\Entity\RefMaster;
-use App\Handler\Interfaces\EntityFormWithParamInterFace;
+use App\Handler\Interfaces\FormWithParamInterFace;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-class RefDetailHandler implements EntityFormWithParamInterFace
+class RefDetailHandler implements FormWithParamInterFace
 {
     /**
      * @var EntityManagerInterface

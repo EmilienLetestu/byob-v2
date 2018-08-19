@@ -12,12 +12,12 @@ namespace App\Handler;
 use App\Entity\Contact;
 use App\Entity\Customer;
 use App\Entity\Person;
-use App\Handler\Interfaces\EntityFormHandlerInterface;
+use App\Handler\Interfaces\FormHandlerInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-class CreateCustomerHandler implements EntityFormHandlerInterface
+class CreateCustomerHandler implements FormHandlerInterface
 {
     /**
      * @var

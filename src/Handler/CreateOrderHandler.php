@@ -11,13 +11,13 @@ namespace App\Handler;
 
 use App\Entity\InOrderProduct;
 use App\Entity\Orders;
-use App\Handler\Interfaces\EntityFormHandlerInterface;
+use App\Handler\Interfaces\FormHandlerInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-class CreateOrderHandler implements EntityFormHandlerInterface
+class CreateOrderHandler implements FormHandlerInterface
 {
 
     /**

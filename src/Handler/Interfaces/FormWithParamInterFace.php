@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: emilien
- * Date: 30/07/2018
- * Time: 16:11
+ * Date: 12/08/2018
+ * Time: 11:24
  */
 
 namespace App\Handler\Interfaces;
@@ -12,14 +12,15 @@ namespace App\Handler\Interfaces;
 use Symfony\Component\Form\FormInterface;
 
 /**
- * Interface EntityFormHandlerInterface
+ * Interface FormWithParamInterFace
  * @package App\Handler\Interfaces
  */
-Interface EntityFormHandlerInterface
+Interface FormWithParamInterFace
 {
     /**
      * @param FormInterface $form
+     * @param string $routeParam
      * @return bool
      */
-    public function handle(FormInterface $form): bool;
+    public function handle(FormInterface $form, string $routeParam): bool;
 }

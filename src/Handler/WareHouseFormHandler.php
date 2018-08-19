@@ -10,11 +10,11 @@ namespace App\Handler;
 
 
 use App\Entity\Warehouse;
-use App\Handler\Interfaces\EntityFormHandlerInterface;
+use App\Handler\Interfaces\FormHandlerInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormInterface;
 
-class WareHouseFormHandler implements EntityFormHandlerInterface
+class WareHouseFormHandler implements FormHandlerInterface
 {
     /**
      * @var Warehouse

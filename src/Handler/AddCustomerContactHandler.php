@@ -12,12 +12,12 @@ namespace App\Handler;
 use App\Entity\Contact;
 use App\Entity\Customer;
 use App\Entity\Person;
-use App\Handler\Interfaces\EntityFormWithParamInterFace;
+use App\Handler\Interfaces\FormWithParamInterFace;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormInterface;
 
-class AddCustomerContactHandler implements EntityFormWithParamInterFace
+class AddCustomerContactHandler implements FormWithParamInterFace
 {
     /**
      * @var EntityManagerInterface

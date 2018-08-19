@@ -10,13 +10,13 @@ namespace App\Handler;
 
 
 use App\Entity\Product;
-use App\Handler\Interfaces\EntityFormHandlerInterface;
+use App\Handler\Interfaces\FormHandlerInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 
-class ProductFormHandler implements EntityFormHandlerInterface
+class ProductFormHandler implements FormHandlerInterface
 {
 
     /**

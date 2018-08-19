@@ -10,12 +10,12 @@ namespace App\Handler;
 
 
 use App\Entity\PendingValidationStock;
-use App\Handler\Interfaces\EntityFormHandlerInterface;
+use App\Handler\Interfaces\FormHandlerInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-class ArrivalCollectionHandler implements EntityFormHandlerInterface
+class ArrivalCollectionHandler implements FormHandlerInterface
 {
 
     /**

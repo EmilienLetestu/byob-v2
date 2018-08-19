@@ -11,12 +11,12 @@ namespace App\Handler;
 
 use App\Entity\User;
 use App\Entity\UserInWarehouse;
-use App\Handler\Interfaces\EntityFormHandlerInterface;
+use App\Handler\Interfaces\FormHandlerInterface;
 use App\Helper\IdentifierHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormInterface;
 
-class UserFormHandler implements EntityFormHandlerInterface
+class UserFormHandler implements FormHandlerInterface
 {
     /**
      * @var User
