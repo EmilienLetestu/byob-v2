@@ -27,5 +27,5 @@ jobs:
             - run: ./bin/console d:d:d --force --env=test
             - run: ./bin/console d:d:c --env=test
             - run: ./bin/console d:s:c --env=test
-            - run: ./bin/console d:f:l --no-interaction --env=test
+            - run: ./bin/console d:f:l --append --env=test
             - run: ./bin/phpunit
