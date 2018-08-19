@@ -18,4 +18,4 @@ jobs:
                     - vendor
             - run: ./bin/console d:d:c --env=test
             - run: ./bin/console d:s:c --env=test
-            - run: ./bin/phpunit -v
+            - run: ./bin/phpunit
