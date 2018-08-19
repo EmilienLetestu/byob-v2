@@ -34,7 +34,7 @@ class LoginActionTest extends WebTestCase
     public function login(string $username, string $pswd)
     {
         $crawler = $this->client->request('GET','/');
-        //$this->assertEquals(200,$this->client->getResponse()->getStatusCode());
+        $this->assertEquals(200,$this->client->getResponse()->getStatusCode());
         $form = $crawler->filter("form")->form();
         $form['_username'] =  $username;
         $form['_password'] =  $pswd;
@@ -48,7 +48,7 @@ class LoginActionTest extends WebTestCase
         $client = static::createClient();
 
         $client->request('GET', '/');
-        //$this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
         $crawler = $this->login('admin@gmail.com','adminToto');
 
