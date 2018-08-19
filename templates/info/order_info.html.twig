@@ -12,7 +12,14 @@
                     <li class="collection-item"><div>Adresse<span class="secondary-content">{{ inOrderProducts[0].order.orderedFor.address }}</span></div></li>
                     <li class="collection-item"><div>Vendeur  <span class="secondary-content">{{ inOrderProducts[0].order.orderedBy.fullname }}</span></div></li>
                     <li class="collection-item"><div>Commandé le <span class="secondary-content">{{ inOrderProducts[0].order.orderedOn|date('d-m-Y') }}</span></div></li>
-                    <li class="collection-item"><div>Statut <span class="secondary-content">{{ inOrderProducts[0].order.status }}</span></div></li>
+                    <li class="collection-item"><div>Statut
+                            <span class="secondary-content">
+                                {{ form_start(form) }}
+                                    {{ form_widget(form.status) }}
+                                    <input type="hidden" class="selected-default-value" value="{{ inOrderProducts[0].order.status }}">
+                                {{ form_end(form) }}
+                            </span></div>
+                    </li>
                     <li class="collection-item"><div>Nombre de produits <span class="secondary-content">{{ inOrderProducts|length }}</span></div></li>
                 </ul>
 
@@ -25,7 +32,6 @@
                         <li class="collection-item"><div>{{ inOrderProduct.product.model }}<span class="secondary-content">{{ inOrderProduct.quantity }}</span></div></li>
                     {% endfor %}
                 </ul>
-
 
 
             <div class="fixed-action-btn">
@@ -42,4 +48,11 @@
 
         </div>
 
+
+
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+     <script type="text/javascript" src="{{ asset('build/selected.js') }}"></script>
     {% endblock %}
