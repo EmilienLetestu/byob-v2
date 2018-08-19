@@ -18,7 +18,7 @@ jobs:
             - run: composer install -n --optimize-autoloader --classmap-authoritative
 
             - run: composer dump-autoload --optimize  --classmap-authoritative
-            
+
             - run:
                 name: Install PHP libzip-dev
                 command: sudo apt-get install -y libzip-dev
