@@ -62,7 +62,7 @@
 
         <one-to-many
                 field="customers"
-                target-entity="App\Entity\customer"
+                target-entity="App\Entity\Customer"
                 mapped-by="addedBy">
         </one-to-many>
 
