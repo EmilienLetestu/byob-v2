@@ -24,7 +24,7 @@ jobs:
                 key: composer-v1-{{ checksum "composer.json" }}
                 paths:
                     - vendor
-            - run: ./bin/console d:d:d --env=test
+            - run: ./bin/console d:d:d --force --env=test
             - run: ./bin/console d:d:c --env=test
             - run: ./bin/console d:s:c --env=test
             - run: ./bin/phpunit
