@@ -12,6 +12,14 @@ jobs:
                     - composer-v1-
             - run: composer install -n --optimize-autoloader --classmap-authoritative
             - run: composer dump-autoload --optimize  --classmap-authoritative
+            - run:
+                name: Install PHP libzip-dev
+                command: sudo apt-get install -y libzip-dev
+
+            - run:
+                name: Install PHP zip
+                command: sudo docker-php-ext-install zip
+                
             - save_cache:
                 key: composer-v1-{{ checksum "composer.json" }}
                 paths:
