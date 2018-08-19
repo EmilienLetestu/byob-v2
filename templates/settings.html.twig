@@ -6,14 +6,37 @@
         <div class="container">
             <ul class="collection with-header">
                 <li class="collection-header"><h4>Ajouter des tags produits</h4></li>
-                {% for refDetail in product[0].refDetails %}
                     <li class="collection-item">
                         <div>
-                            {{ refDetail.constantKey }}
-                            <a href="{{ path('addProductRefDetail', {'constKey' : refDetail.constantKey }) }}" class="secondary-content"><i class="material-icons">add</i></a>
+                            {{ product[0].family.constantKey }}
+                            <a href="{{ path('addProductRefDetail', {'constKey' : product[0].family.constantKey }) }}" class="secondary-content"><i class="material-icons">add</i></a>
                         </div>
                     </li>
-                {% endfor %}
+                    <li class="collection-item">
+                        <div>
+                            {{ product[0].category.constantKey }}
+                            <a href="{{ path('addProductRefDetail', {'constKey' : product[0].category.constantKey }) }}" class="secondary-content"><i class="material-icons">add</i></a>
+                        </div>
+                    </li>
+                    <li class="collection-item">
+                        <div>
+                            {{ product[0].type.constantKey }}
+                            <a href="{{ path('addProductRefDetail', {'constKey' : product[0].type.constantKey }) }}" class="secondary-content"><i class="material-icons">add</i></a>
+                        </div>
+                    </li>
+                    <li class="collection-item">
+                        <div>
+                            {{ product[0].designation.constantKey }}
+                            <a href="{{ path('addProductRefDetail', {'constKey' : product[0].designation.constantKey }) }}" class="secondary-content"><i class="material-icons">add</i></a>
+                        </div>
+                    </li>
+                    <li class="collection-item">
+                        <div>
+                            {{ product[0].make.constantKey }}
+                            <a href="{{ path('addProductRefDetail', {'constKey' : product[0].make.constantKey }) }}" class="secondary-content"><i class="material-icons">add</i></a>
+                        </div>
+                    </li>
+
             </ul>
         </div>
 

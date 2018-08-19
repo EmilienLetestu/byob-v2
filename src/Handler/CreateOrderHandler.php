@@ -61,7 +61,7 @@ class CreateOrderHandler implements FormHandlerInterface
         {
             $this->order->setReference('cmd_');
             $this->order->setOrderedOn('Y-m-d');
-            $this->order->setStatus('En attente de validation');
+            $this->order->setStatus('en attente de validation');
             $this->order->setOrderedFor(
                 $form->get('customer')->getData()
             );
