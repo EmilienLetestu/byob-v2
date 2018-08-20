@@ -133,6 +133,7 @@ class PendingValidationStockRepository extends ServiceEntityRepository
                     \Doctrine\ORM\Query\Expr\Join::WITH,
                     'pe.warehouse = userInWarehouse.warehouse')
                 ->andwhere('userInWarehouse.user = :id')
+                ->andWhere('pe.processed = 0')
                 ->setParameter('id', $id)
                 ->getQuery()
                 ->getResult()
