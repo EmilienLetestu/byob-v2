@@ -62,7 +62,7 @@ class SalesmanDashboardBuilder implements DashboardBuilderInterface
             $this->doctrine->getRepository(Customer::class)->countUserCustomer($this->getId())
         );
         $this->dashboard->setData('mes commandes',
-            $this->doctrine->getRepository(Orders::class)->countArrival($this->getId())
+            $this->doctrine->getRepository(Orders::class)->countUserOrder($this->getId())
         );
 
     }
