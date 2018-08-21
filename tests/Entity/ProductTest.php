@@ -33,6 +33,12 @@ class ProductTest extends TestCase
         $this->assertContains('787787487', $product->getReference());
         $this->assertEquals($today, $product->getReferencedOn());
         $this->assertNull($product->getLastModification());
+        $this->assertNull($product->getPrice());
+
+        $product->setPrice(7.50);
+
+        $this->assertInternalType('float', $product->getPrice());
+        $this->assertEquals(7.5,$product->getPrice());
 
 
     }

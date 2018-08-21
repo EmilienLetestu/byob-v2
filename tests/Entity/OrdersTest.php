@@ -27,10 +27,13 @@ class OrdersTest extends TestCase
         $order->setReference('cmd_');
         $order->setOrderedOn('Y-m-d');
         $order->setStatus('En attente de livraison');
+        $order->setTotalPrice(758.25);
 
         $this->assertInternalType('string', $order->getReference());
         $this->assertContains('cmd_', $order->getReference());
         $this->assertEquals($today, $order->getOrderedOn());
         $this->assertEquals('En attente de livraison', $order->getStatus());
+        $this->assertEquals(758.25, $order->getTotalPrice());
+        $this->assertInternalType('float',$order->getTotalPrice());
     }
 }
