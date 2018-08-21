@@ -27,6 +27,11 @@ class Orders
     /**
      * @var
      */
+    private $totalPrice;
+
+    /**
+     * @var
+     */
     private $orderedOn;
 
     /**
@@ -65,6 +70,14 @@ class Orders
     public function setReference(string $prefix): void
     {
         $this->reference = uniqid($prefix);
+    }
+
+    /**
+     * @param float|null $totalPrice
+     */
+    public function setTotalPrice(?float $totalPrice): void
+    {
+        $this->totalPrice = $totalPrice;
     }
 
     /**
@@ -131,6 +144,13 @@ class Orders
         return $this->reference;
     }
 
+    /**
+     * @return float
+     */
+    public function getTotalPrice(): float
+    {
+        return $this->getTotalPrice();
+    }
 
     /**
      * @return \DateTime

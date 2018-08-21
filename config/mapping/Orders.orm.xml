@@ -14,6 +14,7 @@
         <field name="deliveredOn" column="delivered_on" type="date" nullable="true"/>
         <field name="payedOn" column="payed_on" type="date" nullable="true"/>
         <field name="status" column="status" type="string" length="30"/>
+        <field name="totalPrice" column="total_price" type="float" nullable="true"/>
 
             <many-to-one
                     field="orderedBy"
