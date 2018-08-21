@@ -24,6 +24,11 @@ class ProductDTO
     public $model;
 
     /**
+     * @var float|null
+     */
+    public $price;
+
+    /**
      * @var RefDetail
      */
     public $family;
@@ -51,6 +56,7 @@ class ProductDTO
     /**
      * ProductDTO constructor.
      * @param string $model
+     * @param float|null $price
      * @param RefDetail $family
      * @param RefDetail $category
      * @param RefDetail $type
@@ -59,6 +65,7 @@ class ProductDTO
      */
     public function __construct(
         string    $model,
+        ?float    $price,
         RefDetail $family,
         RefDetail $category,
         RefDetail $type,
@@ -67,6 +74,7 @@ class ProductDTO
     )
     {
         $this->model       = $model;
+        $this->price       = $price;
         $this->family      = $family;
         $this->category    = $category;
         $this->type        = $type;

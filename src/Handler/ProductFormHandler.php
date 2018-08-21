@@ -60,6 +60,9 @@ class ProductFormHandler implements FormHandlerInterface
             $this->product->setModel(
                 $form->get('model')->getData()
             );
+            $this->product->setPrice(
+                $form->get('price')->getData()
+            );
             $this->product->setFamily(
                 $form->get('family')->getData()
             );

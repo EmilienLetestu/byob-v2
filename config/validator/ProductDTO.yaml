@@ -1,4 +1,4 @@
-pp\DTO\UserDTO:
+App\DTO\ProductDTO:
     properties:
 
         model:
@@ -8,6 +8,13 @@ pp\DTO\UserDTO:
                 minMessage: 3 caractères minimum
                 maxMessage: 100 caractères maximum
                 groups: [product]
+
+        price:
+            - Type:
+                type: float
+                message: Veuillez un prix comprenant au moins deux décimales
+                groups: [product]
+
 
         family:
             - NotBlank: { groups: [product] }

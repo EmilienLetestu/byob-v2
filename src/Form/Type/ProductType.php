@@ -13,6 +13,7 @@ use App\Entity\RefDetail;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
@@ -80,6 +81,10 @@ class ProductType extends AbstractType
             ->add('model', TextType::class,[
                 'label' => 'Model'
             ])
+            ->add('price', NumberType::class,[
+                'label'    => 'prix',
+                'required' => false
+            ])
         ;
     }
 
@@ -94,6 +99,7 @@ class ProductType extends AbstractType
             'empty_data'        => function(FormInterface $form){
                 return new ProductDTO(
                     $form->get('model')->getData(),
+                    $form->get('price')->getData(),
                     $form->get('family')->getData(),
                     $form->get('category')->getData(),
                     $form->get('type')->getData(),
