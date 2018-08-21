@@ -366,4 +366,14 @@ class Product
         return $this->inStockProducts;
     }
 
+
+    /*----------------------- method for entity type form -----------------------*/
+
+    /**
+     * @return string
+     */
+    public function getProductForSelect()
+    {
+        return $this->model . "  ---  " . $this->price . " Ar";
+    }
 }
