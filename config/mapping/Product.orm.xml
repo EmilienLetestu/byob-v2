@@ -13,7 +13,7 @@
         <field name="reference" column="reference" type="string" length="100" unique="true"/>
         <field name="referencedOn" column="referenced_on" type="date"/>
         <field name="lastModification" column="last_modification" type="date" nullable="true"/>
-        <field name="price" column="price" type="float" nullable="true"/>
+        <field name="price" column="price" type="decimal" scale="2" precision="6" nullable="true"/>
 
         <one-to-many
                 field="inOrderProducts"
