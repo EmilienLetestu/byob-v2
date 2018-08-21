@@ -37,6 +37,8 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $this->getReference(UserFixtures::SUPPLY_REFERENCE)
         );
 
+        $product->setPrice(7.58);
+
         $product->setFamily(
             $this->getReference(RefDetailFixtures::FAMILY_DETAIL_REFERENCE)
         );
@@ -71,7 +73,6 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         return [
             UserFixtures::class,
             RefDetailFixtures::class
-
         ];
     }
 }

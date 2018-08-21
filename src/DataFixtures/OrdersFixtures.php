@@ -10,6 +10,7 @@ namespace App\DataFixtures;
 
 
 use App\Entity\Orders;
+use App\Entity\Product;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -30,6 +31,11 @@ class OrdersFixtures extends Fixture implements DependentFixtureInterface
     {
        $order =  new Orders();
 
+       $productPrice =
+           $this->getReference(ProductFixtures::PRODUCT_REFERENCE)
+               ->getPrice()
+       ;
+
        $order->setReference('cmd_');
        $order->setOrderedOn('Y-m-d');
        $order->setStatus('en attente de livraison');
@@ -39,6 +45,10 @@ class OrdersFixtures extends Fixture implements DependentFixtureInterface
        $order->setOrderedFor(
            $this->getReference(CustomerFixtures::CUSTOMER_REFERENCE)
        );
+
+       $order->setTotalPrice($productPrice * 15);
+
+
 
        $manager->persist($order);
        $manager->flush();
@@ -53,7 +63,8 @@ class OrdersFixtures extends Fixture implements DependentFixtureInterface
     {
        return  [
            UserFixtures::class,
-           CustomerFixtures::class
+           CustomerFixtures::class,
+           ProductFixtures::class
        ];
     }
 }
