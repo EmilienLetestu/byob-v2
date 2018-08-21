@@ -71,6 +71,8 @@ class CreateOrderHandler implements FormHandlerInterface
 
             $this->doctrine->persist($this->order);
 
+            $total = 0;
+
             foreach($form->get('inOrderProducts') as $dto)
             {
                 $inOrder = new InOrderProduct();
@@ -78,16 +80,21 @@ class CreateOrderHandler implements FormHandlerInterface
                 $inOrder->setProduct(
                     $dto->get('product')->getData()->getProduct()
                 );
-
                 $inOrder->setQuantity(
                     $dto->get('quantity')->getData()
                 );
+
+                $price = $inOrder->getProduct()->getPrice() * $inOrder->getQuantity();
+                $total+= $price;
 
                 $inOrder->setOrder($this->order);
 
                 $this->doctrine->persist($inOrder);
             }
 
+            $this->order->setTotalPrice($total);
+
+            $this->doctrine->persist($this->order);
             $this->doctrine->flush();
 
             return true;
