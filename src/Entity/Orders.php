@@ -145,11 +145,11 @@ class Orders
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getTotalPrice(): float
+    public function getTotalPrice():? float
     {
-        return $this->getTotalPrice();
+        return $this->totalPrice;
     }
 
     /**
