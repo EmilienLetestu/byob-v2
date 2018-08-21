@@ -39,6 +39,11 @@ class Product
     /**
      * @var
      */
+    private $price;
+
+    /**
+     * @var
+     */
     private $referencedOn;
 
     /**
@@ -106,6 +111,14 @@ class Product
     public function setReference(string $reference): void
     {
         $this->reference = uniqid($reference);
+    }
+
+    /**
+     * @param float|null $price
+     */
+    public function setPrice(?float $price): void
+    {
+        $this->price = $price;
     }
 
     /**
@@ -197,6 +210,14 @@ class Product
     public function getReference(): string
     {
         return $this->reference;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getPrice(): ?float
+    {
+        return $this->price;
     }
 
     /**
