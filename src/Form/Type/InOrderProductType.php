@@ -40,7 +40,7 @@ class InOrderProductType extends AbstractType
                     ;
                 },
                 'attr'          => ['class' => 'browser-default'],
-                'choice_label'  => 'product.model'
+                'choice_label'  => 'product.productForSelect'
             ])
             ->add('quantity', IntegerType::class,[
                 'label' => 'Quantité'
