@@ -1,0 +1,145 @@
+{% extends 'base.html.twig' %}
+
+    {% block body %}
+
+        <h1>Préparation de la commande</h1>
+
+        {% if matchingWarehouses|length > 0 %}
+
+            <div class="table-container">
+
+                <h4>Entrepôts contenant l'ensemble des produits commandés</h4>
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th>
+                            Entrepôt
+                        </th>
+                        <th class="secondary-content">
+                            Assigner la commmande
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        {% for warehouse in matchingWarehouses %}
+                            <td>
+                                {{ warehouse.name }}
+                            </td>
+                            <td class="secondary-content">
+                                <a href="#!">Assigner la commande</a>
+                            </td>
+                        {% endfor %}
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+        {% endif %}
+
+        <div class="table-container">
+
+            <h4>Assigner les produits individuellement</h4>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>
+                        produit
+                    </th>
+                    <th>
+                        entrepot
+                    </th>
+                    <th>
+                        niveau du stock
+                    </th>
+                    <th>
+                        quantité commandée
+                    </th>
+                    <th>
+                        Assigné le produit
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for result in results %}
+                    <tr>
+                        <td>
+                            {{ result.product.model }}
+                        </td>
+                        <td>
+                            {{ result.warehouse.name }}
+                        </td>
+                        <td>
+                            {{ result.level }}
+                        </td>
+                        <td>
+                            {{ orderedQuantity[result.product.id] }}
+                        </td>
+                        <th>
+                            <input type="checkbox">
+                        </th>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% if missing|length > 0 %}
+
+            <div class="table-container">
+
+                <h4>Produits en rupture ou stock insuffisant</h4>
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th>
+                            produit
+                        </th>
+                        <th>
+                            entrepot
+                        </th>
+                        <th>
+                            niveau du stock
+                        </th>
+                        <th>
+                            quantité commandée
+                        </th>
+                        <th>
+                            Assigné le produit
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for product in missing %}
+                        {% for result in product %}
+                        <tr>
+                            <td>
+                                {{ result.product.model }}
+                            </td>
+                            <td>
+                                {{ result.warehouse.name }}
+                            </td>
+                            <td>
+                                {{ result.level }}
+                            </td>
+                            <td>
+                                {{ orderedQuantity[result.product.id] }}
+                            </td>
+                            <th>
+                                <input type="checkbox">
+                            </th>
+                        </tr>
+                        {% endfor %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        {% endif %}
+
+
+    {% endblock %}

@@ -99,6 +99,14 @@ a.reject-link,
 .secondary-content form{
     width: 20rem;
 }
+
 .secondary-content form select{
     height: unset;
 }
+
+.table-container h4{
+    text-align: center;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
