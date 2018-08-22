@@ -61,7 +61,7 @@
                 </tbody>
             </table>
 
-            {% if app.request.get('_route') == 'orderList' %}
+            {% if app.user.role == 'ADMIN' or app.user.role == 'SALESMAN'%}
                 <div class="create-entity-large">
                     <a href="{{ path('createOrder') }}" class="btn red"><i class="material-icons">add</i></a>
                 </div>
