@@ -49,8 +49,9 @@ class ShowAllOrderAction
     /**
      * @Route("/commande", name="orderList")
      *
+     * @param Request $request
      * @param ShowAllOrderResponder $responder
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
@@ -63,13 +64,22 @@ class ShowAllOrderAction
 
         $user = $this->token->getToken()->getUser();
 
+        $statusAndRoles = [
+
+            'ACCOUNTANT'   => 'en attente de paiement',
+            'SUPPLY'       => 'payé et validé',
+            'WAREHOUSEMAN' => 'en préparation',
+            'LOGISTIC'     => 'en attente d\'enlèvement'
+        ];
+
         return
             $responder(
                 $user->getRole() === 'ADMIN' ? $repo->findAllOrder() :
                       (
-                        $user->getRole() === 'ACCOUNTANT' ?
-                        $repo->findOrderForAccountant() :
-                            $repo->findAllOrderWithUser($user->getId())
+                          $user->getRole() === 'SALESMAN' ?
+                              $repo->findAllOrderWithUser($user->getId()) :
+                              $repo->findOrderWithStatus($statusAndRoles[$user->getRole()])
+
                       )
             )
         ;
