@@ -73,24 +73,46 @@ class InStockProductRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param int $id
-     * @param int $quantity
-     * @return mixed
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @param array $ids
+     * @return array
      */
-    public function findWithProductAndAtLeast(int $id, int $quantity):? InStockProduct
+    public function findWithProductAndAtLeast(array $ids): array
     {
         return
             $queryBuilder = $this->createQueryBuilder('inStock')
-            ->where('inStock.product = :id')
-            ->andWhere('inStock.level >=  :quantity')
-            ->setParameter('id', $id)
-            ->setParameter('quantity', $quantity)
-            ->orderBy('inStock.level', 'DESC')
-            ->setMaxResults(1)
+            ->select('inStock')
+            ->innerJoin('App\Entity\InOrderProduct',
+                    'inOrder',
+                    \Doctrine\ORM\Query\Expr\Join::WITH,
+                    'inStock.product = inOrder.product')
+            ->andwhere('inStock.product IN (:ids)')
+            ->andWhere('inStock.level >= inOrder.quantity')
+            ->addOrderBy('inStock.product')
+            ->addOrderBy('inStock.level','DESC')
+            ->setParameter('ids', $ids)
             ->getQuery()
-            ->getOneOrNullResult()
+            ->getResult()
         ;
+    }
+
+    /**
+     * @param int $id
+     * @param int $quantity
+     * @return array
+     */
+    public function findWithStockedProduct(int $id, int $quantity): array
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('inStock')
+                ->select('inStock')
+                ->where('inStock.product = :id')
+                ->andWhere('inStock.level < :quantity')
+                ->addOrderBy('inStock.level','DESC')
+                ->setParameter('id', $id)
+                ->setParameter('quantity', $quantity)
+                ->getQuery()
+                ->getResult()
+            ;
     }
 
     /**
