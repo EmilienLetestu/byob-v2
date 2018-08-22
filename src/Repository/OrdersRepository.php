@@ -79,8 +79,8 @@ class OrdersRepository extends ServiceEntityRepository
         return
             $queryBuilder = $this->createQueryBuilder('o')
             ->select('COUNT(o)')
-            ->where('o.status = :status')
-            ->setParameter('status', strtolower($status))
+            ->where("o.status = :status")
+            ->setParameter('status', $status)
             ->getQuery()
             ->getSingleScalarResult()
          ;
@@ -94,10 +94,24 @@ class OrdersRepository extends ServiceEntityRepository
         return
             $queryBuilder = $this->createQueryBuilder('o')
             ->where("o.status = 'en attente de paiement' ")
-            ->orWhere("o.status = 'en attente de validation' ")
             ->getQuery()
             ->getResult()
         ;
+    }
+
+    /**
+     * @param string $status
+     * @return array
+     */
+    public function findOrderWithStatus(string $status): array
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('o')
+                ->where("o.status = :status")
+                ->setParameter('status', $status)
+                ->getQuery()
+                ->getResult()
+            ;
     }
 
     /**
