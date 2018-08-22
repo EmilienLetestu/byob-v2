@@ -13,6 +13,7 @@ use App\Builder\DashboardBuilder\AccountantDashboardBuilder;
 use App\Builder\DashboardBuilder\AdminDashboardBuilder;
 use App\Builder\DashboardBuilder\DashboardBuilder;
 use App\Builder\DashboardBuilder\SalesmanDashboardBuilder;
+use App\Builder\DashboardBuilder\SupplyDashboardBuilder;
 use App\Builder\DashboardBuilder\WarehousemanDashboardBuilder;
 
 use Doctrine\ORM\EntityManagerInterface;
@@ -72,6 +73,11 @@ class UserDashboard
             case 'ACCOUNTANT':
                 return $this->builder->build(
                     new AccountantDashboardBuilder($this->doctrine, $token))->getData();
+                break;
+
+            case 'SUPPLY':
+                return $this->builder->build(
+                    new SupplyDashboardBuilder($this->doctrine))->getData();
                 break;
 
         endswitch;
