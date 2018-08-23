@@ -36,7 +36,7 @@ class InOrderProductType extends AbstractType
                 'class'         => InStockProduct::class,
                 'query_builder' => function(EntityRepository $repository){
                     return $repository->createQueryBuilder('inStock')
-                        ->distinct('product')
+                        ->groupBy('inStock.product')
                     ;
                 },
                 'attr'          => ['class' => 'browser-default'],

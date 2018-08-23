@@ -110,3 +110,7 @@ a.reject-link,
     padding-bottom: 3rem;
 }
 
+[type="checkbox"].manually-prepared{
+    pointer-events: fill;
+}
+
