@@ -11,7 +11,9 @@ namespace App\Repository;
 
 use App\Entity\InStockProduct;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use function Symfony\Component\DependencyInjection\Loader\Configurator\expr;
 
 class InStockProductRepository extends ServiceEntityRepository
 {
@@ -76,7 +78,7 @@ class InStockProductRepository extends ServiceEntityRepository
      * @param array $ids
      * @return array
      */
-    public function findWithProductAndAtLeast(array $ids)
+    public function findWithProductAndAtLeast(array $ids, int $orderId)
     {
         return
             $queryBuilder = $this->createQueryBuilder('inStock')
@@ -85,11 +87,13 @@ class InStockProductRepository extends ServiceEntityRepository
                     'inOrder',
                     \Doctrine\ORM\Query\Expr\Join::WITH,
                     'inStock.product = inOrder.product')
-            ->andwhere('inOrder.product IN (:ids)')
-            ->andWhere("inOrder.quantity <= inStock.level")
+            ->andWhere('inOrder.order = :orderId')
+            ->andWhere('inOrder.product IN (:ids)')
+            ->andWhere('inOrder.quantity <= inStock.level')
             ->addOrderBy('inStock.product')
             ->addOrderBy('inStock.level','DESC')
             ->setParameter('ids', $ids)
+            ->setParameter('orderId', $orderId)
             ->getQuery()
             ->getResult()
         ;

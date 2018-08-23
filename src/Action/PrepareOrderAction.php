@@ -64,9 +64,10 @@ class PrepareOrderAction
            $quantities[$inOrder->getProduct()->getId()] = $inOrder->getQuantity();
        }
 
+
        $inStocks =  $this->doctrine
            ->getRepository(InStockProduct::class)
-           ->findWithProductAndAtLeast($productId);
+           ->findWithProductAndAtLeast($productId, $request->get('id'));
 
         $warehouseName = [];
         $stock = [];
@@ -86,6 +87,7 @@ class PrepareOrderAction
            $productModel[$inStock->getProduct()->getId()] = $inStock->getProduct();
 
        }
+
 
        // count the number  of times each warehouse appears
         $warehouse = array_count_values($stock);
