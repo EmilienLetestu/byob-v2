@@ -66,7 +66,7 @@ class ShowAllOrderAction
 
         $statusAndRoles = [
 
-            'ACCOUNTANT'   => 'en attente de paiement',
+            'ACCOUNTANT'   => 'en attente de validation',
             'SUPPLY'       => 'payé et validé',
             'WAREHOUSEMAN' => 'en préparation',
             'LOGISTIC'     => 'en attente d\'enlèvement'

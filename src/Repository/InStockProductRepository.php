@@ -76,9 +76,10 @@ class InStockProductRepository extends ServiceEntityRepository
 
     /**
      * @param array $ids
-     * @return array
+     * @param int $orderId
+     * @return mixed
      */
-    public function findWithProductAndAtLeast(array $ids, int $orderId)
+    public function findWithProductAndAtLeast(array $ids, int $orderId): array
     {
         return
             $queryBuilder = $this->createQueryBuilder('inStock')
@@ -97,6 +98,31 @@ class InStockProductRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
+    }
+
+    /**
+     * @param array $ids
+     * @param int $orderId
+     * @return mixed
+     */
+    public function findWithProductOrdered(array $ids, int $orderId): array
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('inStock')
+                ->select('inStock')
+                ->innerJoin('App\Entity\InOrderProduct',
+                    'inOrder',
+                    \Doctrine\ORM\Query\Expr\Join::WITH,
+                    'inStock.product = inOrder.product')
+                ->andWhere('inOrder.order = :orderId')
+                ->andWhere('inOrder.product IN (:ids)')
+                ->addOrderBy('inStock.product')
+                ->addOrderBy('inStock.level','DESC')
+                ->setParameter('ids', $ids)
+                ->setParameter('orderId', $orderId)
+                ->getQuery()
+                ->getResult()
+            ;
     }
 
     /**
