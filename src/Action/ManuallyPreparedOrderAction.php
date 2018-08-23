@@ -83,11 +83,12 @@ class ManuallyPreparedOrderAction
 
 
         $products = [];
-        foreach ($datas as $data){
-            $productAndWarehouse = explode('_',$data);
+        foreach ($datas as $key => $value){
+            $productAndWarehouse = explode('_',$value);
 
             $products[$productAndWarehouse[0]] = $productAndWarehouse[1] ;
         }
+
 
         $inStock =  $this->doctrine
             ->getRepository(InStockProduct::class)
@@ -97,7 +98,7 @@ class ManuallyPreparedOrderAction
         {
             $prodId      = str_replace('p'," ",$key);
             $warehouseId = str_replace('w'," ",$value);
-            $stock = $inStock->findProductStockInWarehouse($prodId, $warehouseId);
+            $stock = $inStock->findProductStockInWarehouse(intval($prodId), intval($warehouseId));
 
             $stock->setLevel(
                 $stock->getLevel() - $quantities[$stock->getProduct()->getId()]

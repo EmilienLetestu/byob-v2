@@ -17,6 +17,7 @@ Encore
     // uncomment to define the assets of the project
     .addEntry('app', './assets/js/app.js')
     .addEntry('orderStatusForm', './assets/js/orderStatusForm.js')
+    .addEntry('prepareOrder', './assets/js/prepareOrder.js')
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()

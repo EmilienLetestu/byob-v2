@@ -65,7 +65,7 @@
                 </thead>
                 <tbody>
                     {% for result in results %}
-                    <tr>
+                    <tr class="p{{ result.product.id }}">
                         <td>
                             {{ result.product.model }}
                         </td>
@@ -79,7 +79,7 @@
                             {{ orderedQuantity[result.product.id] }}
                         </td>
                         <th>
-                            <input class="manually-prepared" type="checkbox" name="manually-prepared" value="p_{{ result.product.id }}-w_{{ result.warehouse.id }}">
+                            <input class="manually-prepared" type="checkbox" name="manually-prepared" value="p{{ result.product.id }}_w{{ result.warehouse.id }}">
                         </th>
                     </tr>
                     {% endfor %}
@@ -116,7 +116,7 @@
                     <tbody>
                     {% for product in missing %}
                         {% for result in product %}
-                        <tr>
+                        <tr class="_p{{ result.product.id }}">
                             <td>
                                 {{ result.product.model }}
                             </td>
@@ -142,8 +142,13 @@
         {% endif %}
 
         <div class="create-entity-large">
-            <a href="{{ path('manuallyPreparedOrder', { 'id' : app.request.get('id'), 'data' : 'p1_w1&p2_w1&p3_w2' }) }}" class="btn red">VALIDER MA PREPARATION</a>
+            <a id="trigger-manual-preparation" href="{{ path('manuallyPreparedOrder', { 'id' : app.request.get('id'), 'data' : 'default' }) }}" class="btn red">VALIDER MA PREPARATION</a>
         </div>
 
 
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        <script type="text/javascript" src="{{ asset('build/prepareOrder.js') }}"></script>
     {% endblock %}
