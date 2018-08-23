@@ -76,7 +76,7 @@ class InStockProductRepository extends ServiceEntityRepository
      * @param array $ids
      * @return array
      */
-    public function findWithProductAndAtLeast(array $ids): array
+    public function findWithProductAndAtLeast(array $ids)
     {
         return
             $queryBuilder = $this->createQueryBuilder('inStock')
@@ -85,8 +85,8 @@ class InStockProductRepository extends ServiceEntityRepository
                     'inOrder',
                     \Doctrine\ORM\Query\Expr\Join::WITH,
                     'inStock.product = inOrder.product')
-            ->andwhere('inStock.product IN (:ids)')
-            ->andWhere('inStock.level >= inOrder.quantity')
+            ->andwhere('inOrder.product IN (:ids)')
+            ->andWhere("inOrder.quantity <= inStock.level")
             ->addOrderBy('inStock.product')
             ->addOrderBy('inStock.level','DESC')
             ->setParameter('ids', $ids)
@@ -113,6 +113,24 @@ class InStockProductRepository extends ServiceEntityRepository
                 ->getQuery()
                 ->getResult()
             ;
+    }
+
+    /**
+     * @param array $ids
+     * @param int $warehouse
+     * @return array
+     */
+    public function findStockToBind(array $ids, int $warehouse): array
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('inStock')
+            ->where('inStock.product In (:ids)')
+            ->andWhere('inStock.warehouse = :warehouse')
+            ->setParameter('ids', $ids)
+            ->setParameter('warehouse', $warehouse)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     /**
