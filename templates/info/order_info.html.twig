@@ -34,9 +34,11 @@
                     {% endfor %}
                 </ul>
 
-                <div class="create-entity-large">
-                    <a href="{{ path('prepareOrder',{ 'id' : inOrderProducts[0].order.id }) }}" class="btn red">Préparer la commande</a>
-                </div>
+                {% if app.user.role == 'SUPPLY' %}
+                    <div class="create-entity-large">
+                        <a href="{{ path('prepareOrder',{ 'id' : inOrderProducts[0].order.id }) }}" class="btn red">PREPARER LA COMMANDE</a>
+                    </div>
+                {% endif %}
 
 
             <div class="fixed-action-btn">

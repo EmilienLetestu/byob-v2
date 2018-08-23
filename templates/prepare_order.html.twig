@@ -28,7 +28,7 @@
                                 {{ warehouse.name }}
                             </td>
                             <td class="secondary-content">
-                                <a href="#!">Assigner la commande</a>
+                                <a href="{{ path('endPreparation', { 'id' : app.request.get('id') , 'warehouseId' : warehouse.id }) }}">Assigner la commande</a>
                             </td>
                         {% endfor %}
                     </tr>
