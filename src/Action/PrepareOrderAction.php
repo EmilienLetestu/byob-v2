@@ -16,6 +16,7 @@ use App\Responder\PrepareOrderResponder;
 use Doctrine\ORM\EntityManagerInterface;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class PrepareOrderAction
@@ -26,12 +27,21 @@ class PrepareOrderAction
     private $doctrine;
 
     /**
+     * @var
+     */
+    private $session;
+
+    /**
      * PrepareOrderAction constructor.
      * @param EntityManagerInterface $doctrine
      */
-    public function __construct(EntityManagerInterface $doctrine)
+    public function __construct(
+        EntityManagerInterface $doctrine,
+        SessionInterface       $session
+    )
     {
         $this->doctrine = $doctrine;
+        $this->session  = $session;
     }
 
     /**
@@ -54,6 +64,8 @@ class PrepareOrderAction
            ->getRepository(InOrderProduct::class)
            ->findAllWithOrder($request->get('id'))
        ;
+
+       $this->session->set('inOrders',$inOrders);
 
        $productId  = [];
 
