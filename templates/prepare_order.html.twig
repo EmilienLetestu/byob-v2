@@ -39,53 +39,57 @@
 
         {% endif %}
 
-        <div class="table-container">
+        {% if results|length > 0 %}
 
-            <h4>Assigner les produits individuellement</h4>
+            <div class="table-container">
 
-            <table>
-                <thead>
-                <tr>
-                    <th>
-                        produit
-                    </th>
-                    <th>
-                        entrepot
-                    </th>
-                    <th>
-                        niveau du stock
-                    </th>
-                    <th>
-                        quantité commandée
-                    </th>
-                    <th>
-                        Assigné le produit
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                    {% for result in results %}
-                    <tr class="p{{ result.product.id }}">
-                        <td>
-                            {{ result.product.model }}
-                        </td>
-                        <td>
-                            {{ result.warehouse.name }}
-                        </td>
-                        <td>
-                            {{ result.level }}
-                        </td>
-                        <td>
-                            {{ orderedQuantity[result.product.id] }}
-                        </td>
+                <h4>Assigner les produits individuellement</h4>
+
+                <table>
+                    <thead>
+                    <tr>
                         <th>
-                            <input class="manually-prepared" type="checkbox" name="manually-prepared" value="p{{ result.product.id }}_w{{ result.warehouse.id }}">
+                            produit
+                        </th>
+                        <th>
+                            entrepot
+                        </th>
+                        <th>
+                            niveau du stock
+                        </th>
+                        <th>
+                            quantité commandée
+                        </th>
+                        <th>
+                            Assigné le produit
                         </th>
                     </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        {% for result in results %}
+                        <tr class="p{{ result.product.id }}">
+                            <td>
+                                {{ result.product.model }}
+                            </td>
+                            <td>
+                                {{ result.warehouse.name }}
+                            </td>
+                            <td>
+                                {{ result.level }}
+                            </td>
+                            <td>
+                                {{ orderedQuantity[result.product.id] }}
+                            </td>
+                            <th>
+                                <input class="manually-prepared" type="checkbox" name="manually-prepared" value="p{{ result.product.id }}_w{{ result.warehouse.id }}">
+                            </th>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        {% endif %}
 
         {% if missing|length > 0 %}
 
