@@ -52,7 +52,7 @@ class OrderPreparation
             ->findAllWithOrder($orderId)
         ;
 
-        $this->session->set('inOrders', $inOrders);
+        $this->session->set('inOrder', $inOrders);
 
         foreach ($inOrders as $inOrder)
         {
@@ -163,7 +163,6 @@ class OrderPreparation
 
     }
 
-
     /**
      * @param array $inStocks
      * @param OrderPreparationDTO $dto
@@ -193,6 +192,10 @@ class OrderPreparation
                 )
             );
         }
+
+        $this->session->set('inOrderDto', $dto);
     }
+
+
 }
 

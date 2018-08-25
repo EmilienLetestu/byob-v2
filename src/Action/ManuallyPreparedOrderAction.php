@@ -12,6 +12,7 @@ namespace App\Action;
 use App\Entity\InOrderProduct;
 use App\Entity\InStockProduct;
 use App\Responder\ManuallyPreparedOrderResponder;
+use App\Services\ManuallyPreparedOrder;
 use Doctrine\ORM\EntityManagerInterface;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -24,7 +25,7 @@ class ManuallyPreparedOrderAction
     /**
      * @var EntityManagerInterface
      */
-    private $doctrine;
+    private $manually;
 
     /**
      * @var SessionInterface
@@ -33,15 +34,15 @@ class ManuallyPreparedOrderAction
 
     /**
      * ManuallyPreparedOrderAction constructor.
-     * @param EntityManagerInterface $doctrine
+     * @param ManuallyPreparedOrder $manually
      * @param SessionInterface $session
      */
     public function __construct(
-        EntityManagerInterface $doctrine,
+        ManuallyPreparedOrder $manually,
         SessionInterface       $session
     )
     {
-        $this->doctrine = $doctrine;
+        $this->manually = $manually;
         $this->session  = $session;
     }
 
@@ -59,55 +60,16 @@ class ManuallyPreparedOrderAction
      */
     public function __invoke(Request $request, ManuallyPreparedOrderResponder $responder): Response
     {
-        $inOrders = $this->doctrine
-            ->getRepository(InOrderProduct::class)
-            ->findAllWithOrder($request->get('id'))
-        ;
 
-        $ids = [];
-        $quantities = [];
-        $ordered = [];
+        $this->manually->assignToStock(
+            $this->session->get('inOrder'),
+            $this->session->get('inOrderDto'),
+            $request->get('data')
+        );
 
-        foreach ($inOrders as $inOrder)
-        {
-            $ids[] = $inOrder->getProduct()->getId();
-            $order = $inOrder->getOrder();
-            $quantities[$inOrder->getProduct()->getId()] = $inOrder->getQuantity();
-            $ordered[$inOrder->getProduct()->getId()] = $inOrder;
+        $this->session->remove('inOrder');
+        $this->session->remove('inOrderDto');
 
-        }
-
-        $order->setStatus('en préparation');
-
-        $datas = explode('&',$request->get('data'));
-
-
-        $products = [];
-        foreach ($datas as $key => $value){
-            $productAndWarehouse = explode('_',$value);
-
-            $products[$productAndWarehouse[0]] = $productAndWarehouse[1] ;
-        }
-
-
-        $inStock =  $this->doctrine
-            ->getRepository(InStockProduct::class)
-        ;
-
-        foreach ($products as $key=>$value)
-        {
-            $prodId      = str_replace('p'," ",$key);
-            $warehouseId = str_replace('w'," ",$value);
-            $stock = $inStock->findProductStockInWarehouse(intval($prodId), intval($warehouseId));
-
-            $stock->setLevel(
-                $stock->getLevel() - $quantities[$stock->getProduct()->getId()]
-            );
-
-            $ordered[$stock->getProduct()->getId()]->setWarehouse($stock->getWarehouse());
-        }
-
-        $this->doctrine->flush();
 
         return $responder();
     }
