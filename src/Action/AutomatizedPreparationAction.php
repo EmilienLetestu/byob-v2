@@ -8,11 +8,9 @@
 
 namespace App\Action;
 
-
-use App\Entity\InOrderProduct;
-use App\Entity\InStockProduct;
 use App\Responder\AutomatizedPreparationResponder;
 
+use App\Services\AutomatizedPreparation;
 use Doctrine\ORM\EntityManagerInterface;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +23,7 @@ class AutomatizedPreparationAction
     /**
      * @var EntityManagerInterface
      */
-    private $doctrine;
+    private $automatized;
 
     /**
      * @var SessionInterface
@@ -33,17 +31,17 @@ class AutomatizedPreparationAction
     private $session;
 
     /**
-     * AutomatizedPreparationResponder constructor.
-     * @param EntityManagerInterface $doctrine
+     * AutomatizedPreparationAction constructor.
+     * @param AutomatizedPreparation $automatized
      * @param SessionInterface $session
      */
     public function __construct(
-        EntityManagerInterface $doctrine,
+        AutomatizedPreparation $automatized,
         SessionInterface $session
     )
     {
-        $this->doctrine = $doctrine;
-        $this->session  = $session;
+        $this->automatized = $automatized;
+        $this->session     = $session;
     }
 
     /**
@@ -52,7 +50,6 @@ class AutomatizedPreparationAction
      *     name = "endPreparation",
      *     requirements={ "id" = "\d+" },
      *     requirements={ "warehouseId" = "\d+" }
-     *
      * )
      *
      * @param Request $request
@@ -61,44 +58,15 @@ class AutomatizedPreparationAction
      */
     public function __invoke(Request $request, AutomatizedPreparationResponder $responder): Response
     {
-            $inOrders = $this->doctrine
-                ->getRepository(InOrderProduct::class)
-                ->findAllWithOrder($request->get('id'))
-            ;
+        $this->automatized->assignToStock(
+            $this->session->get('inOrder'),
+            $this->session->get('inOrderDto'),
+            $request->get('warehouseId')
+        );
 
-            $ids = [];
+        $this->session->remove('inOrder');
+        $this->session->remove('inOrderDto');
 
-            foreach ($inOrders as $inOrder)
-            {
-                $ids[] = $inOrder->getProduct()->getId();
-                $order = $inOrder->getOrder();
-            }
-
-            $order->setStatus('en préparation');
-
-
-            $inStocks = $this->doctrine
-                ->getRepository(InStockProduct::class)
-                ->findStockToBind($ids, $request->get('warehouseId'))
-            ;
-
-            $quantities = [];
-            foreach ($inOrders as $inOrder)
-            {
-                $inOrder->setWarehouse($inStocks[0]->getWarehouse());
-                $quantities[$inOrder->getProduct()->getId()] = $inOrder->getQuantity();
-            }
-
-
-            foreach($inStocks as $inStock)
-            {
-                 $inStock->setLevel(
-                     $inStock->getLevel() - $quantities[$inStock->getProduct()->getId()]
-                 );
-            }
-
-            $this->doctrine->flush();
-
-            return $responder();
+        return $responder();
     }
 }

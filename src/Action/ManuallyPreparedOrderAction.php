@@ -8,9 +8,6 @@
 
 namespace App\Action;
 
-
-use App\Entity\InOrderProduct;
-use App\Entity\InStockProduct;
 use App\Responder\ManuallyPreparedOrderResponder;
 use App\Services\ManuallyPreparedOrder;
 use Doctrine\ORM\EntityManagerInterface;
