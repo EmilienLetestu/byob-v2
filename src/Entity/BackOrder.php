@@ -34,6 +34,16 @@ class BackOrder
     /**
      * @var
      */
+    private $delivered;
+
+    /**
+     * @var
+     */
+    private $deliveredOn;
+
+    /**
+     * @var
+     */
     private $inOrderProduct;
 
     /**
@@ -58,6 +68,22 @@ class BackOrder
     public function setRegularizedOn(?string $format): void
     {
          $this->regularizedOn = new \DateTime(date($format));
+    }
+
+    /**
+     * @param bool $delivered
+     */
+    public function setDelivered(bool $delivered): void
+    {
+        $this->delivered = $delivered;
+    }
+
+    /**
+     * @param null|string $format
+     */
+    public function setDeliveredOn(?string $format): void
+    {
+        $this->deliveredOn = new \DateTime(date($format));
     }
 
     /**
@@ -98,6 +124,22 @@ class BackOrder
     public function getRegularizedOn(): ?\DateTime
     {
         return $this->regularizedOn;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getDelivered(): bool
+    {
+        return $this->delivered;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getDeliveredOn(): ?\DateTime
+    {
+        return $this->deliveredOn;
     }
 
 

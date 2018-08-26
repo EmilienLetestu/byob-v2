@@ -11,8 +11,10 @@
             <generator strategy="AUTO"/>
         </id>
         <field name="since" column="since" type="date"/>
-        <field name="regularize" column="regularize" type="boolean" length="50"/>
+        <field name="regularize" column="regularize" type="boolean"/>
         <field name="regularizedOn" column="regularized_on" type="date" nullable="true"/>
+        <field name="delivered" column="delivered" type="boolean"/>
+        <field name="deliveredOn" column="delivered_on" type="date" nullable="true"/>
 
        <one-to-one
                field="inOrderProduct"
