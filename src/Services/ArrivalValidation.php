@@ -9,6 +9,7 @@
 namespace App\Services;
 
 
+use App\Entity\InOrderProduct;
 use App\Entity\InStockProduct;
 use App\Entity\PendingValidationStock;
 use App\Entity\StockValidation;
@@ -94,7 +95,7 @@ class ArrivalValidation
         $inStock === null ?
             $this->createStock($pendingValidation)
             :
-            $this->addToStock($inStock, $pendingValidation->getQuantity())
+            $this->addToStock($inStock, $pendingValidation->getQuantity(), $pendingValidation->getWarehouse()->getId())
         ;
 
         $this->updatePendingValidation($pendingValidation, true);
@@ -144,10 +145,11 @@ class ArrivalValidation
      * @param InStockProduct $inStockProduct
      * @param int $quantity
      */
-    private function addToStock(InStockProduct $inStockProduct, int $quantity)
+    private function addToStock(InStockProduct $inStockProduct, int $quantity, $warehouseId)
     {
+       $addToStock = $this->provisionBackOrderFirst($warehouseId, $quantity, $inStockProduct->getProduct()->getId());
        $level =  $inStockProduct->getLevel();
-       $inStockProduct->setLevel($level + $quantity);
+       $inStockProduct->setLevel($level + $addToStock);
 
     }
 
@@ -176,10 +178,37 @@ class ArrivalValidation
         $this->doctrine->persist($this->stockValidation);
     }
 
-    private function provisionBackOrderFirst()
+    private function provisionBackOrderFirst($warehouseId, $quantity, $productId)
     {
-        //get all backOrder in warehouse
-        
+        $inOrders =  $this->doctrine->getRepository(InOrderProduct::class)
+            ->findAllWithBackOrderAndWarehouse($warehouseId, $quantity, $productId);
+
+
+
+        if(count($inOrders) > 0){
+
+            while ($quantity > 0 and count($inOrders)){
+
+                $inOrder = array_shift($inOrders);
+
+
+                if($quantity > $inOrder->getQuantity())
+                {
+                    $backOrder = $inOrder->getBackOrder();
+                    $backOrder->setRegularize(true);
+                    $backOrder->setregularizedOn('Y-m-d');
+                    $quantity -= $inOrder->getQuantity();
+                }
+
+            }
+
+            return $quantity;
+        }
+
+
+        return $quantity;
+
+
     }
 
 }

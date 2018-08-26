@@ -38,4 +38,30 @@ class InOrderProductRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    /**
+     * @param int $warehouseId
+     * @param int $quantity
+     * @param int $productId
+     * @return mixed
+     */
+    public function findAllWithBackOrderAndWarehouse(int $warehouseId, int $quantity, int $productId)
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('inOrder')
+                ->select('inOrder')
+                ->join('App\Entity\BackOrder', 'b')
+                ->andWhere('inOrder.backOrder IS NOT NULL')
+                ->andWhere('inOrder.product = :productId')
+                ->andwhere('inOrder.warehouse = :warehouseId')
+                ->andWhere('inOrder.quantity < :quantity')
+                ->andWhere('b.regularize = 0')
+                ->orderBy('b.since','DESC')
+                ->setParameter('warehouseId', $warehouseId)
+                ->setParameter('quantity', $quantity)
+                ->setParameter('productId', $productId)
+                ->getQuery()
+                ->getResult()
+            ;
+    }
 }
