@@ -37,6 +37,11 @@ class InOrderProduct
      */
     private $warehouse;
 
+    /**
+     * @var
+     */
+    private $backOrder;
+
 
     /**
      * @param int $quantity
@@ -68,6 +73,14 @@ class InOrderProduct
     public function setWarehouse(?Warehouse $warehouse): void
     {
         $this->warehouse = $warehouse;
+    }
+
+    /**
+     * @param BackOrder|null $backOrder
+     */
+    public function setBackOrder(?BackOrder $backOrder): void
+    {
+        $this->backOrder = $backOrder;
     }
 
     /**
@@ -105,8 +118,16 @@ class InOrderProduct
     /**
      * @return Warehouse|null
      */
-    public function getWarehouse():? Warehouse
+    public function getWarehouse(): ?Warehouse
     {
         return $this->warehouse;
+    }
+
+    /**
+     * @return BackOrder|null
+     */
+    public function getBackOrder(): ?BackOrder
+    {
+        return $this->backOrder;
     }
 }

@@ -38,5 +38,11 @@
         />
     </many-to-one>
 
+    <one-to-one
+            field="backOrder"
+            target-entity="App\Entity\BackOrder"
+            inversed-by="inOrderProduct">
+    </one-to-one>
+
 </entity>
 </doctrine-mapping>
