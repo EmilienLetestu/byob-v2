@@ -124,11 +124,9 @@ class ArrivalValidation
     }
 
     /**
-     * Triggered if the product never has been stocked in the warehouse
+     * Triggered if the product never been stocked in the warehouse
      *
-     * @param $product
-     * @param $warehouse
-     * @param $quantity
+     * @param PendingValidationStock $pending
      */
     private function createStock(PendingValidationStock $pending)
     {
@@ -176,6 +174,12 @@ class ArrivalValidation
         $this->stockValidation->setProcessedOn('Y-m-d');
 
         $this->doctrine->persist($this->stockValidation);
+    }
+
+    private function provisionBackOrderFirst()
+    {
+        //get all backOrder in warehouse
+        
     }
 
 }
