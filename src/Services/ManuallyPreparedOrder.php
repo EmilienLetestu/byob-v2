@@ -10,6 +10,7 @@ namespace App\Services;
 
 
 use App\DTO\OrderPreparationDTO;
+use App\Entity\BackOrder;
 use App\Entity\InStockProduct;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -49,7 +50,38 @@ class ManuallyPreparedOrder
 
         $order->setStatus('en préparation');
 
+        $products = $this->getDataFromUrl($urlData);
 
+        $inStock  = $this->doctrine
+            ->getRepository(InStockProduct::class)
+        ;
+
+        foreach ($products as $key=>$value)
+        {
+            $prodId      = str_replace('p'," ",$key);
+
+            $warehouseId = str_replace('w'," ",$value);
+
+            $stock = $inStock->findProductStockInWarehouse(intval($prodId), intval($warehouseId));
+
+            $quantity = $quantities[$stock->getProduct()->getId()];
+
+            $stock->getLevel() >= $quantity ?
+               $this->regularOrder($ordered, $stock, $quantity) :
+               $this->createBackOrder($ordered, $stock)
+            ;
+
+        }
+
+        $this->doctrine->flush();
+    }
+
+    /**
+     * @param string $urlData
+     * @return array
+     */
+    private function getDataFromUrl(string $urlData): array
+    {
         $data = explode('&',$urlData);
 
         $products = [];
@@ -61,25 +93,44 @@ class ManuallyPreparedOrder
             $products[$productAndWarehouse[0]] = $productAndWarehouse[1] ;
         }
 
-        $inStock =  $this->doctrine
-            ->getRepository(InStockProduct::class)
+        return $products;
+    }
+
+    /**
+     * @param array $ordered
+     * @param InStockProduct $stock
+     * @param int $quantity
+     */
+    private function regularOrder(array $ordered, InStockProduct $stock, int $quantity)
+    {
+        $stock->setLevel(
+            $stock->getLevel() - $quantity
+        );
+
+        $ordered[$stock->getProduct()->getId()]
+            ->setWarehouse($stock->getWarehouse()
+       );
+    }
+
+    /**
+     * @param array $ordered
+     * @param InStockProduct $stock
+     */
+    private function createBackOrder(array $ordered, InStockProduct $stock)
+    {
+        $backOrder = new BackOrder();
+
+        $backOrder->setRegularize(false);
+        $backOrder->setInOrderProduct($ordered[$stock->getProduct()->getId()]);
+        $backOrder->setSince('Y-m-d');
+
+        $ordered[$stock->getProduct()->getId()]
+            ->setWarehouse($stock->getWarehouse())
+        ;
+        $ordered[$stock->getProduct()->getId()]
+            ->setBackOrder($backOrder)
         ;
 
-
-        foreach ($products as $key=>$value)
-        {
-            $prodId      = str_replace('p'," ",$key);
-            $warehouseId = str_replace('w'," ",$value);
-            $stock = $inStock->findProductStockInWarehouse(intval($prodId), intval($warehouseId));
-
-            $stock->setLevel(
-                $stock->getLevel() - $quantities[$stock->getProduct()->getId()]
-            );
-
-            $ordered[$stock->getProduct()->getId()]->setWarehouse($stock->getWarehouse());
-        }
-
-        $this->doctrine->flush();
-
+        $this->doctrine->persist($backOrder);
     }
 }

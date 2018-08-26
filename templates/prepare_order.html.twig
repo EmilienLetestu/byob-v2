@@ -120,7 +120,7 @@
                     <tbody>
                     {% for product in missing %}
                         {% for result in product %}
-                        <tr class="_p{{ result.product.id }}">
+                        <tr class="p{{ result.product.id }}">
                             <td>
                                 {{ result.product.model }}
                             </td>
@@ -134,7 +134,7 @@
                                 {{ orderedQuantity[result.product.id] }}
                             </td>
                             <th>
-                                <input class="manually-prepared browser-default" type="checkbox" name="manually-prepared" value="p{{ result.product.id }}_w{{ result.warehouse.id }}">
+                                <input class="manually-prepared browser-default" type="checkbox" name="manually-prepared" value="m{{ result.product.id }}_w{{ result.warehouse.id }}">
                             </th>
                         </tr>
                         {% endfor %}
