@@ -20,6 +20,8 @@ class BackOrderTest extends TestCase
 
         $backOrder->setRegularize(false);
         $backOrder->setSince('Y-m-d');
+        $backOrder->setDelivered(false);
+
 
         self::assertInternalType(
             'bool', $backOrder->getRegularize()
@@ -32,6 +34,12 @@ class BackOrderTest extends TestCase
         );
         self::assertEquals(
             new \DateTime(date('Y-m-d')), $backOrder->getSince()
+        );
+        self::assertFalse(
+            $backOrder->getDelivered()
+        );
+        self::assertNull(
+            $backOrder->getDeliveredOn()
         );
 
     }

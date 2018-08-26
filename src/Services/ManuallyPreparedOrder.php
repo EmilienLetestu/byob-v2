@@ -121,6 +121,7 @@ class ManuallyPreparedOrder
         $backOrder = new BackOrder();
 
         $backOrder->setRegularize(false);
+        $backOrder->setDelivered(false);
         $backOrder->setInOrderProduct($ordered[$stock->getProduct()->getId()]);
         $backOrder->setSince('Y-m-d');
 
