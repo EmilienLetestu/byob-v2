@@ -130,4 +130,31 @@ class OrdersRepository extends ServiceEntityRepository
             ->getSingleScalarResult()
         ;
     }
+
+    /**
+     * @param int $warehouseId
+     * @param string $status
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function countToPrepareInWarehouse(int $warehouseId, string $status)
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('o')
+             ->select('COUNT(DISTINCT(o))')
+             ->join(
+                    'App\Entity\InOrderProduct',
+                    'inOrder',
+                 \Doctrine\ORM\Query\Expr\Join::WITH,
+                 'o.id = inOrder.order'
+             )
+             ->andWhere('inOrder.warehouse = :warehouseId')
+             ->andWhere('o.status = :status')
+             ->setParameter('warehouseId', $warehouseId)
+             ->setParameter('status', $status)
+             ->getQuery()
+             ->getSingleScalarResult()
+        ;
+    }
+
 }

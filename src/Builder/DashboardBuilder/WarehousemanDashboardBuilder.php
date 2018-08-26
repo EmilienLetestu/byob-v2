@@ -10,6 +10,7 @@ namespace App\Builder\DashboardBuilder;
 
 
 use App\Builder\Interfaces\DashboardBuilderInterface;
+use App\Entity\Orders;
 use App\Entity\PendingValidationStock;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -59,7 +60,10 @@ class WarehousemanDashboardBuilder implements DashboardBuilderInterface
             $this->doctrine->getRepository(PendingValidationStock::class)
                 ->countUserArrivalWithStatus($this->getId(), false)
         );
-
+        $this->dashboard->setData('mes comandes a préparer',
+            $this->doctrine->getRepository(Orders::class)
+                ->countToPrepareInWarehouse($this->getWarehouse(), 'en préparation')
+        );
     }
 
 
@@ -84,6 +88,20 @@ class WarehousemanDashboardBuilder implements DashboardBuilderInterface
         return
             $this->token->getToken()->getUser()->getId()
         ;
+    }
+
+    /**
+     * @todo only works this dirty way because warehouseman role isn't meant to be bind to several warehouses
+     *
+     * @return int
+     */
+    private function getWarehouse(): int
+    {
+        $warehouse = $this->token
+            ->getToken()->getUser()->getUserInWarehouses()
+        ;
+
+        return $warehouse[0]->getWarehouse()->getId();
     }
 
 }
