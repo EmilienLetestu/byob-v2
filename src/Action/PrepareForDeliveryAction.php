@@ -6,7 +6,7 @@
  * Time: 10:29
  */
 
-namespace App\Action\Show;
+namespace App\Action;
 
 
 use App\Entity\InOrderProduct;
