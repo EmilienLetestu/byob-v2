@@ -67,6 +67,30 @@ class InOrderProductRepository extends ServiceEntityRepository
 
     /**
      * @param int $warehouseId
+     * @param int $orderId
+     * @param string $status
+     * @return array
+     */
+    public function findReadyToPrepareInWarehouse(int $warehouseId, int $orderId, string $status): array
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('inOrder')
+                ->select( 'inOrder')
+                ->join('App\Entity\Orders', 'o',\Doctrine\ORM\Query\Expr\Join::WITH, 'inOrder.order = o.id' )
+                ->andWhere('inOrder.backOrder IS NULL')
+                ->andWhere('o.id = :orderId')
+                ->andWhere('o.status = :status')
+                ->andwhere('inOrder.warehouse = :warehouseId')
+                ->setParameter('warehouseId', $warehouseId)
+                ->setParameter('orderId', $orderId)
+                ->setParameter('status', $status)
+                ->getQuery()
+                ->getResult()
+            ;
+    }
+
+    /**
+     * @param int $warehouseId
      * @return int
      * @throws \Doctrine\ORM\NonUniqueResultException
      */

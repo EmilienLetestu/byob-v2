@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+    {% block body %}
+
+        <h1>Préparation pour enlèvement</h1>
+
+            <div class="table-container">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Produit
+                            </th>
+                            <th>
+                                Référence
+                            </th>
+                            <th>
+                                Quantité
+                            </th>
+                            <th>
+                               Prêt
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for inOrderProduct in inOrderProducts %}
+                        <tr>
+                            <td>
+                                {{ inOrderProduct.product.model }}
+                            </td>
+                            <td>
+                                {{ inOrderProduct.product.reference }}
+                            </td>
+                            <td>
+                                {{ inOrderProduct.quantity }}
+                            </td>
+                            <td>
+                                <input  type="checkbox" name="prepared" value="{{ inOrderProduct.id }}">
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <div class="create-entity-large">
+                    <a href="#" class="btn red">SIGNALER QUE LA COMMANDE EST ASSEMBLÉE</a>
+                </div>
+
+            </div>
+
+
+
+    {% endblock %}
