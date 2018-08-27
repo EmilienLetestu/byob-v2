@@ -10,6 +10,7 @@ namespace App\Builder\DashboardBuilder;
 
 
 use App\Builder\Interfaces\DashboardBuilderInterface;
+use App\Entity\InOrderProduct;
 use App\Entity\Orders;
 use App\Entity\PendingValidationStock;
 use Doctrine\ORM\EntityManagerInterface;
@@ -63,6 +64,10 @@ class WarehousemanDashboardBuilder implements DashboardBuilderInterface
         $this->dashboard->setData('mes comandes a préparer',
             $this->doctrine->getRepository(Orders::class)
                 ->countToPrepareInWarehouse($this->getWarehouse(), 'en préparation')
+        );
+        $this->dashboard->setData('relicats à préparer',
+            $this->doctrine->getRepository(InOrderProduct::class)
+                ->countBackOrderToPrepare($this->getWarehouse())
         );
     }
 
