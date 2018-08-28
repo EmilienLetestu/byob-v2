@@ -35,7 +35,7 @@ class UserRepository extends ServiceEntityRepository
                 ->orderBy('u.name', 'ASC')
                 ->getQuery()
                 ->getResult()
-            ;
+        ;
     }
 
     /**
@@ -46,9 +46,26 @@ class UserRepository extends ServiceEntityRepository
     {
         return
             $queryBuilder = $this->createQueryBuilder('u')
-            ->select('COUNT(u)')
-            ->getQuery()
-            ->getSingleScalarResult()
+                ->select('COUNT(u)')
+                ->getQuery()
+                ->getSingleScalarResult()
+        ;
+    }
+
+    /**
+     * @param string $role
+     * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function countUserWithRole(string $role): int
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('u')
+                ->select('COUNT(u)')
+                ->andWhere('u.role = :role')
+                ->setParameter('role', $role)
+                ->getQuery()
+                ->getSingleScalarResult()
         ;
     }
 }

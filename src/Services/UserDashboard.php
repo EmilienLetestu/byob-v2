@@ -12,6 +12,7 @@ namespace App\Services;
 use App\Builder\DashboardBuilder\AccountantDashboardBuilder;
 use App\Builder\DashboardBuilder\AdminDashboardBuilder;
 use App\Builder\DashboardBuilder\DashboardBuilder;
+use App\Builder\DashboardBuilder\LogisticDashboardBuilder;
 use App\Builder\DashboardBuilder\SalesmanDashboardBuilder;
 use App\Builder\DashboardBuilder\SupplyDashboardBuilder;
 use App\Builder\DashboardBuilder\WarehousemanDashboardBuilder;
@@ -64,7 +65,6 @@ class UserDashboard
                     new WarehousemanDashboardBuilder($this->doctrine, $token))->getData();
                 break;
 
-
             case 'SALESMAN':
                 return $this->builder->build(
                     new SalesmanDashboardBuilder($this->doctrine, $token))->getData();
@@ -78,6 +78,11 @@ class UserDashboard
             case 'SUPPLY':
                 return $this->builder->build(
                     new SupplyDashboardBuilder($this->doctrine))->getData();
+                break;
+
+            case 'LOGISTIC':
+                return $this->builder->build(
+                    new LogisticDashboardBuilder($this->doctrine))->getData();
                 break;
 
         endswitch;
