@@ -1,0 +1,4 @@
+{{ form_start(form) }}
+    {{ form_widget(form.status) }}
+    <input type="hidden" class="selected-default-value" value="{{ inOrderProducts[0].order.status }}">
+{{ form_end(form) }}

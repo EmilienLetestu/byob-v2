@@ -2,23 +2,26 @@
 
     {% block body %}
 
-        <h1>Commande : {{ inOrderProducts[0].order.reference }}</h1>
+        {% set order =  inOrderProducts[0].order %}
+
+        <h1>Commande : {{ order.reference }}</h1>
 
             <div class="container form-container">
 
                 <ul class="collection with-header">
                     <li class="collection-header"><h4>Rappel sur la commande</h4></li>
-                    <li class="collection-item"><div>Montant <span class="secondary-content">{{ inOrderProducts[0].order.totalPrice|number_format(2, '.') }} Ar</span></div></li>
-                    <li class="collection-item"><div>Client <span class="secondary-content">{{ inOrderProducts[0].order.orderedFor.company }}</span></div></li>
-                    <li class="collection-item"><div>Adresse<span class="secondary-content">{{ inOrderProducts[0].order.orderedFor.address }}</span></div></li>
-                    <li class="collection-item"><div>Vendeur  <span class="secondary-content">{{ inOrderProducts[0].order.orderedBy.fullname }}</span></div></li>
-                    <li class="collection-item"><div>Commandé le <span class="secondary-content">{{ inOrderProducts[0].order.orderedOn|date('d-m-Y') }}</span></div></li>
+                    <li class="collection-item"><div>Montant <span class="secondary-content">{{ order.totalPrice|number_format(2, '.') }} Ar</span></div></li>
+                    <li class="collection-item"><div>Client <span class="secondary-content">{{ order.orderedFor.company }}</span></div></li>
+                    <li class="collection-item"><div>Adresse<span class="secondary-content">{{ order.orderedFor.address }}</span></div></li>
+                    <li class="collection-item"><div>Vendeur  <span class="secondary-content">{{ order.orderedBy.fullname }}</span></div></li>
+                    <li class="collection-item"><div>Commandé le <span class="secondary-content">{{ order.orderedOn|date('d-m-Y') }}</span></div></li>
                     <li class="collection-item"><div>Statut
                             <span class="secondary-content">
-                                {{ form_start(form) }}
-                                    {{ form_widget(form.status) }}
-                                    <input type="hidden" class="selected-default-value" value="{{ inOrderProducts[0].order.status }}">
-                                {{ form_end(form) }}
+                                {% if app.user.role == 'ACCOUNTANT' %}
+                                    {% include '/role_based_features/' ~ app.user.role|lower  ~ 'validateOrderSelect.html.twig' %}
+                                {% else %}
+                                    {{ inOrderProducts[0].order.status }}
+                                {% endif %}
                             </span></div>
                     </li>
                     <li class="collection-item"><div>Nombre de produits <span class="secondary-content">{{ inOrderProducts|length }}</span></div></li>
@@ -29,33 +32,22 @@
 
                 <ul class="collection with-header">
                     <li class="collection-header"><h4>Contenu de la commande</h4></li>
-                    {% for inOrderProduct in inOrderProducts %}
-                        {% if inOrderProduct.backorder is null %}
+                    {% for inOrderProduct in inOrderProducts if inOrderProduct.backorder is null %}
                             <li class="collection-item"><div>{{ inOrderProduct.product.model }}<span class="secondary-content">{{ inOrderProduct.quantity }}</span></div></li>
-                        {% endif %}
                     {% endfor %}
                 </ul>
 
                 <ul class="collection with-header">
                     <li class="collection-header"><h4>Reliquats de la commande</h4></li>
-                    {% for inOrderProduct in inOrderProducts %}
-                        {% if inOrderProduct.backorder is not null %}
+                    {% for inOrderProduct in inOrderProducts if inOrderProduct.backorder is not null  %}
                             <li class="collection-item"><div>{{ inOrderProduct.product.model }}<span class="secondary-content">{{ inOrderProduct.quantity }}</span></div></li>
-                        {% endif %}
                     {% endfor %}
                 </ul>
 
-                {% if app.user.role == 'SUPPLY' %}
-                    <div class="create-entity-large">
-                        <a href="{{ path('prepareOrder',{ 'id' : inOrderProducts[0].order.id }) }}" class="btn red">PREPARER LA COMMANDE</a>
-                    </div>
+                {% if app.user.role == 'SUPPLY' or app.user.role == 'WAREHOUSEMAN' %}
+                  {% include '/role_based_features/' ~ app.user.role|lower  ~ '_prepare_order_btn.html.twig'%}
                 {% endif %}
 
-                {% if app.user.role == 'WAREHOUSEMAN' %}
-                    <div class="create-entity-large">
-                        <a href="{{ path('prepareForDelivery',{ 'id' : inOrderProducts[0].order.id }) }}" class="btn red">PREPARER LA COMMANDE</a>
-                    </div>
-                {% endif %}
 
 
             <div class="fixed-action-btn">
