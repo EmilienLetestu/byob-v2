@@ -10,13 +10,13 @@ namespace App\Action;
 
 
 use App\Entity\Orders;
-use App\Responder\OrderIsAssembledResponder;
+use App\Responder\ReadyForDeliveryResponder;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class OrderIsAssembledAction
+class ReadyForDeliveryAction
 {
     /**
      * @var EntityManagerInterface
@@ -24,7 +24,7 @@ class OrderIsAssembledAction
     private $doctrine;
 
     /**
-     * OrderIsAssembledAction constructor.
+     * ReadyForDeliveryAction constructor.
      * @param EntityManagerInterface $doctrine
      */
     public function __construct(EntityManagerInterface $doctrine)
@@ -40,16 +40,16 @@ class OrderIsAssembledAction
      * )
      *
      * @param Request $request
-     * @param OrderIsAssembledResponder $responder
+     * @param ReadyForDeliveryResponder $responder
      * @return Response
      */
-    public function __invoke(Request $request, OrderIsAssembledResponder $responder): Response
+    public function __invoke(Request $request, ReadyForDeliveryResponder $responder): Response
     {
         $order = $this->doctrine->getRepository(Orders::class)
             ->findOrderWithId($request->get('id'))
         ;
 
-        $order->setStatus('commande assemblé');
+        $order->setStatus('en attente d\'enlèvement');
 
         $this->doctrine->flush();
 

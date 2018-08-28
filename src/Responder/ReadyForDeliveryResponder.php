@@ -11,7 +11,7 @@ namespace App\Responder;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class OrderIsAssembledResponder
+class ReadyForDeliveryResponder
 {
     /**
      * @var UrlGeneratorInterface
@@ -19,7 +19,7 @@ class OrderIsAssembledResponder
     private $urlGenerator;
 
     /**
-     * OrderIsAssembledResponder constructor.
+     * ReadyForDeliveryResponder constructor.
      * @param UrlGeneratorInterface $urlGenerator
      */
     public function __construct(UrlGeneratorInterface $urlGenerator)
