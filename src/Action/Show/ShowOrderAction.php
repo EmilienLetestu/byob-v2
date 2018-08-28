@@ -41,6 +41,10 @@ class ShowOrderAction
     /**
      * ShowOrderAction constructor.
      * @param EntityManagerInterface $doctrine
+     * @param FormFactoryInterface $formFactory
+     * @param OrderStatusHandler $handler
+     * @param UrlGeneratorInterface $urlGenerator
+     * @param SessionInterface $session
      */
     public function __construct(
         EntityManagerInterface $doctrine,
