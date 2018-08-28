@@ -34,6 +34,16 @@ class BackOrder
     /**
      * @var
      */
+    private $prepared;
+
+    /**
+     * @var
+     */
+    private $preparedOn;
+
+    /**
+     * @var
+     */
     private $delivered;
 
     /**
@@ -68,6 +78,22 @@ class BackOrder
     public function setRegularizedOn(?string $format): void
     {
          $this->regularizedOn = new \DateTime(date($format));
+    }
+
+    /**
+     * @param bool $prepared
+     */
+    public  function setPrepared(bool $prepared): void
+    {
+        $this->prepared = $prepared;
+    }
+
+    /**
+     * @param null|string $format
+     */
+    public function setPreparedOn(?string $format): void
+    {
+        $this->preparedOn = new \DateTime(date($format));
     }
 
     /**
@@ -124,6 +150,22 @@ class BackOrder
     public function getRegularizedOn(): ?\DateTime
     {
         return $this->regularizedOn;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getPrepared(): bool
+    {
+        return $this->prepared;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getPreparedOn(): ?\DateTime
+    {
+        return $this->preparedOn;
     }
 
     /**

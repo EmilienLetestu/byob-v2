@@ -13,6 +13,8 @@
         <field name="since" column="since" type="date"/>
         <field name="regularize" column="regularize" type="boolean"/>
         <field name="regularizedOn" column="regularized_on" type="date" nullable="true"/>
+        <field name="prepared" column="prepared" type="boolean"/>
+        <field name="preparedOn" column="prepared_on" type="date" nullable="true"/>
         <field name="delivered" column="delivered" type="boolean"/>
         <field name="deliveredOn" column="delivered_on" type="date" nullable="true"/>
 
