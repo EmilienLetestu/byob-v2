@@ -45,11 +45,29 @@ class ReadyForDeliveryAction
      */
     public function __invoke(Request $request, ReadyForDeliveryResponder $responder): Response
     {
+        $referer = explode('/',$request->headers->get('referer'));
+
+
         $order = $this->doctrine->getRepository(Orders::class)
             ->findOrderWithId($request->get('id'))
         ;
 
-        $order->setStatus('en attente d\'enlèvement');
+
+        if($referer[4] === 'reliquats')
+        {
+            //check for remainings back orders
+
+
+        }
+
+        if($referer[4] === 'commande')
+        {
+            $order->setStatus('en attente d\'enlèvement');
+
+        }
+
+
+
 
         $this->doctrine->flush();
 

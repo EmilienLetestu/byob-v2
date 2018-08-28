@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+    {% block body %}
+
+        <h1>Reliquats de commande à prépararer</h1>
+
+        <div class="table-container">
+
+            <table>
+                <thead>
+                <tr>
+                    <th>
+                        Ref
+                    </th>
+                    <th>
+                        Client
+                    </th>
+                    <th>
+                        Vendeur
+                    </th>
+                    <th>
+                        Préparer
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for order in backOrders %}
+                    <tr>
+                        <td>
+                            {{ order.reference }}
+                        </td>
+                        <td>
+                            {{ order.orderedFor.company }}
+                        </td>
+                        <td>
+                            {{ order.orderedBy.name }} {{ order.orderedBy.surname }}
+                        </td>
+                        <td>
+                            <a href="{{ path('prepareBackOrderForDelivery',{ 'id' : order.id }) }}"><i class="material-icons">send</i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+
+
+    {% endblock %}
+

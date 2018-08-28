@@ -11,6 +11,7 @@ namespace App\Action;
 
 use App\Entity\InOrderProduct;
 use App\Responder\PrepareForDeliveryResponder;
+use App\Services\PreparationList;
 use Doctrine\ORM\EntityManagerInterface;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -31,23 +32,37 @@ class PrepareForDeliveryAction
     private $token;
 
     /**
+     * @var
+     */
+    private $preparationList;
+
+    /**
      * PrepareForDeliveryAction constructor.
      * @param EntityManagerInterface $doctrine
      * @param TokenStorageInterface $token
+     * @param PreparationList $preparationList
      */
     public function __construct(
         EntityManagerInterface $doctrine,
-        TokenStorageInterface  $token
+        TokenStorageInterface  $token,
+        PreparationList        $preparationList
     )
     {
         $this->doctrine = $doctrine;
         $this->token    = $token;
+        $this->preparationList = $preparationList;
     }
 
     /**
      *  @Route(
      *     "preparation-pour-enlevement/commande/{id}",
      *     name="prepareForDelivery",
+     *     requirements={"id" = "\d+"}
+     * )
+     *
+     * @Route(
+     *      "preparation-pour-enlevement/reliquats/commande/{id}",
+     *     name="prepareBackOrderForDelivery",
      *     requirements={"id" = "\d+"}
      * )
      *
@@ -60,16 +75,18 @@ class PrepareForDeliveryAction
      */
     public function __invoke(Request $request, PrepareForDeliveryResponder $responder): Response
     {
-        $warehouse = $this->token->getToken()->getUser()->getUserInWarehouses();
+        $userInWarehouse   = $this->token->getToken()->getUser()->getUserInWarehouses();
+        $warehouseId       = $userInWarehouse[0]->getWarehouse()->getId();
+        $orderId           = $request->get('id');
+
+        $repo = $this->doctrine->getRepository(InOrderProduct::class);
 
         return
             $responder(
-                $this->doctrine->getRepository(InOrderProduct::class)
-                ->findReadyToPrepareInWarehouse(
-                    $warehouse[0]->getWarehouse()->getId(),
-                    $request->get('id'),
-                    'en préparation'
-                )
+                $request->get('_route') === 'prepareForDelivery' ?
+
+                    $this->preparationList->regularOrderList($repo, $warehouseId, $orderId) :
+                    $this->preparationList->backOrderList($repo, $warehouseId, $orderId)
             )
         ;
     }
