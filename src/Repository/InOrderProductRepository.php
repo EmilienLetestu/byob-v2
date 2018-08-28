@@ -66,6 +66,9 @@ class InOrderProductRepository extends ServiceEntityRepository
     }
 
     /**
+     * for order preparation purpose
+     * for a given warehouse fetch all the products in a given order
+     *
      * @param int $warehouseId
      * @param int $orderId
      * @param string $status
@@ -86,8 +89,10 @@ class InOrderProductRepository extends ServiceEntityRepository
                 ->setParameter('status', $status)
                 ->getQuery()
                 ->getResult()
-            ;
+        ;
     }
+
+
 
     /**
      * @param int $warehouseId
@@ -102,10 +107,11 @@ class InOrderProductRepository extends ServiceEntityRepository
                 ->join('App\Entity\BackOrder', 'b')
                 ->andWhere('inOrder.backOrder IS NOT NULL')
                 ->andwhere('inOrder.warehouse = :warehouseId')
-                ->andWhere('b.regularize = 0')
+                ->andWhere('b.regularize = 1')
                 ->setParameter('warehouseId', $warehouseId)
                 ->getQuery()
                 ->getSingleScalarResult()
             ;
     }
+
 }

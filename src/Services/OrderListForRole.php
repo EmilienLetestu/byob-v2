@@ -10,12 +10,14 @@ namespace App\Services;
 
 
 use App\Entity\User;
-use Doctrine\Common\Persistence\ObjectRepository;
+use App\Repository\OrdersRepository;
 
 class OrderListForRole
 {
-    public function getOrderListForRole(ObjectRepository $repo, User $user)
+    public function getOrderListForRole(OrdersRepository $repo, User $user)
     {
+        $warehouse = $user->getUserInWarehouses();
+
         switch ($user->getRole()):
             case 'ADMIN':
                 return $repo->findAllOrder();
@@ -26,6 +28,12 @@ class OrderListForRole
             case 'ACCOUNTANT':
                 return $repo->findOrderWithStatus('en attente de validation');
                 break;
+            case 'SUPPLY':
+                return $repo->findOrderWithStatus('payé et validé');
+                break;
+            case 'WAREHOUSEMAN':
+                return $repo->findToPrepareInWarehouse($warehouse[0]->getWarehouse()->getId(), 'en préparation');
+
             case 'LOGISTIC':
                 return $repo->findOrderWithStatus('en attente d\'enlèvement');
                 break;
@@ -34,5 +42,6 @@ class OrderListForRole
                 break;
         endswitch;
     }
+
 
 }

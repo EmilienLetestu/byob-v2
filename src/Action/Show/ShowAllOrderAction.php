@@ -9,6 +9,7 @@
 namespace App\Action\Show;
 
 
+use App\Entity\InOrderProduct;
 use App\Entity\Orders;
 use App\Responder\Show\ShowAllOrderResponder;
 
@@ -68,7 +69,8 @@ class ShowAllOrderAction
             $responder(
                 $this->orderListForRole->getOrderListForRole(
                     $this->doctrine->getRepository(Orders::class),
-                    $this->token->getToken()->getUser()
+                    $this->token->getToken()->getUser(),
+                    $this->doctrine->getRepository(InOrderProduct::class)
                 )
             )
         ;

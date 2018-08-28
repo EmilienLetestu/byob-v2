@@ -114,6 +114,33 @@ class OrdersRepository extends ServiceEntityRepository
             ;
     }
 
+
+    /**
+     * @param int $warehouseId
+     * @param string $status
+     * @return mixed
+     */
+    public function findToPrepareInWarehouse(int $warehouseId, string $status)
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('o')
+                ->select('o')
+                ->join(
+                    'App\Entity\InOrderProduct',
+                    'inOrder',
+                    \Doctrine\ORM\Query\Expr\Join::WITH,
+                    'o.id = inOrder.order'
+                )
+                ->andWhere('inOrder.warehouse = :warehouseId')
+                ->andWhere('o.status = :status')
+                ->andWhere('inOrder.backOrder IS NULL')
+                ->setParameter('warehouseId', $warehouseId)
+                ->setParameter('status', $status)
+                ->getQuery()
+                ->getResult()
+            ;
+    }
+
     /**
      * @param int $id
      * @return int
@@ -150,6 +177,7 @@ class OrdersRepository extends ServiceEntityRepository
              )
              ->andWhere('inOrder.warehouse = :warehouseId')
              ->andWhere('o.status = :status')
+             ->andWhere('inOrder.backOrder IS NULL')
              ->setParameter('warehouseId', $warehouseId)
              ->setParameter('status', $status)
              ->getQuery()
