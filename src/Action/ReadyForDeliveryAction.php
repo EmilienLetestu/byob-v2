@@ -11,7 +11,7 @@ namespace App\Action;
 
 use App\Entity\Orders;
 use App\Responder\ReadyForDeliveryResponder;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Services\PrepareForDelivery;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,17 +19,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class ReadyForDeliveryAction
 {
     /**
-     * @var EntityManagerInterface
+     * @var PrepareForDelivery
      */
-    private $doctrine;
+    private $prepareForDelivery;
 
     /**
      * ReadyForDeliveryAction constructor.
-     * @param EntityManagerInterface $doctrine
+     * @param PrepareForDelivery $prepareForDelivery
      */
-    public function __construct(EntityManagerInterface $doctrine)
+    public function __construct(
+        PrepareForDelivery $prepareForDelivery
+    )
     {
-        $this->doctrine = $doctrine;
+       $this->prepareForDelivery = $prepareForDelivery;
     }
 
     /**
@@ -48,28 +50,10 @@ class ReadyForDeliveryAction
         $referer = explode('/',$request->headers->get('referer'));
 
 
-        $order = $this->doctrine->getRepository(Orders::class)
-            ->findOrderWithId($request->get('id'))
+        $referer[4] === 'reliquats' ?
+            $this->prepareForDelivery->backOrderReady() :
+            $this->prepareForDelivery->regularOrderReady($request->get('id'))
         ;
-
-
-        if($referer[4] === 'reliquats')
-        {
-            //check for remainings back orders
-
-
-        }
-
-        if($referer[4] === 'commande')
-        {
-            $order->setStatus('en attente d\'enlèvement');
-
-        }
-
-
-
-
-        $this->doctrine->flush();
 
         return $responder();
     }
