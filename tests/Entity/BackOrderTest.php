@@ -21,6 +21,7 @@ class BackOrderTest extends TestCase
         $backOrder->setRegularize(false);
         $backOrder->setSince('Y-m-d');
         $backOrder->setDelivered(false);
+        $backOrder->setPrepared(false);
 
 
         self::assertInternalType(
@@ -40,6 +41,12 @@ class BackOrderTest extends TestCase
         );
         self::assertNull(
             $backOrder->getDeliveredOn()
+        );
+        self::assertFalse(
+            $backOrder->getPrepared()
+        );
+        self::assertNull(
+            $backOrder->getPreparedOn()
         );
 
     }
