@@ -12,6 +12,7 @@ namespace App\Action\Show;
 use App\Entity\Orders;
 use App\Responder\Show\ShowAllOrderResponder;
 
+use App\Services\OrderListForRole;
 use Doctrine\ORM\EntityManagerInterface;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -31,18 +32,23 @@ class ShowAllOrderAction
      */
     private $token;
 
+    private $orderListForRole;
+
     /**
      * ShowAllOrderAction constructor.
      * @param EntityManagerInterface $doctrine
      * @param TokenStorageInterface $token
+     * @param OrderListForRole $orderListForRole
      */
     public function __construct(
         EntityManagerInterface $doctrine,
-        TokenStorageInterface  $token
+        TokenStorageInterface  $token,
+        OrderListForRole       $orderListForRole
     )
     {
-        $this->doctrine  = $doctrine;
-        $this->token     = $token;
+        $this->doctrine         = $doctrine;
+        $this->token            = $token;
+        $this->orderListForRole = $orderListForRole;
     }
 
 
@@ -58,29 +64,12 @@ class ShowAllOrderAction
      */
     public function __invoke(Request $request, ShowAllOrderResponder $responder): Response
     {
-        $repo = $this->doctrine
-            ->getRepository(Orders::class)
-        ;
-
-        $user = $this->token->getToken()->getUser();
-
-        $statusAndRoles = [
-
-            'ACCOUNTANT'   => 'en attente de validation',
-            'SUPPLY'       => 'payé et validé',
-            'WAREHOUSEMAN' => 'en préparation',
-            'LOGISTIC'     => 'en attente d\'enlèvement'
-        ];
-
         return
             $responder(
-                $user->getRole() === 'ADMIN' ? $repo->findAllOrder() :
-                      (
-                          $user->getRole() === 'SALESMAN' ?
-                              $repo->findAllOrderWithUser($user->getId()) :
-                              $repo->findOrderWithStatus($statusAndRoles[$user->getRole()])
-
-                      )
+                $this->orderListForRole->getOrderListForRole(
+                    $this->doctrine->getRepository(Orders::class),
+                    $this->token->getToken()->getUser()
+                )
             )
         ;
     }
