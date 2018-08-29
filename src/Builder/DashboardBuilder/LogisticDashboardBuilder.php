@@ -48,9 +48,9 @@ class LogisticDashboardBuilder implements DashboardBuilderInterface
             $this->doctrine->getRepository(User::class)->countUserWithRole('DELIVERYMAN')
         );
         $this->dashboard->setData('commandes à livrer',
-            $this->doctrine->getRepository(Orders::class)->countOrderWithStatus('en attente d\'enlèvement')
+            $this->doctrine->getRepository(Orders::class)->countOrderWithStatus('en attente d\'attribution')
         );
-        $this->dashboard->setData('reliquat à livrer',
+        $this->dashboard->setData('reliquats à livrer',
             $this->doctrine->getRepository(BackOrder::class)->countAllToDeliver()
         );
 

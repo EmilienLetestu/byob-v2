@@ -35,7 +35,7 @@ class OrderListForRole
                 return $repo->findToPrepareInWarehouse($warehouse[0]->getWarehouse()->getId(), 'en préparation');
 
             case 'LOGISTIC':
-                return $repo->findOrderWithStatus('en attente d\'enlèvement');
+                return $repo->findOrderWithStatus('en attente d\'attribution');
                 break;
             case 'DELIVERYMAN':
                 return $repo->findOrderWithStatus('en attente d\'enlèvement');
