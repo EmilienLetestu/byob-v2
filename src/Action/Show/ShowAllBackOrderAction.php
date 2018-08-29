@@ -65,13 +65,17 @@ class ShowAllBackOrderAction
      */
     public function __invoke(ShowAllBackOrderResponder $responder):Response
     {
-        $warehouse = $this->token->getToken()->getUser()->getUserInWarehouses();
+        $repo      = $this->doctrine->getRepository(InOrderProduct::class);
+        $user      = $this->token->getToken()->getUser();
+        $warehouse = $user->getUserInWarehouses();
 
         return
             $responder(
-                $this->doctrine
-                    ->getRepository(InOrderProduct::class)
-                    ->findBackOrderToPrepare($warehouse[0]->getWarehouse()->getId())
-        );
+                $user->getRole() === 'LOGISTIC' ?
+                    $repo->findAllWithBackOrderReady() :
+                    $repo->findBackOrderToPrepare($warehouse[0]->getWarehouse()->getId())
+
+            )
+        ;
     }
 }

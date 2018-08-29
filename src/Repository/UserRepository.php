@@ -31,10 +31,27 @@ class UserRepository extends ServiceEntityRepository
     {
         return
             $queryBuilder = $this->createQueryBuilder('u')
-                ->select('u')
-                ->orderBy('u.name', 'ASC')
-                ->getQuery()
-                ->getResult()
+            ->select('u')
+            ->orderBy('u.name', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+     * @param string $role
+     * @return array
+     */
+    public function findUserWithRole(string $role): array
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('u')
+            ->select('u')
+            ->andWhere('u.role = :role')
+            ->setParameter('role', $role)
+            ->orderBy('u.name', 'ASC')
+            ->getQuery()
+            ->getResult()
         ;
     }
 
@@ -46,9 +63,9 @@ class UserRepository extends ServiceEntityRepository
     {
         return
             $queryBuilder = $this->createQueryBuilder('u')
-                ->select('COUNT(u)')
-                ->getQuery()
-                ->getSingleScalarResult()
+            ->select('COUNT(u)')
+            ->getQuery()
+            ->getSingleScalarResult()
         ;
     }
 
@@ -61,11 +78,11 @@ class UserRepository extends ServiceEntityRepository
     {
         return
             $queryBuilder = $this->createQueryBuilder('u')
-                ->select('COUNT(u)')
-                ->andWhere('u.role = :role')
-                ->setParameter('role', $role)
-                ->getQuery()
-                ->getSingleScalarResult()
+            ->select('COUNT(u)')
+            ->andWhere('u.role = :role')
+            ->setParameter('role', $role)
+            ->getQuery()
+            ->getSingleScalarResult()
         ;
     }
 }

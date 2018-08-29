@@ -14,6 +14,7 @@ use App\Responder\Show\ShowAllUserResponder;
 
 use Doctrine\ORM\EntityManagerInterface;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -34,7 +35,9 @@ class ShowAllUserAction
     }
 
     /**
-     *  @Route("/utilisateur", name="userList")
+     * @Route("/utilisateur", name="userList")
+     * @Route("/livreur", name="deliverymanList")
+     *
      *
      * @param ShowAllUserResponder $responder
      * @return \Symfony\Component\HttpFoundation\Response
@@ -42,12 +45,13 @@ class ShowAllUserAction
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(ShowAllUserResponder $responder): Response
+    public function __invoke(Request $request, ShowAllUserResponder $responder): Response
     {
+        $repo = $this->doctrine->getRepository(User::class);
+
         return $responder(
-            $this->doctrine
-                ->getRepository(User::class)
-                ->findAllUser()
+            $request->get('_route') === 'utilisateur' ?
+                $repo->findAllUser() : $repo->findUserWithRole('DELIVERYMAN')
         );
     }
 }

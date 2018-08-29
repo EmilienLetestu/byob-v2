@@ -40,6 +40,32 @@ class InOrderProductRepository extends ServiceEntityRepository
     }
 
     /**
+     * get all backorders ready for shipping to assign them to a deliveryman
+     *
+     * @return array
+     */
+    public function findAllWithBackOrderReady(): array
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('inOrder')
+            ->select( 'o')
+            ->join('App\Entity\BackOrder', 'b')
+            ->join(
+                 'App\Entity\Orders',
+                 'o',
+                 \Doctrine\ORM\Query\Expr\Join::WITH,
+                 'inOrder.order = o.id'
+            )
+            ->andWhere('inOrder.backOrder IS NOT NULL')
+            ->andWhere('b.prepared  = 1')
+            ->andWhere('b.delivered = 0')
+            ->orderBy('b.since','DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
      * use on arrival process before to add it to stock
      *
      * for a given warehouse fetch all backorders of a given product and quantity
@@ -53,20 +79,20 @@ class InOrderProductRepository extends ServiceEntityRepository
     {
         return
             $queryBuilder = $this->createQueryBuilder('inOrder')
-                ->select('inOrder')
-                ->join('App\Entity\BackOrder', 'b')
-                ->andWhere('inOrder.backOrder IS NOT NULL')
-                ->andWhere('inOrder.product = :productId')
-                ->andwhere('inOrder.warehouse = :warehouseId')
-                ->andWhere('inOrder.quantity < :quantity')
-                ->andWhere('b.regularize = 0')
-                ->orderBy('b.since','DESC')
-                ->setParameter('warehouseId', $warehouseId)
-                ->setParameter('quantity', $quantity)
-                ->setParameter('productId', $productId)
-                ->getQuery()
-                ->getResult()
-            ;
+            ->select('inOrder')
+            ->join('App\Entity\BackOrder', 'b')
+            ->andWhere('inOrder.backOrder IS NOT NULL')
+            ->andWhere('inOrder.product = :productId')
+            ->andwhere('inOrder.warehouse = :warehouseId')
+            ->andWhere('inOrder.quantity < :quantity')
+            ->andWhere('b.regularize = 0')
+            ->orderBy('b.since','DESC')
+            ->setParameter('warehouseId', $warehouseId)
+            ->setParameter('quantity', $quantity)
+            ->setParameter('productId', $productId)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     /**
@@ -82,17 +108,22 @@ class InOrderProductRepository extends ServiceEntityRepository
     {
         return
             $queryBuilder = $this->createQueryBuilder('inOrder')
-                ->select( 'inOrder')
-                ->join('App\Entity\Orders', 'o',\Doctrine\ORM\Query\Expr\Join::WITH, 'inOrder.order = o.id' )
-                ->andWhere('inOrder.backOrder IS NULL')
-                ->andWhere('o.id = :orderId')
-                ->andWhere('o.status = :status')
-                ->andwhere('inOrder.warehouse = :warehouseId')
-                ->setParameter('warehouseId', $warehouseId)
-                ->setParameter('orderId', $orderId)
-                ->setParameter('status', $status)
-                ->getQuery()
-                ->getResult()
+            ->select( 'inOrder')
+            ->join(
+                    'App\Entity\Orders',
+                    'o',
+                    \Doctrine\ORM\Query\Expr\Join::WITH,
+                    'inOrder.order = o.id'
+            )
+            ->andWhere('inOrder.backOrder IS NULL')
+            ->andWhere('o.id = :orderId')
+            ->andWhere('o.status = :status')
+            ->andwhere('inOrder.warehouse = :warehouseId')
+            ->setParameter('warehouseId', $warehouseId)
+            ->setParameter('orderId', $orderId)
+            ->setParameter('status', $status)
+            ->getQuery()
+            ->getResult()
         ;
     }
 
@@ -106,18 +137,23 @@ class InOrderProductRepository extends ServiceEntityRepository
     {
         return
             $queryBuilder = $this->createQueryBuilder('inOrder')
-                ->select('o')
-                ->join('App\Entity\BackOrder', 'b')
-                ->join('App\Entity\Orders','o', \Doctrine\ORM\Query\Expr\Join::WITH, 'inOrder.order = o.id')
-                ->andWhere('inOrder.backOrder IS NOT NULL')
-                ->andwhere('inOrder.warehouse = :warehouseId')
-                ->andWhere('b.regularize = 1')
-                ->andWhere('b.prepared  = 0')
-                ->orderBy('b.since','DESC')
-                ->setParameter('warehouseId', $warehouseId)
-                ->getQuery()
-                ->getResult()
-            ;
+            ->select('o')
+            ->join('App\Entity\BackOrder', 'b')
+            ->join(
+                'App\Entity\Orders',
+                'o',
+                \Doctrine\ORM\Query\Expr\Join::WITH,
+                'inOrder.order = o.id'
+                )
+            ->andWhere('inOrder.backOrder IS NOT NULL')
+            ->andwhere('inOrder.warehouse = :warehouseId')
+            ->andWhere('b.regularize = 1')
+            ->andWhere('b.prepared  = 0')
+            ->orderBy('b.since','DESC')
+            ->setParameter('warehouseId', $warehouseId)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     /**
@@ -133,19 +169,19 @@ class InOrderProductRepository extends ServiceEntityRepository
     {
         return
             $queryBuilder = $this->createQueryBuilder('inOrder')
-                ->select( 'inOrder')
-                ->join('App\Entity\BackOrder', 'b')
-                ->join('App\Entity\Orders', 'o',\Doctrine\ORM\Query\Expr\Join::WITH, 'inOrder.order = o.id' )
-                ->andWhere('inOrder.backOrder IS NOT NULL')
-                ->andWhere('o.id = :orderId')
-                ->andwhere('inOrder.warehouse = :warehouseId')
-                ->andWhere('b.regularize = 1')
-                ->andWhere('b.delivered  = 0')
-                ->setParameter('warehouseId', $warehouseId)
-                ->setParameter('orderId', $orderId)
-                ->getQuery()
-                ->getResult()
-            ;
+            ->select( 'inOrder')
+            ->join('App\Entity\BackOrder', 'b')
+            ->join('App\Entity\Orders', 'o',\Doctrine\ORM\Query\Expr\Join::WITH, 'inOrder.order = o.id' )
+            ->andWhere('inOrder.backOrder IS NOT NULL')
+            ->andWhere('o.id = :orderId')
+            ->andwhere('inOrder.warehouse = :warehouseId')
+            ->andWhere('b.regularize = 1')
+            ->andWhere('b.delivered  = 0')
+            ->setParameter('warehouseId', $warehouseId)
+            ->setParameter('orderId', $orderId)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
 
@@ -161,16 +197,16 @@ class InOrderProductRepository extends ServiceEntityRepository
     {
         return
             $queryBuilder = $this->createQueryBuilder('inOrder')
-                ->select('COUNT(inOrder)')
-                ->join('App\Entity\BackOrder', 'b')
-                ->andWhere('inOrder.backOrder IS NOT NULL')
-                ->andwhere('inOrder.warehouse = :warehouseId')
-                ->andWhere('b.regularize = 1')
-                ->andWhere('b.prepared = 0')
-                ->setParameter('warehouseId', $warehouseId)
-                ->getQuery()
-                ->getSingleScalarResult()
-            ;
+            ->select('COUNT(inOrder)')
+            ->join('App\Entity\BackOrder', 'b')
+            ->andWhere('inOrder.backOrder IS NOT NULL')
+            ->andwhere('inOrder.warehouse = :warehouseId')
+            ->andWhere('b.regularize = 1')
+            ->andWhere('b.prepared = 0')
+            ->setParameter('warehouseId', $warehouseId)
+            ->getQuery()
+            ->getSingleScalarResult()
+         ;
     }
 
 }

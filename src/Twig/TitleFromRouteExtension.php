@@ -38,6 +38,7 @@ class TitleFromRouteExtension extends AbstractExtension
             'createProduct'      => 'Ajouter un produit',
             'productList'        => 'Catalogue produits',
             'userList'           => 'Liste des utilisateurs',
+            'deliverymanList'    => 'Liste des livreurs',
             'warehouseList'      => 'Liste des entrepôts',
             'arrival'            => 'En attente de validation',
             'customerList'       => 'Liste des clients',
