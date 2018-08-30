@@ -44,11 +44,14 @@
                 </table>
 
                 <div class="create-entity-large">
-                    <a href="{{ path('orderPrepared', { 'id' :  inOrderProducts[0].order.id }) }}" class="btn">SIGNALER QUE LA COMMANDE EST ASSEMBLÉE</a>
+                    <a id="prepare_for_delivery_submit" href="{{ path('orderPrepared', { 'id' :  inOrderProducts[0].order.id }) }}" class="btn disable">SIGNALER QUE LA COMMANDE EST ASSEMBLÉE</a>
                 </div>
 
             </div>
 
+    {% endblock %}
 
-
+    {% block javascripts %}
+        {{ parent() }}
+        <script type="text/javascript" src="{{ asset('build/disableBtn.js') }}"></script>
     {% endblock %}

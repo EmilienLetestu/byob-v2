@@ -18,6 +18,7 @@ Encore
     .addEntry('app', './assets/js/app.js')
     .addEntry('orderStatusForm', './assets/js/orderStatusForm.js')
     .addEntry('prepareOrder', './assets/js/prepareOrder.js')
+    .addEntry('disableBtn','./assets/js/disableBtn.js')
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()

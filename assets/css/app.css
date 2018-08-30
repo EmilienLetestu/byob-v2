@@ -142,6 +142,11 @@ h2{
         margin-top: 3rem;
     }
 
+    a.disable{
+        pointer-events: none;
+        display: none;
+    }
+
     /*--------------------------form---------------------------*/
 
     /*--------------------------login---------------------------*/
@@ -208,12 +213,8 @@ h2{
         [type="checkbox"]:checked{
             position: relative;
             opacity: 1;
-        }
-
-        [type="checkbox"].manually-prepared{
             pointer-events: fill;
         }
-
 
         /** ------------------------ dashboard card ----------------------- **/
 
