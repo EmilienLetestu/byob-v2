@@ -48,8 +48,8 @@ class ArrivalValidation
 
     )
     {
-        $this->doctrine = $doctrine;
-        $this->inStockProduct = new InStockProduct();
+        $this->doctrine        = $doctrine;
+        $this->inStockProduct  = new InStockProduct();
         $this->stockValidation = new StockValidation();
     }
 
@@ -178,7 +178,13 @@ class ArrivalValidation
         $this->doctrine->persist($this->stockValidation);
     }
 
-    private function provisionBackOrderFirst($warehouseId, $quantity, $productId)
+    /**
+     * @param $warehouseId
+     * @param $quantity
+     * @param $productId
+     * @return int
+     */
+    private function provisionBackOrderFirst($warehouseId, $quantity, $productId): int
     {
         $inOrders =  $this->doctrine->getRepository(InOrderProduct::class)
             ->findAllWithBackOrderAndWarehouse($warehouseId, $quantity, $productId);
