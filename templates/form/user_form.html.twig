@@ -23,14 +23,12 @@
                     {{ form_label(form.role) }}
                     {{ form_widget(form.role, {'attr': {'class' : 'browser-default'}}) }}
                 </div>
-                <div>
+                <div class="checkbox-control">
                     {{ form_label(form.warehouses) }}
                     {{ form_widget(form.warehouses) }}
                 </div>
                 <div>
-                    <button class="btn waves-effect waves-light color-action-darken" type="submit"><i class="material-icons right">send
-                        </i>Valider
-                    </button>
+                    <button class="btn waves-effect waves-light color-action-darken full-width-submit" type="submit">VALIDER</button>
                 </div>
                 {{ form_end(form) }}
             </div>

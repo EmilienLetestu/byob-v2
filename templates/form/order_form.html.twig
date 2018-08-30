@@ -7,13 +7,12 @@
         <div class="container form-container">
             <div class="col s12 m12">
                 {{ form_start(form) }}
-                <div>
+                <div id="ordered-for">
                     {{ form_label(form.customer) }}
                     {{ form_widget(form.customer, {'attr': {'class' : 'browser-default'}}) }}
-                </div>
-                <div>
                     <a class="btn waves-effect waves-light color-action" href="{{ path('createCustomer')}}">Nouveau client</a>
                 </div>
+
                 <div>
                     <p>Ajouter un produit</p>
                     <ul id="inOrderProduct-fields-list"
@@ -27,11 +26,11 @@
                         {% endfor %}
                     </ul>
                 </div>
-                <button type="button"
-                        class="btn add-another-collection-widget waves-effect waves-light"
-                        data-list="#inOrderProduct-fields-list"><i class="material-icons">add</i>
-                </button>
                 <div>
+                    <button type="button"
+                            class="btn add-another-collection-widget waves-effect waves-light"
+                            data-list="#inOrderProduct-fields-list"><i class="material-icons">add</i>
+                    </button>
                     <button class="btn waves-effect waves-light color-action-darken" type="submit"><i class="material-icons right">send
                         </i>Valider
                     </button>
