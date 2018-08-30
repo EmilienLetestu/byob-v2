@@ -2,21 +2,21 @@
 
     {% block body %}
 
+        <h1>CONNEXION</h1>
+
         <div class="container form-container" id="loginForm">
             <div class="col s12 m12">
                 <form action="{{ path('login') }}" method="post">
                     <div>
-                        <label for="username">Username:</label>
+                        <label for="username">Email:</label>
                         <input type="text" id="username" name="_username" value="{{ last_username }}" />
                     </div>
                     <div>
-                        <label for="password">Password:</label>
+                        <label for="password">Mot de passe:</label>
                         <input type="password" id="password" name="_password" />
                     </div>
-                    <div>
-                        <button class="btn waves-effect waves-light color-action-darken" type="submit"><i class="material-icons right">send
-                            </i>Valider
-                        </button>
+                    <div class="send-form">
+                        <button class="btn waves-effect waves-light color-action-darken" type="submit"> Valider</button>
                     </div>
                 </form>
             </div>

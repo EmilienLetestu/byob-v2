@@ -6,7 +6,7 @@
         <div class="card-holder">
             {% for key,info in data %}
                 <div class="dashboard-card">
-                    <div class="circle orange-circle">
+                    <div class="circle circle-{{ loop.index }}">
                         <i class="fas fa-exclamation"></i>
                     </div>
                     <div class="card-data">

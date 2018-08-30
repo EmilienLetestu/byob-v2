@@ -57,7 +57,7 @@ class WarehousemanDashboardBuilder implements DashboardBuilderInterface
             $this->doctrine->getRepository(PendingValidationStock::class)
                 ->countUserArrivalWithStatus($this->getId(), true)
         );
-        $this->dashboard->setData('mes arrivages en attentes de validations',
+        $this->dashboard->setData('arrivages en attentes',
             $this->doctrine->getRepository(PendingValidationStock::class)
                 ->countUserArrivalWithStatus($this->getId(), false)
         );
