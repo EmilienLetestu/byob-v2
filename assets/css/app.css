@@ -114,3 +114,113 @@ a.reject-link,
     pointer-events: fill;
 }
 
+/** ------------------------ dashboard card ----------------------- **/
+
+.card-holder{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+.dashboard-card{
+    width: 360px;
+    min-width: 300px;
+    -webkit-box-shadow: 1px 1px 1px 1px rgba(130,130,130,1);
+    -moz-box-shadow: 1px 1px 1px 1px rgba(130,130,130,1);
+    box-shadow: 1px 1px 1px 1px rgba(130,130,130,1);
+    height: 150px;
+    margin-bottom: 2rem;
+
+}
+
+.circle{
+    height: 100px;
+    -moz-border-radius:75px;
+    -webkit-border-radius: 75px;
+    width: 100px;
+    position: relative;
+    top: 1.5rem;
+    left: 1rem;
+}
+
+.orange-circle{
+    background-color: #f59d40;
+}
+
+.green-circle{
+    background-color: #c6ffb3;
+}
+
+.blue-circle{
+    background-color: #70bef0;
+}
+
+.pink-circle{
+    background-color: #ee6e73;
+}
+
+.purple-circle{
+    background-color: #ee84d9;
+}
+
+.yellow-circle{
+    background-color: #f4f075;
+}
+
+.dashboard-card i {
+    text-align: center;
+    position: relative;
+    font-size: 3rem;
+    color: #FFFFFF;
+    top: 1.5rem;
+}
+
+.dashboard-card .fa-exclamation{
+    left: 2.7rem;
+}
+
+.dashboard-card .fa-user{
+    left: 1.7rem;
+}
+
+.dashboard-card .fa-beer {
+    left: 2.1rem;
+}
+
+.dashboard-card .fa-dollar-sign{
+    left: 2.3rem;
+}
+
+.dashboard .fa-chart-line{
+    left: 1.7rem;
+}
+
+.card-data{
+    width: 230px;
+    float: right;
+    margin-top: -4rem;
+    padding-right: 1rem;
+    text-align: right;
+    font-size: 0.9rem;
+}
+
+.data{
+    font-size: 2rem;
+    font-weight: 900;
+    color: #f59d40;
+}
+
+.data-text{
+    display: flex;
+    position: relative;
+    top: -65px;
+    font-size: 1.4rem;
+}
+
+/** ----------------------------------------------- **/
+
+.dashboard-link{
+    text-align: center;
+}

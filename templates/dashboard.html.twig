@@ -3,16 +3,23 @@
     {% block body %}
         <h1>{{ app.request.get('_route')|title }}</h1>
 
-        <div class="container">
+        <div class="card-holder">
             {% for key,info in data %}
-                <ul>
-                    <li>
-                        {{ key }}  {{ info }}
-                    </li>
-                </ul>
+                <div class="dashboard-card">
+                    <div class="circle orange-circle">
+                        <i class="fas fa-exclamation"></i>
+                    </div>
+                    <div class="card-data">
+                        <p class="data">{{ info }}</p>
+                        <p class="data-text">{{ key }}</p>
+                    </div>
+                </div>
             {% endfor %}
+        </div>
 
+        <div class="dashboard-link">
             {% include 'userDashboard/' ~ app.user.role|lower ~ '_dashboard.html.twig'  %}
         </div>
+
 
     {% endblock %}
