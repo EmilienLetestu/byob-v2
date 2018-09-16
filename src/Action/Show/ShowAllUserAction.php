@@ -50,7 +50,7 @@ class ShowAllUserAction
         $repo = $this->doctrine->getRepository(User::class);
 
         return $responder(
-            $request->get('_route') === 'utilisateur' ?
+            $request->get('_route') === 'userList' ?
                 $repo->findAllUser() : $repo->findUserWithRole('DELIVERYMAN')
         );
     }
