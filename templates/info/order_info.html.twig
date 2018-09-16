@@ -18,7 +18,7 @@
                     <li class="collection-item"><div>Statut
                             <span class="secondary-content">
                                 {% if app.user.role == 'ACCOUNTANT' %}
-                                    {% include '/role_based_features/' ~ app.user.role|lower  ~ 'validateOrderSelect.html.twig' %}
+                                    {% include '/role_based_features/' ~ app.user.role|lower  ~ '_validate_order_select.html.twig' %}
                                 {% else %}
                                     {{ inOrderProducts[0].order.status }}
                                 {% endif %}
