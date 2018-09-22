@@ -84,6 +84,30 @@ h2{
         padding-bottom: 3rem;
     }
 
+    .paid{
+        background-color: rgba(92, 183, 93, 0.47);
+    }
+
+    .assembling {
+        background-color: rgba(92, 183, 93, 0.63);
+    }
+
+    .to-collect{
+        background-color: rgba(92, 183, 93, 0.72);
+    }
+
+    .pending-delivery{
+        background-color: rgba(92, 183, 93, 0.8);
+    }
+
+    .delivering{
+        background-color: rgba(92, 183, 93, 0.87);
+    }
+
+    .delivered{
+        background-color: rgba(93, 185, 93, 1);
+    }
+
     /*--------------------------buttons/links---------------------------*/
 
     .dashboard-link{

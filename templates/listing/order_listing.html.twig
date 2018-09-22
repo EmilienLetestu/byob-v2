@@ -34,7 +34,7 @@
                 </thead>
                 <tbody>
                 {% for order in orders %}
-                    <tr>
+                    <tr class="{{ order.status|colorClass }}">
                         <td>
                             {{ order.reference }}
                         </td>
