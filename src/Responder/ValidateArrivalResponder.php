@@ -11,31 +11,15 @@ namespace App\Responder;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class ValidateArrivalResponder
 {
     /**
-     * @var UrlGeneratorInterface
-     */
-    private  $urlGenerator;
-
-    /**
-     * ValidateArrivalResponder constructor.
-     * @param UrlGeneratorInterface $urlGenerator
-     */
-    public function __construct(UrlGeneratorInterface $urlGenerator)
-    {
-        $this->urlGenerator = $urlGenerator;
-    }
-
-    /**
+     * @param string $referer
      * @return Response
      */
-    public function __invoke(): Response
+    public function __invoke(string $referer): Response
     {
-       return new RedirectResponse(
-           $this->urlGenerator->generate('dashboard')
-       );
+       return new RedirectResponse($referer);
     }
 }

@@ -18,10 +18,21 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ValidateArrivalAction
 {
+    /**
+     * @var TokenStorageInterface
+     */
     private $token;
 
+    /**
+     * @var ArrivalValidation
+     */
     private $arrivalValidation;
 
+    /**
+     * ValidateArrivalAction constructor.
+     * @param TokenStorageInterface $token
+     * @param ArrivalValidation $arrivalValidation
+     */
     public function __construct(
         TokenStorageInterface $token,
         ArrivalValidation     $arrivalValidation
@@ -52,6 +63,8 @@ class ValidateArrivalAction
             $this->token->getToken()->getUser()
         );
 
-        return $responder();
+        return $responder(
+            $request->headers->get('referer')
+        );
     }
 }
