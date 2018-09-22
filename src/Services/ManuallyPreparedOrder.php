@@ -58,7 +58,8 @@ class ManuallyPreparedOrder
 
         foreach ($products as $key=>$value)
         {
-            $prodId      = str_replace('p'," ",$key);
+            $prodId      = str_replace(['p','m']," ",$key);
+
 
             $warehouseId = str_replace('w'," ",$value);
 
