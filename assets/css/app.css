@@ -35,6 +35,30 @@ h2{
 
 /*--------------------------elements---------------------------*/
 
+    /*--------------------------flash msg----------------------------*/
+
+    .alert{
+        text-align: center;
+        height: 70px;
+        line-height: 70px;
+        color: white;
+    }
+
+    .alert-success,
+    .alert-welcome{
+        background-color: #51c062;
+    }
+
+    .alert-warning,
+    .alert-denied{
+        background-color: #FFA052;
+    }
+
+    .alert-error{
+        background-color: #F36565;
+    }
+
+
     /*--------------------------nav----------------------------*/
 
     #nav-menu{

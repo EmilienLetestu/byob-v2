@@ -33,7 +33,7 @@
             {% for label, messages in app.flashes(['denied','error','success','warning','welcome']) %}
                 {% for message in messages %}
                     <div class="alert alert-{{ label }}" id="backGenerated">
-                        <p>{{ message }}</p>
+                        {{ message }}
                     </div>
                 {% endfor %}
             {% endfor %}
