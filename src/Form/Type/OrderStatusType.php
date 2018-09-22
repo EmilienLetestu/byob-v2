@@ -21,11 +21,7 @@ class OrderStatusType extends AbstractType
            ->add('status', ChoiceType::class, [
                'choices' => [
                    'en attente de validation' => 'en attente de validation',
-                   'payé et validé'           => 'payé et validé',
-                   'en préparation'           => 'en préparation',
-                   'en attente d\'enlèvement' => 'en attente d\'enlèvement',
-                   'livraison en cours'       => 'livraison en cours',
-                   'livré'                    => 'livré'
+                   'payé et validé'           => 'payé et validé'
                ],
                'attr' => ['class' => 'browser-default']
            ])

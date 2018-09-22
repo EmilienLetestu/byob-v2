@@ -32,20 +32,20 @@ class TitleFromRouteExtension extends AbstractExtension
     public function titleFilter(string $routeName): string
     {
         $routeNames = [
-            'dashboard'          => 'Tableau de bord',
-            'createWarehouse'    => 'Ajouter un entrepôt',
-            'createUser'         => 'Ajouter un utilisateur',
-            'createProduct'      => 'Ajouter un produit',
-            'productList'        => 'Catalogue produits',
-            'userList'           => 'Liste des utilisateurs',
-            'deliverymanList'    => 'Liste des livreurs',
-            'warehouseList'      => 'Liste des entrepôts',
-            'arrival'            => 'En attente de validation',
-            'customerList'       => 'Liste des clients',
-            'createOrder'        => 'Démarrer la commande',
-            'addProductToOrder'  => 'Ajouter un produit à la commande : ',
-            'orderList'          => 'Liste des commandes',
-            'createCustomer'     => 'Ajoluter un client',
+            'dashboard'            => 'Tableau de bord',
+            'createWarehouse'      => 'Ajouter un entrepôt',
+            'createUser'           => 'Ajouter un utilisateur',
+            'createProduct'        => 'Ajouter un produit',
+            'productList'          => 'Catalogue produits',
+            'userList'             => 'Liste des utilisateurs',
+            'deliverymanList'      => 'Liste des livreurs',
+            'warehouseList'        => 'Liste des entrepôts',
+            'arrival'              => 'En attente de validation',
+            'customerList'         => 'Liste des clients',
+            'createOrder'          => 'Démarrer la commande',
+            'addProductToOrder'    => 'Ajouter un produit à la commande : ',
+            'orderList'            => 'Liste des commandes',
+            'createCustomer'       => 'Ajouter un client',
             'addContactToCustomer' => 'Ajouter un contact'
         ];
 
