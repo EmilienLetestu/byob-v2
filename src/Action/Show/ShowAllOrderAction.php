@@ -33,6 +33,9 @@ class ShowAllOrderAction
      */
     private $token;
 
+    /**
+     * @var OrderListForRole
+     */
     private $orderListForRole;
 
     /**

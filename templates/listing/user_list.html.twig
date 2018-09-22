@@ -60,9 +60,12 @@
                 </tbody>
             </table>
 
-            <div class="create-entity-large">
-                <a href="{{ path('createUser') }}" class="btn"><i class="material-icons">add</i></a>
-            </div>
+            {% if app.user.role == 'ADMIN' %}
+                <div class="create-entity-large">
+                    <a href="{{ path('createUser') }}" class="btn"><i class="material-icons">add</i></a>
+                </div>
+            {% endif %}
+
         </div>
 
 
