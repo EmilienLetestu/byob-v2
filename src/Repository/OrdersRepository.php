@@ -114,6 +114,18 @@ class OrdersRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findOrderForDeliveryMan(string $status): array
+    {
+        return
+            $queryBuilder = $this->createQueryBuilder('o')
+                ->where("o.status = :status ")
+                ->orWhere("o.status = 'en cours de livraison' ")
+                ->setParameter('status', $status)
+                ->getQuery()
+                ->getResult()
+            ;
+    }
+
 
     /**
      * @param int $warehouseId

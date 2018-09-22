@@ -17,7 +17,7 @@
                     <li class="collection-item"><div>Commandé le <span class="secondary-content">{{ order.orderedOn|date('d-m-Y') }}</span></div></li>
                     <li class="collection-item"><div>Statut
                             <span class="secondary-content">
-                                {% if app.user.role == 'ACCOUNTANT' %}
+                                {% if app.user.role == 'ACCOUNTANT'  or app.user.role == 'DELIVERYMAN'%}
                                     {% include '/role_based_features/' ~ app.user.role|lower  ~ '_validate_order_select.html.twig' %}
                                 {% else %}
                                     {{ inOrderProducts[0].order.status }}

@@ -12,6 +12,7 @@ namespace App\Services;
 use App\Builder\DashboardBuilder\AccountantDashboardBuilder;
 use App\Builder\DashboardBuilder\AdminDashboardBuilder;
 use App\Builder\DashboardBuilder\DashboardBuilder;
+use App\Builder\DashboardBuilder\DeliverymanDashboardBuilder;
 use App\Builder\DashboardBuilder\LogisticDashboardBuilder;
 use App\Builder\DashboardBuilder\SalesmanDashboardBuilder;
 use App\Builder\DashboardBuilder\SupplyDashboardBuilder;
@@ -83,6 +84,11 @@ class UserDashboard
             case 'LOGISTIC':
                 return $this->builder->build(
                     new LogisticDashboardBuilder($this->doctrine))->getData();
+                break;
+
+            case 'DELIVERYMAN':
+                return $this->builder->build(
+                    new DeliverymanDashboardBuilder($this->doctrine))->getData();
                 break;
 
         endswitch;

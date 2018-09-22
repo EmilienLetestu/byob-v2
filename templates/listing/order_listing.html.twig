@@ -2,7 +2,8 @@
 
     {% block body %}
 
-        <h1>{{ app.request.get('_route')|title }}</h1>
+        <h1>{{ app.user.role == 'DELIVERYMAN' ? 'MES LIVRAISONS DU JOUR' : app.request.get('_route')|title }}</h1>
+
         <div class="table-container">
 
             <table>

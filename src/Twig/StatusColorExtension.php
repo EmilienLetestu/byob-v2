@@ -36,7 +36,7 @@ class StatusColorExtension extends AbstractExtension
             case 'en attente de livraison':
                 $status = 'pending-delivery';
                 break;
-            case 'livraison en cours':
+            case 'en cours de livraison':
                 $status = 'delivering';
                 break;
             case 'livré';

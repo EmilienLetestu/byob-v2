@@ -38,7 +38,7 @@ class OrderListForRole
                 return $repo->findOrderWithStatus('en attente d\'attribution');
                 break;
             case 'DELIVERYMAN':
-                return $repo->findOrderWithStatus('en attente d\'enlèvement');
+                return $repo->findOrderForDeliveryMan('en attente d\'enlèvement');
                 break;
         endswitch;
     }
