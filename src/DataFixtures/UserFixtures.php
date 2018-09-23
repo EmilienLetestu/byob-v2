@@ -35,126 +35,50 @@ class UserFixtures extends Fixture
      */
     public function load(ObjectManager $manager)
     {
-      $accountant = new User();
+        
+        
+          $profils[] = array('Emilien' ,  'Letestu' ,  'eletestu@gmail.com' , '' , 'ADMIN' , 'admin'  )  ; 
+          $profils[] = array('Vernon' ,  'Littleblackman' ,  'sandyrazafitrimo@gmail.com' , 'g&r!11Eleven' , 'ADMIN' , 'admin'  )  ; 
+     //     $profils[] = array('Fanja' ,  'Pelitera' ,  'fanja@pelitera.net' , 'fanjaPe' , 'MANAGER' , 'manager'  )  ; 
+     //     $profils[] = array('Patrick' ,  'Pelitera' ,  'patrick@pelitera.net' , 'patrickPe' , 'MANAGER' , 'manager'  )  ; 
+          $profils[] = array('Alex' ,  'Razanako' ,  'alex@accountant.net' , 'alexRa' , 'ACCOUNTANT' , 'accountant'  )  ; 
+          $profils[] = array('Marty ' ,  'Ratsaina' ,  'marty@accountant.net' , 'marty Ra' , 'ACCOUNTANT' , 'accountant'  )  ; 
+          $profils[] = array('Gloria' ,  'Andriampela' ,  'gloria@accountant.net' , 'gloriaAn' , 'ACCOUNTANT' , 'accountant'  )  ; 
+          $profils[] = array('Julian' ,  'Ramadino' ,  'julian@supply.net' , 'julianRa' , 'SUPPLY' , 'supply'  )  ; 
+          $profils[] = array('Maurice' ,  'Ramaditra' ,  'maurice@supply.net' , 'mauriceRa' , 'SUPPLY' , 'supply'  )  ; 
+          $profils[] = array('Rico' ,  'Anembona' ,  'rico@supply.net' , 'ricoAn' , 'SUPPLY' , 'supply'  )  ; 
+          $profils[] = array('Nana' ,  'Farakely' ,  'nana@logistic.net' , 'nanaFa' , 'LOGISTIC' , 'logistic'  )  ; 
+          $profils[] = array('Mason' ,  'Ririnina' ,  'mason@logistic.net' , 'masonRi' , 'LOGISTIC' , 'logistic'  )  ; 
+          $profils[] = array('David' ,  'Siramamy' ,  'david@logistic.net' , 'davidSi' , 'LOGISTIC' , 'logistic'  )  ; 
+          $profils[] = array('Kowa' ,  'Rahafahafa' ,  'kowa@salesman.net' , 'kowaRa' , 'SALESMAN' , 'salesman'  )  ; 
+          $profils[] = array('Morty' ,  'Ramanga' ,  'morty@salesman.net' , 'mortyRa' , 'SALESMAN' , 'salesman'  )  ; 
+          $profils[] = array('Mason' ,  'Firaisan-kina' ,  'mason@salesman.net' , 'masonFi' , 'SALESMAN' , 'salesman'  )  ; 
+          $profils[] = array('Melman' ,  'Antsokosoko' ,  'melman@warehouseman.net' , 'melmanAn' , 'WAREHOUSEMAN' , 'warehouseman'  )  ; 
+          $profils[] = array('Tom' ,  'Rafloara' ,  'tom@warehouseman.net' , 'tomRa' , 'WAREHOUSEMAN' , 'warehouseman'  )  ; 
+          $profils[] = array('Christophe' ,  'Rafanafody' ,  'christophe@warehouseman.net' , 'christopheRa' , 'WAREHOUSEMAN' , 'warehouseman'  )  ; 
+          $profils[] = array('David' ,  'Iantrao' ,  'david@deliveryman.net' , 'davidIa' , 'DELIVERYMAN' , 'deliveryman'  )  ; 
+          $profils[] = array('Elise' ,  'Mbolatia' ,  'elise@deliveryman.net' , 'eliseMb' , 'DELIVERYMAN' , 'deliveryman'  )  ; 
+          $profils[] = array('Jada' ,  'Ralenina' ,  'jada@deliveryman.net' , 'jadaRa' , 'DELIVERYMAN' , 'deliveryman'  )  ; 
+        
+        
+          foreach($profils as $profil)
+          {
+                  $user = new User();
 
-      $accountant->setName('Lolo');
-      $accountant->setSurname('Durant');
-      $accountant->setEmail('accountant@gmail.com');
-      $accountant->setPassword('accountantLolo');
-      $accountant->setRole('ACCOUNTANT');
-      $accountant->setAddedOn('Y-m-d');
-      $accountant->setActivated(true);
-      $accountant->setActivatedOn(
-          new \DateTime(date('Y-m-d'))
-      );
-      $manager->persist($accountant);
-      $manager->flush();
+                  $user->setName($profil[0]);
+                  $user->setSurname($profil[1]);
+                  $user->setEmail($profil[2]);
+                  $user->setPassword($profil[3]);
+                  $user->setRole($profil[4]);
+                  $user->setAddedOn('Y-m-d');
+                  $user->setActivated(true);
+                  $user->setActivatedOn( new \DateTime(date('Y-m-d')));
+                  $manager->persist($user);
+                  $manager->flush();
 
-      $this->addReference(self::ACCOUNTANT_REFERENCE, $accountant);
-
-      $admin = new User();
-
-      $admin->setName('Toto');
-      $admin->setSurname('Dupont');
-
-      $admin->setEmail('admin@gmail.com');
-      $admin->setPassword('adminToto');
-      $admin->setRole('ADMIN');
-      $admin->setAddedOn('Y-m-d');
-      $admin->setActivated(true);
-      $admin->setActivatedOn(
-            new \DateTime(date('Y-m-d'))
-      );
-
-      $manager->persist($admin);
-      $manager->flush();
-
-      $this->addReference(self::ADMIN_REFERENCE, $admin);
-
-      $supply = new User();
-
-      $supply->setName('Gogo');
-      $supply->setSurname('Durant');
-      $supply->setEmail('supply@gmail.com');
-      $supply->setPassword('supplyGogo');
-      $supply->setRole('SUPPLY');
-      $supply->setAddedOn('Y-m-d');
-      $supply->setActivated(true);
-      $supply->setActivatedOn(
-            new \DateTime(date('Y-m-d'))
-      );
-      $manager->persist($supply);
-      $manager->flush();
-
-      $this->addReference(self::SUPPLY_REFERENCE, $supply);
-
-      $logistic = new User();
-
-      $logistic->setName('Coco');
-      $logistic->setSurname('Durant');
-      $logistic->setEmail('logistic@gmail.com');
-      $logistic->setPassword('logisticCoco');
-      $logistic->setRole('LOGISTIC');
-      $logistic->setAddedOn('Y-m-d');
-      $logistic->setActivated(true);
-      $logistic->setActivatedOn(
-            new \DateTime(date('Y-m-d'))
-      );
-      $manager->persist($logistic);
-      $manager->flush();
-
-      $this->addReference(self::LOGISTIC_REFERENCE, $logistic);
-
-      $warehouseman = new User();
-
-      $warehouseman->setName('Bobo');
-      $warehouseman->setSurname('Durant');
-      $warehouseman->setEmail('warehouseman@gmail.com');
-      $warehouseman->setPassword('warehousemanBobo');
-      $warehouseman->setRole('WAREHOUSEMAN');
-      $warehouseman->setAddedOn('Y-m-d');
-      $warehouseman->setActivated(true);
-      $warehouseman->setActivatedOn(
-            new \DateTime(date('Y-m-d'))
-      );
-      $manager->persist($warehouseman);
-      $manager->flush();
-
-      $this->addReference(self::WAREHOUSEMAN_REFERENCE, $warehouseman);
-
-      $salesman = new User();
-
-      $salesman->setName('Momo');
-      $salesman->setSurname('Durant');
-      $salesman->setEmail('salesman@gmail.com');
-      $salesman->setPassword('salesmanMomo');
-      $salesman->setRole('SALESMAN');
-      $salesman->setAddedOn('Y-m-d');
-      $salesman->setActivated(true);
-      $salesman->setActivatedOn(
-            new \DateTime(date('Y-m-d'))
-      );
-      $manager->persist($salesman);
-      $manager->flush();
-
-      $this->addReference(self::SALESMAN_REFERENCE, $salesman);
-
-      $deliveryman = new User();
-
-      $deliveryman->setName('Nono');
-      $deliveryman->setSurname('Durant');
-      $deliveryman->setEmail('deliveryman@gmail.com');
-      $deliveryman->setPassword('deliverymanNono');
-      $deliveryman->setRole('DELIVERYMAN');
-      $deliveryman->setAddedOn('Y-m-d');
-      $deliveryman->setActivated(true);
-      $deliveryman->setActivatedOn(
-            new \DateTime(date('Y-m-d'))
-      );
-      $manager->persist($deliveryman);
-      $manager->flush();
-
-      $this->addReference(self::DELIVERYMAN_REFERENCE, $deliveryman);
+                  $this->addReference($user[5], $user);
+            }
+      
     }
 
 }
