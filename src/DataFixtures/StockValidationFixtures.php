@@ -51,6 +51,6 @@ class StockValidationFixtures extends Fixture implements DependentFixtureInterfa
         return [
             UserFixtures::class,
             PendingValidationStockFixtures::class
-         ];
+        ];
     }
 }

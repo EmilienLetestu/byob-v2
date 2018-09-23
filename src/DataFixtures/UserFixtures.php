@@ -37,8 +37,8 @@ class UserFixtures extends Fixture
     {
         
         
-          $profils[] = array('Emilien' ,  'Letestu' ,  'eletestu@gmail.com' , '' , 'ADMIN' , 'admin'  )  ; 
-          $profils[] = array('Vernon' ,  'Littleblackman' ,  'sandyrazafitrimo@gmail.com' , 'g&r!11Eleven' , 'ADMIN' , 'admin'  )  ; 
+          $profils[] = array('Emilien' ,  'Letestu' ,  'eletestu@gmail.com' , '12345678' , 'ADMIN' , 'admin'  )  ;
+          $profils[] = array('Vernon' ,  'Littleblackman' ,  'sandyrazafitrimo@gmail.com' , 'g&r!11Eleven' , 'ADMIN' , 'admin'  )  ;
      //     $profils[] = array('Fanja' ,  'Pelitera' ,  'fanja@pelitera.net' , 'fanjaPe' , 'MANAGER' , 'manager'  )  ; 
      //     $profils[] = array('Patrick' ,  'Pelitera' ,  'patrick@pelitera.net' , 'patrickPe' , 'MANAGER' , 'manager'  )  ; 
           $profils[] = array('Alex' ,  'Razanako' ,  'alex@accountant.net' , 'alexRa' , 'ACCOUNTANT' , 'accountant'  )  ; 
@@ -59,12 +59,12 @@ class UserFixtures extends Fixture
           $profils[] = array('David' ,  'Iantrao' ,  'david@deliveryman.net' , 'davidIa' , 'DELIVERYMAN' , 'deliveryman'  )  ; 
           $profils[] = array('Elise' ,  'Mbolatia' ,  'elise@deliveryman.net' , 'eliseMb' , 'DELIVERYMAN' , 'deliveryman'  )  ; 
           $profils[] = array('Jada' ,  'Ralenina' ,  'jada@deliveryman.net' , 'jadaRa' , 'DELIVERYMAN' , 'deliveryman'  )  ; 
-        
+
+          $refs =[];
         
           foreach($profils as $profil)
           {
                   $user = new User();
-
                   $user->setName($profil[0]);
                   $user->setSurname($profil[1]);
                   $user->setEmail($profil[2]);
@@ -74,10 +74,16 @@ class UserFixtures extends Fixture
                   $user->setActivated(true);
                   $user->setActivatedOn( new \DateTime(date('Y-m-d')));
                   $manager->persist($user);
+
                   $manager->flush();
 
-                  $this->addReference($user[5], $user);
-            }
+              if(!in_array($profil[5], $refs))
+              {
+                  $refs[] = $profil[5];
+
+                  $this->addReference($profil[5], $user);
+              }
+          }
       
     }
 
